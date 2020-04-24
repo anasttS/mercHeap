@@ -1,0 +1,431 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ProductController!{% endblock %}
+
+{% block body %}
+    <style>
+        .media {
+            margin-bottom: 30px;
+        }
+
+        .navbar-item {
+            margin-right: 10px;
+            margin-left: 10px;
+        }
+
+        .popup {
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            top: 0;
+            left: 0;
+            display: none;
+            text-align: center;
+        }
+
+        .popup_bg {
+            background: rgba(0, 0, 0, 0.4);
+            position: absolute;
+            z-index: 1;
+            height: 100%;
+            width: 100%;
+        }
+
+
+        .popup_img {
+            position: relative;
+            margin: 0 auto;
+            z-index: 2;
+            max-height: 80%;
+            max-width: 80%;
+
+        }
+
+        ::-webkit-scrollbar {
+            display: none;
+        }
+
+        .rating {
+            display: flex;
+        }
+
+        .rating-item, .top-item, .grade-item {
+            width: 40px;
+            height: 35px;
+            background-image: url("empty2.png");
+            background-repeat: no-repeat;
+            background-size: 30px 30px;
+            border: 2px solid #fff;
+            list-style: none;
+            position: relative;
+        }
+
+        .rating-item {
+            cursor: pointer;
+        }
+
+        .grade-item {
+            width: 20px;
+            height: 20px;
+            background-size: 15px 15px;
+        }
+
+        .top-item {
+            width: 30px;
+            height: 30px;
+            background-size: 25px 25px;
+        }
+
+        .rating-item.active, .top-item.active, .grade-item.active {
+            background-image: url("full2.png")
+        }
+    </style>
+    <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top border" style="box-shadow: black">
+        <div class="container-fluid">
+            <a href="/main" class="navbar-brad"><img
+                        src="https://sun7-6.userapi.com/2JYupaQXK7tuU6qqEN3Y3W0C568RoyyJq1Pu6g/8gOYGcN_NqE.jpg"> MERCHEAP</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarResponsive">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="navbar-item active">
+                        <a href="/main" class="nav-link">Home</a>
+                    </li>
+
+                    <li class="navbar-item">
+                        <a href="/profile" class="nav-link">Profile</a>
+                    </li>
+                    <li class="navbar-item">
+                        <a href="/goods" class="nav-link">Shop</a>
+                    </li>
+                    <li class="navbar-item">
+                        <a href="/register" class="nav-link">Become author</a>
+                    </li>
+                </ul>
+                <div class="navbar-item">
+
+                    <button class="btn-dark"><a href="/cart"
+                                                style="text-decoration: none; color: white">
+                            <i class="fas fa-shopping-cart"></i>
+                            Your Cart
+                        </a>
+                    </button>
+                </div>
+
+            </div>
+
+        </div>
+    </nav>
+    <div class="container">
+
+        <div class="product row" style="padding-top: 30px;">
+
+
+            <div id="carouselExampleIndicators" class="carousel slide col-xs-6 col-sm-8 col-md-8 col-lg-5"
+                 style="padding-left: 30px;" data-ride="carousel">
+                <ol class="carousel-indicators" style="z-index: 1">
+                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                </ol>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img class="d-block w-100 image"
+                             src="https://www.dhresource.com/600x600/f2/albu/g9/M00/68/3B/rBVaVVzSfCqAEdhIAAFtHGWu-GQ284.jpg"
+                             style="width: 500px;" alt="Первый слайд">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="d-block w-100 image"
+                             src="https://ae01.alicdn.com/kf/HTB1rWWQgTqWBKNjSZFAq6ynSpXah/pyhenph.jpg"
+                             style="width: 500px; " alt="Второй слайд">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="d-block w-100 image"
+                             src="https://go3.imgsmail.ru/imgpreview?key=761b96ccf5da4cf3&mb=storage&w=540"
+                             style="width: 500px;" alt="Третий слайд">
+                    </div>
+                </div>
+
+                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+
+
+            <div class="price col-xs-6 col-sm-8 col-md-8 col-lg-7" style="position: center; height: 30px">
+                <h1>Product name</h1>
+                <div class="row" style="padding-left: 15px">
+                    <div class="top-item active" data-rate="1"></div>
+                    <div class="top-item" data-rate="2"></div>
+                    <div class="top-item" data-rate="3"></div>
+                    <div class="top-item" data-rate="4"></div>
+                    <div class="top-item" data-rate="5"></div>
+                    <div style="margin-left: 15px; color: #9fa2a3; text-align: center"> 5 reviews</div>
+                </div>
+                <hr>
+                <h3>$PRICE$</h3>
+                <hr>
+                <div class="media-text text-justify" style="padding-left: 10px; padding-right: 10px">
+                    Lorem ipsum dolor sit amet. Blanditiis praesentium voluptatum
+                    deleniti atque. Autem vel illum, qui blanditiis praesentium voluptatum deleniti atque corrupti.
+                    Dolor repellendus cum soluta nobis. Corporis suscipit laboriosam, nisi ut enim. Debitis aut
+                    perferendis doloribus asperiores repellat. sint, obcaecati cupiditate non numquam eius. Itaque earum
+                    rerum facilis. Similique sunt in ea commodi. Dolor repellendus numquam eius modi. Quam nihil
+                    molestiae consequatur, vel illum, qui ratione voluptatem accusantium doloremque.
+                </div>
+                <br>
+                <form style="float: right" name="changeColor">
+                    <button name="add" class="btn btn-light" id="add" onmouseover="mouseIn('add')" onmouseout="mouseOut()"
+                            style="">Add to cart
+                    </button>
+                </form>
+
+
+            </div>
+        </div>
+        <hr>
+        <div class="description">
+            <h2 style="padding-left: 10px;">Author</h2>
+            <div class="media-text text-justify" style="padding-left: 10px; padding-right: 10px">
+                Lorem ipsum dolor sit amet. Blanditiis praesentium voluptatum
+                deleniti atque. Autem vel illum, qui blanditiis praesentium voluptatum deleniti atque corrupti.
+                Dolor repellendus cum soluta nobis. Corporis suscipit laboriosam, nisi ut enim. Debitis aut
+                perferendis doloribus asperiores repellat. sint, obcaecati cupiditate non numquam eius. Itaque earum
+                rerum facilis. Similique sunt in ea commodi. Dolor repellendus numquam eius modi. Quam nihil
+                molestiae consequatur, vel illum, qui ratione voluptatem accusantium doloremque.
+            </div>
+        </div>
+        <hr>
+
+        <div class="media-body">
+            <div class="media-heading">
+                <div class="media-text text-justify row">
+                    <div class="col-xs-4 col-sm-12 col-md-3 col-lg-3">
+                        <div class="rating">
+                            <div class="rating-item active" data-rate="1" title="Плохо"></div>
+                            <div class="rating-item" data-rate="2" title="Нормально"></div>
+                            <div class="rating-item" data-rate="3" title="Средне"></div>
+                            <div class="rating-item" data-rate="4" title="Хорошо"></div>
+                            <div class="rating-item" data-rate="5" title="Отлично"></div>
+                        </div>
+                        <script>
+                            var rating = document.querySelector('.rating'),
+                                ratingItem = document.querySelectorAll('.rating-item');
+
+                            rating.onclick = function (e) {
+                                var target = e.target;
+                                if (target.classList.contains('rating-item')) {
+                                    removeClass(ratingItem, 'current-active')
+                                    target.classList.add('active', 'current-active');
+                                }
+                            }
+
+                            rating.onmouseover = function (e) {
+                                var target = e.target;
+                                if (target.classList.contains('rating-item')) {
+                                    removeClass(ratingItem, 'active')
+                                    target.classList.add('active');
+                                    mouseOverActiveClass(ratingItem)
+                                }
+                            }
+                            rating.onmouseout = function () {
+                                addClass(ratingItem, 'active');
+                                mouseOutActiveClas(ratingItem);
+                            }
+
+                            function removeClass(arr) {
+                                for (var i = 0, iLen = arr.length; i < iLen; i++) {
+                                    for (var j = 1; j < arguments.length; j++) {
+                                        ratingItem[i].classList.remove(arguments[j]);
+                                    }
+                                }
+                            }
+
+                            function addClass(arr) {
+                                for (var i = 0, iLen = arr.length; i < iLen; i++) {
+                                    for (var j = 1; j < arguments.length; j++) {
+                                        ratingItem[i].classList.add(arguments[j]);
+                                    }
+                                }
+                            }
+
+                            function mouseOverActiveClass(arr) {
+                                for (var i = 0, iLen = arr.length; i < iLen; i++) {
+                                    if (arr[i].classList.contains('active')) {
+                                        break;
+                                    } else {
+                                        arr[i].classList.add('active');
+                                    }
+                                }
+                            }
+
+                            function mouseOutActiveClas(arr) {
+                                for (var i = arr.length - 1; i >= 1; i--) {
+                                    if (arr[i].classList.contains('current-active')) {
+                                        break;
+                                    } else {
+                                        arr[i].classList.remove('active');
+                                    }
+                                }
+                            }
+                        </script>
+                    </div>
+                    <div class="col-xs-4 col-sm-12 col-md-8 col-lg-7" style="">
+                        <textarea id="comment" name="text" style="width: 100%; height: 38px"></textarea><br>
+                    </div>
+                    <form class="col-xs-4 col-sm-12 col-md-2 col-lg-2" style="padding: 0px 0px" name="changeColor">
+                        <button name="send" class=" btn btn-light" id="send" style="" onmouseover="mouseIn('send')"
+                                onmouseout="mouseOut()">Leave a feedback
+                        </button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="comments">
+            <h3 class="title-comments">Reviews</h3>
+            <br>
+            <!-- Комментарий (уровень 1) -->
+            <div class="media">
+                <div class="media-body row">
+                    <div class="col-xs-4 col-sm-12 col-md-1 col-lg-1 media-heading">
+                        <img src="https://psv4.userapi.com/c856324/u71223014/docs/d3/2c5f22168abf/836189496.jpg?extra=C0Eidu8GhkD4r2Q0taLGI4NKXF77NN6qrxJcBC5TYLrYaKxcNXDAO5nDdjHLuGjQ76WMccFb4n6prp4iHTww1qrZ28fjfxu2K4accBdelLgQYv26CXHp3lQgwm9Iv6ogg07SzJu972_Wbaro1BrE"
+                             style="width: 80px; border-radius: 40px;">
+                    </div>
+                    <div class="col-xs-4 col-sm-12 col-md-2 col-lg-2 media-heading">
+                        <div class="author">
+                            <h3>Ann</h3>
+                            <div class="row" style="padding-left: 15px">
+                                <div class="grade-item active" data-rate="1"></div>
+                                <div class="grade-item" data-rate="2"></div>
+                                <div class="grade-item" data-rate="3"></div>
+                                <div class="grade-item" data-rate="4"></div>
+                                <div class="grade-item" data-rate="5"></div>
+                            </div>
+                            <span class="date">16 Nov 2015, 1:43 pm</span>
+                        </div>
+                    </div>
+                    <div class="col-xs-4 col-sm-12 col-md-9 col-lg-9 media-text text-justify">
+                        Lorem ipsum dolor sit amet. Blanditiis praesentium voluptatum
+                        deleniti atque. Autem vel illum, qui blanditiis praesentium voluptatum deleniti atque corrupti.
+                        Dolor repellendus cum soluta nobis. Corporis suscipit laboriosam, nisi ut enim. Debitis aut
+                        perferendis doloribus asperiores repellat. sint, obcaecati cupiditate non numquam eius. Itaque
+                        earum
+                        rerum facilis. Similique sunt in ea commodi. Dolor repellendus numquam eius modi. Quam nihil
+                        molestiae consequatur, vel illum, qui ratione voluptatem accusantium doloremque.
+                    </div>
+
+                    <hr>
+                </div>
+            </div>
+            <div class="media">
+                <div class="media-body row">
+                    <div class="col-xs-4 col-sm-12 col-md-1 col-lg-1 media-heading">
+                        <img src="https://psv4.userapi.com/c856324/u71223014/docs/d3/2c5f22168abf/836189496.jpg?extra=C0Eidu8GhkD4r2Q0taLGI4NKXF77NN6qrxJcBC5TYLrYaKxcNXDAO5nDdjHLuGjQ76WMccFb4n6prp4iHTww1qrZ28fjfxu2K4accBdelLgQYv26CXHp3lQgwm9Iv6ogg07SzJu972_Wbaro1BrE"
+                             style="width: 80px; border-radius: 40px;">
+                    </div>
+                    <div class="col-xs-4 col-sm-12 col-md-2 col-lg-2 media-heading">
+                        <div class="author">
+                            <h3>Ann</h3>
+                            <div class="row" style="padding-left: 15px">
+                                <div class="grade-item active" data-rate="1"></div>
+                                <div class="grade-item" data-rate="2"></div>
+                                <div class="grade-item" data-rate="3"></div>
+                                <div class="grade-item" data-rate="4"></div>
+                                <div class="grade-item" data-rate="5"></div>
+                            </div>
+                            <span class="date">16 Nov 2015, 1:43 pm</span>
+                        </div>
+                    </div>
+                    <div class="col-xs-4 col-sm-12 col-md-9 col-lg-9 media-text text-justify">
+                        Lorem ipsum dolor sit amet. Blanditiis praesentium voluptatum
+                        deleniti atque. Autem vel illum, qui blanditiis praesentium voluptatum deleniti atque corrupti.
+                        Dolor repellendus cum soluta nobis. Corporis suscipit laboriosam, nisi ut enim. Debitis aut
+                        perferendis doloribus asperiores repellat. sint, obcaecati cupiditate non numquam eius. Itaque
+                        earum
+                        rerum facilis. Similique sunt in ea commodi. Dolor repellendus numquam eius modi. Quam nihil
+                        molestiae consequatur, vel illum, qui ratione voluptatem accusantium doloremque.
+                    </div>
+
+                    <hr>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <footer class="page-footer font-small cyan darken-3" style="background-color: #efefef"> <!-- doesn't work(?) -->
+        <div class="container text-center">
+            <div class="col-md-12 py-5">
+                <div class="flex-center">
+                    <!-- Twitter -->
+                    <a class="tw-ic">
+                        <i class="fab fa-twitter fa-lg white-text mr-md-5 mr-3 ml-5 fa-2x"> </i>
+                    </a>
+                    <!--Instagram-->
+                    <a class="ins-ic">
+                        <i class="fab fa-instagram fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+                    </a>
+                    <!--Vk-->
+                    <a class="ins-ic">
+                        <i class="fab fa-vk fa-lg white-text mr-md-5 mr-3 fa-2x"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="text-center py-3">
+            <a>Our links</a>
+        </div>
+    </footer> <!-- Footer -->
+
+    <script language="javascript">
+        //для подстветки кнопки
+        var default_color;
+        var elem;
+
+        function mouseIn(id) {
+            elem = document.getElementById(id);
+            default_color = elem.style.background;
+            elem.style.background = "#bfbfbf";
+        }
+
+        function mouseOut() {
+            elem.style.background = default_color;
+        }
+    </script>
+    <script>
+
+        var nav;
+        var color;
+        $(".image").click(function () {	// Событие клика на маленькое изображение
+            var img = $(this);	// Получаем изображение, на которое кликнули
+            var src = img.attr('src'); // Достаем из этого изображения путь до картинки
+            document.body.style.overflowY = 'hidden';
+            // nav = document.getElementsByClassName("navbar");
+            // color = nav.style.background;
+            // nav.style.background = "rgba(0,0,0,0.4)";
+            $("body").append("<div class='popup'>" + //Добавляем в тело документа разметку всплывающего окна
+                "<div class='popup_bg'></div>" + // Блок, который будет служить фоном затемненным
+                "" +
+                "<img src='" + src + "' class='popup_img' style='top: 80px; z-index: 2'/>" + // Само увеличенное фото
+                "</div>");
+            $(".popup").fadeIn(800); // Медленно выводим изображение
+            $(".popup_bg").click(function () {	// Событие клика на затемненный фон
+                // navbar.style.background = color;
+                document.body.style.overflowY = '';
+                $(".popup").fadeOut(100);	// Медленно убираем всплывающее окно
+                setTimeout(function () {	// Выставляем таймер
+                    $(".popup").remove(); // Удаляем разметку всплывающего окна
+                }, 100);
+            });
+        });
+    </script>
+
+{% endblock %}

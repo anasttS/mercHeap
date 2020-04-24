@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="../css/mainPageStyle.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/granim/1.1.1/granim.min.js'></script>
+    <meta charset="UTF-8">
+    <title>MerchHeap</title>
+    <style>
+        .navbar-item {
+            margin-right: 10px;
+            margin-left: 10px;
+        }
+
+        .backgroundImage {
+            background-image: url("https://images.pexels.com/photos/1696726/pexels-photo-1696726.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+            background-size: 100%;
+            height: 570px;
+
+        }
+
+        .label {
+            margin-left: 15px;
+            padding-top: 20px;
+        }
+
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-md navbar-light bg-light sticky-top border" style="box-shadow: black">
+    <div class="container-fluid">
+        <a href="mainPage.html" class="navbar-brad"><img
+                src="https://sun7-6.userapi.com/2JYupaQXK7tuU6qqEN3Y3W0C568RoyyJq1Pu6g/8gOYGcN_NqE.jpg"> MERCHEAP</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                data-target="#navbarResponsive">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="navbar-item active">
+                    <a href="mainPage.html" class="nav-link">Home</a>
+                </li>
+                <li class="navbar-item">
+                    <a href="../profile/profile.html" class="nav-link">Profile</a>
+                </li>
+                <li class="navbar-item">
+                    <a href="../goods/goods.html" class="nav-link">Shop</a>
+                </li>
+                <li class="navbar-item">
+                    <a href="../register/register.html" class="nav-link">Become author</a>
+                </li>
+            </ul>
+            <div class="navbar-item">
+
+                <button class="btn-dark"><a href="cart.html"
+                                            style="text-decoration: none; color: white">
+                    <i class="fas fa-shopping-cart"></i>
+                    Your Cart
+                </a>
+                </button>
+            </div>
+
+        </div>
+
+    </div>
+</nav>
+<div id="bgimage" class="container-fluid  backgroundImage">
+    <div class="container">
+        <h1 class="label">
+            <small style="font-weight: 500; font-size: 43px;">About our site</small>
+        </h1>
+        <div class="col-9 text-justify mt-2" style="font-size: 25px; color: #4e555b; padding-top: 10px">
+            Our site is created for creators and all creative people.
+            <br>
+            Creators, artists, musicians and others can
+            promote their own unique merch on this platform without losing anything. Any author can offer his product
+            for consideration, so that soon the whole world can see and purchase it!
+            <br>
+            We are waiting for new creative ideas from you and are always happy to see you on this platform.
+            <br>
+            Welcome!
+        </div>
+    </div>
+
+</div>
+
+<h2 class="text-secondary text-center mt-3 mb-4">
+    <small>Available products</small>
+</h2>
+
+<div class="container-fluid mt-3 mb-4">
+    <div id="carousel-recommend" class="carousel slide" data-ride="carousel">
+
+        <div class="carousel-inner" role="listbox">
+            <div class="carousel-item active">
+                <div class="card-group justify-content-center">
+                    <div class="col-10 col-md-3">
+                        <div class="card mb-2">
+                            <a href="#"> <!— ссылка на итем-->
+                                <img class="card-img-top"
+                                     src="https://sun9-14.userapi.com/c857232/v857232297/53b23/KSb0ZhyxSSk.jpg"
+                                     style="min-height: 250px"/>
+                            </a>
+                        </div>
+                        <h4 class="card-title text-center text-secondary">
+                            <small>T-SHIRTS</small>
+                        </h4>
+                    </div>
+
+                    <div class="col-10 col-md-3">
+                        <div class="card mb-2">
+                            <a href="#"> <!— ссылка на итем-->
+                                <img class="card-img-top"
+                                     src="https://sun9-59.userapi.com/c850216/v850216010/14456/S1vVkTbgDDc.jpg"
+                                     style="max-height: 250px"/>
+                            </a>
+                        </div>
+                        <h4 class="card-title text-center text-secondary">
+                            <small>STICKERS</small>
+                        </h4>
+                    </div>
+
+                    <div class="col-10 col-md-3">
+                        <div class="card mb-2">
+                            <a href="#"> <!— ссылка на итем-->
+                                <img class="card-img-top"
+                                     src="https://sun9-64.userapi.com/c847120/v847120532/170666/ImwRL5009eo.jpg"
+                                     style="max-height: 250px"/>
+                            </a>
+                        </div>
+                        <h4 class="card-title text-center text-secondary">
+                            <small>CUPS</small>
+                        </h4>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="carousel-item">
+                <div class="card-group justify-content-center">
+                    <div class="col-10 col-md-3">
+                        <div id="card1" class="card mb-2">
+                            <a href="#"> <!— ссылка на итем-->
+                                <img id="img1" class="card-img-top"
+                                     src="https://sun9-35.userapi.com/c847016/v847016562/130d2f/3mxIBdFJ3q8.jpg"
+                                     style="max-height: 250px"/>
+                            </a>
+                        </div>
+                        <h4 class="card-title text-center text-secondary">
+                            <small>PINS</small>
+                        </h4>
+                    </div>
+
+                    <div class="col-10 col-md-3">
+                        <div class="card mb-2">
+                            <a href="#"> <!— ссылка на итем-->
+                                <img class="card-img-top"
+                                     src="https://sun9-68.userapi.com/c850736/v850736045/adcc2/XZJEaCjqpec.jpg"
+                                     style="max-height: 250px"/>
+                            </a>
+                        </div>
+                        <h4 class="card-title text-center text-secondary">
+                            <small>ARTS</small>
+                        </h4>
+                    </div>
+
+                    <div class="col-10 col-md-3">
+                        <div class="card mb-2">
+                            <a href="#"> <!— ссылка на итем-->
+                                <img class="card-img-top"
+                                     src="https://sun9-59.userapi.com/c638916/v638916241/4bfaa/bLB0lrviO_8.jpg"
+                                     style="max-height: 250px"/>
+                            </a>
+                        </div>
+                        <h4 class="card-title text-center text-secondary">
+                            <small>OTHERS</small>
+                        </h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <a class="carousel-control-prev" href="#carousel-recommend" role="button"
+           data-slide="prev">
+            <i class="fas fa-chevron-left" style="color: #1b1e21; font-size: 30px"></i>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carousel-recommend" role="button"
+           data-slide="next">
+            <i class="fas fa-chevron-right" style="color: #1b1e21; font-size: 30px"></i>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+
+</div>
+
+<footer class="page-footer font-small cyan darken-3" style="background-color: #efefef"> <!-- doesn't work(?) -->
+    <div class="container text-center">
+        <div class="col-md-12 py-5">
+            <div class="flex-center">
+                <!-- Twitter -->
+                <a class="tw-ic">
+                    <i class="fab fa-twitter fa-lg white-text mr-md-5 mr-3 ml-5 fa-2x"> </i>
+                </a>
+                <!--Instagram-->
+                <a class="ins-ic">
+                    <i class="fab fa-instagram fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+                </a>
+                <!--Vk-->
+                <a class="ins-ic">
+                    <i class="fab fa-vk fa-lg white-text mr-md-5 mr-3 fa-2x"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="text-center py-3">
+        <a>Our links</a>
+    </div>
+</footer> <!-- Footer -->
+
+
+<script>
+    var cont = document.getElementById("bgimage");
+    var card1 = document.getElementById("card1");
+
+
+    card1.onmouseover = function () {
+        var granimInstance = new Granim({
+            element: '#img1',
+            direction: 'diagonal',
+            opacity: [1, 1],
+            isPausedWhenNotInView: true,
+            states: {
+                "default-state": {
+                    gradients: [
+                        ['#29323c', '#485563'],
+                        ['#FF6B6B', '#556270'],
+                        ['#80d3fe', '#7ea0c4'],
+                        ['#f0ab51', '#eceba3']
+                    ],
+                    transitionSpeed: 7000
+                }
+            }
+        });
+    }
+</script>
+</body>
+</html>

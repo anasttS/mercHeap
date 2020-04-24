@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Check Out</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap..">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.."></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/p.."></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap..."></script>
+    <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+</head>
+<body>
+<style>
+    .navbar-item {
+        margin-right: 10px;
+        margin-left: 10px;
+    }
+</style>
+<nav class="navbar navbar-expand-md navbar-light bg-light sticky-top border" style="box-shadow: black">
+    <div class="container-fluid">
+        <a href="../main/mainPage.html" class="navbar-brad"><img
+                src="https://sun7-6.userapi.com/2JYupaQXK7tuU6qqEN3Y3W0C568RoyyJq1Pu6g/8gOYGcN_NqE.jpg"> MERCHEAP</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                data-target="#navbarResponsive">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="navbar-item active">
+                    <a href="../main/mainPage.html" class="nav-link">Home</a>
+                </li>
+                <li class="navbar-item">
+                    <a href="../profile/profile.html" class="nav-link">Profile</a>
+                </li>
+                <li class="navbar-item">
+                    <a href="../goods/goods.html" class="nav-link">Shop</a>
+                </li>
+                <li class="navbar-item">
+                    <a href="../register/register.html" class="nav-link">Become author</a>
+                </li>
+            </ul>
+            <div class="navbar-item">
+
+                <button class="btn-dark"><a href="cart.html"
+                                            style="text-decoration: none; color: white">
+                    <i class="fas fa-shopping-cart"></i>
+                    Your Cart
+                </a>
+                </button>
+            </div>
+
+        </div>
+
+    </div>
+</nav>
+
+
+
+
+
+</br>
+<div class="container">
+    <div class="row">
+        <!-- Первый блок -->
+        <div class="col-8" style="height: 200px;">
+            <h2>
+                <small class="text-secondary">Shipping detail</small>
+            </h2>
+            <hr/>
+            <div class="row">
+                <input class="form-control col-5 mr-4 ml-3" id="firstName" placeholder="First Name" onblur="f()">
+                <input class="form-control col-5" id="lastName" placeholder="Last Name" onblur="f()">
+            </div>
+            </br>
+            <input class="form-control col-10" id="address" placeholder="Address" onblur="f()">
+            </br>
+            <div class="row">
+                <!--        <input class="form-control col-5 mr-4 ml-3" id="country" placeholder="Country">-->
+                <select id="country" class="custom-select form-control col-5 mr-4 ml-3" onblur="f()">
+                    <option selected>Country</option>
+                    <option value="1">Russia</option>
+                    <option value="2">Ukraine</option>
+                    <option value="3">Kazakhstan</option>
+                </select>
+                <input class="form-control col-5" id="city" placeholder="City" onblur="f()">
+            </div>
+            </br>
+            <div class="row">
+                <input class="form-control col-5 mr-4 ml-3" id="code" placeholder="Zip/Postal Code" onblur="f()">
+                <input class="form-control col-5" id="phoneNumber" placeholder="Phone Number" onblur="f()">
+            </div>
+            <hr color="black"/>
+            <div class="row">
+                <button type="button" class="col-3 mr-4 ml-3 btn btn-secondary" id="next" disabled>Next</button>
+                <button type="button" class="col-3 mr-4 ml-3 btn btn-light" id="btn_modal_window">Cancel</button>
+                <div id="error" class="error" style="color: red"></div>
+            </div>
+            <div id="my_modal" class="modal">
+                <div class="modal_content">
+                    <span class="close_modal_window">×</span>
+                    <p>Are you sure you want to cancel the order?</p>
+                    <button type="button" class="col-3 btn btn-light">Cancel</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Второй блок -->
+        <div class="col-4" style="height: 200px;">
+            <h2>
+                <small class="text-secondary">Summary</small>
+            </h2>
+            <hr/>
+            <div class="container">
+                <div class="alert alert-dismissible"  onmouseover="this.style.borderColor = 'black'" onmouseout="this.style.borderColor = ''">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    <div class="row">
+                        <img src="https://onerepublic.com/wp-content/uploads/2019/11/1R_RM_HATSIDE_MOCK.jpg" style="wight: 90px; height: 80px">
+                        <div class="ml-3" id="productName1">
+                            PRODUCT NAME
+                            <h4>
+                                <small id="price1">300$</small>
+                            </h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="alert alert-dismissible"  onmouseover="this.style.borderColor = 'black'" onmouseout="this.style.borderColor = ''">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    <div class="row">
+                        <img src="https://sun9-59.userapi.com/c850216/v850216010/14456/S1vVkTbgDDc.jpg" style="wight: 90px; height: 80px">
+                        <div class="ml-3" id="productName2">
+                            PRODUCT NAME
+                            <h4>
+                                <small id="price2">40$</small>
+                            </h4>
+                        </div>
+                    </div>
+                </div>
+                <hr/>
+                <div class="row">
+                    <div class="col-9">SUBTOTAL</div>
+                    <div class="col-2" id="subtotal">$340</div>
+                </div>
+                <div class="row">
+                    <div class="col-9">SHIPPING</div>
+                    <div class="col-2" id="shipping">FREE</div>
+                </div>
+                <div class="row">
+                    <div class="col-9">TAXES</div>
+                    <div class="col-2" id="taxes">$13</div>
+                </div>
+            </div>
+            <hr/>
+            <div class="row">
+                <h3 class="col-9">
+                    <small>TOTAL</small>
+                </h3>
+                <h3 class="col-2" id="total">
+                    <small>$353</small>
+                </h3>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 135%;
+        overflow: auto;
+        background-color: rgba(0,0,0,0.6);
+        z-index: 1000;
+    }
+    .modal .modal_content {
+        background-color: #fefefe;
+        margin: 15% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 20%;
+        height: 15%;
+        z-index: 99999;
+    }
+    .modal .modal_content .close_modal_window {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+</style>
+<script>
+    var modal = document.getElementById("my_modal");
+    var btn = document.getElementById("btn_modal_window");
+    var span = document.getElementsByClassName("close_modal_window")[0];
+
+
+    btn.onclick = function () {
+        modal.style.display = "block";
+    }
+
+    span.onclick = function () {
+        modal.style.display = "none";
+    }
+
+    window.onclick = function (event) {
+        if (event.target === modal) {
+            modal.style.display = "none";
+        }
+    }
+</script>
+<script>
+    function f() {
+        var rePhone = /^[0-9]+$/i;
+        var reName = /^[A-Za-z\s]+$/i;
+        var reAddress = /^[a-zA-Z0-9]+$/;
+
+        var myPhone = document.getElementById('phoneNumber').value;
+        var myFirstName = document.getElementById('firstName').value;
+        var myLastName = document.getElementById('lastName').value;
+        var myAddress = document.getElementById('address').value;
+        var myCity = document.getElementById('city').value;
+        var myCode = document.getElementById('code').value;
+        var myCountry = document.getElementById('country').value;
+        var validFirstName = reName.test(myFirstName);
+        var validLastName = reName.test(myLastName);
+        var validPhone = rePhone.test(myPhone);
+        var validCity = reName.test(myCity);
+        var validAddress = reAddress.test(myAddress);
+        var validCountry = reName.test(myCountry);
+        var validCode = rePhone.test(myCode);
+        var next = document.getElementById('next');
+        if (validPhone & validFirstName & validLastName & validCode & validCity & validAddress) {
+            error.innerHTML = '';
+            next.disabled = false;
+        }
+        else if(!validFirstName){
+            error.innerHTML = 'You are using invalid characters for FirstName or empty field value.'
+        }
+        else if (!validLastName){
+            error.innerHTML = 'You are using invalid characters for LastName or empty field value.'
+        }
+        else if (!validAddress){
+            error.innerHTML = 'You are using invalid characters for Address or empty field value.';
+        }else if (myCountry === null || myCountry === 'Country'){
+            error.innerHTML = 'Empty field value on country.'
+        }
+        else if (!validCity){
+            error.innerHTML = 'You are using invalid characters for City or empty field value.';
+        }
+        else if (!validCode){
+            error.innerHTML = 'You are using invalid characters for Zip/Portal Code or empty field value.';
+        }
+        else if(!validPhone){
+            error.innerHTML = 'You are using invalid characters for a phone number. Example: 891273627745';
+
+        }
+    }
+</script>
+
+</body>
+</html>

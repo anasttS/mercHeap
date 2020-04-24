@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Cart</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap..">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.."></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/p.."></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap..."></script>
+    <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-expand-md navbar-light bg-light sticky-top border" style="box-shadow: black">
+    <div class="container-fluid">
+        <a href="mainPage.html" class="navbar-brad"><img
+                src="https://sun7-6.userapi.com/2JYupaQXK7tuU6qqEN3Y3W0C568RoyyJq1Pu6g/8gOYGcN_NqE.jpg"> MERCHEAP</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                data-target="#navbarResponsive">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="navbar-item active">
+                    <a href="mainPage.html" class="nav-link">Home</a>
+                </li>
+                <li class="navbar-item">
+                    <a href="profile.html" class="nav-link">Profile</a>
+                </li>
+                <li class="navbar-item">
+                    <a href="goods.html" class="nav-link">Shop</a>
+                </li>
+                <li class="navbar-item">
+                    <a href="register.html" class="nav-link">Become author</a>
+                </li>
+            </ul>
+            <div class="navbar-item">
+
+                <button class="btn-dark"><a href="cart.html"
+                                            style="text-decoration: none; color: white">
+                    <i class="fas fa-shopping-cart"></i>
+                    Your Cart
+                </a>
+                </button>
+            </div>
+
+        </div>
+
+    </div>
+</nav>
+</br>
+<div class="container col-md-8">
+    <div>
+        <h2>
+            <small class="text-secondary">Shopping cart</small>
+        </h2>
+        <hr/>
+        <div class="container">
+            <div id="1">
+                <div class="alert alert-dismissible">
+                    <div class="row">
+                        <div class="col-3">
+                            <img src="https://onerepublic.com/wp-content/uploads/2019/11/1R_RM_HATSIDE_MOCK.jpg"
+                                 style="width: 150px; height: 150px" onmouseenter="changeSizeImageToBig(this)"
+                                 onmouseleave="changeSizeImageToSmall(this)">
+                        </div>
+                        <div class="col-6">
+                            <div class="ml-3" id="productName1">
+                                <div style="font-size: 16px" onmouseleave="reduceFontSize(this)"
+                                     onmouseenter="increaseFontSize(this)">
+                                    Cap
+                                </div>
+                                <h5>
+                                    <small id="description1">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                    </small>
+                                </h5>
+                                <h4>
+                                    <small id="price1">300$</small>
+                                </h4>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <button type="button" class="close" id="close" value="1" data-dismiss="alert"
+                                    style="padding: 0">×
+                            </button>
+                            <div id="voter" class=""
+                                 style="font-family: 'DejaVu Sans Mono', monospace; font-size: 16px; padding: 0">
+                                <span class="down">-</span>
+                                <span class="vote">0</span>
+                                <span class="up">+</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="2">
+                <div class="alert alert-dismissible">
+                    <div class="row">
+                        <div class="col-3">
+                            <img src="https://sun9-59.userapi.com/c850216/v850216010/14456/S1vVkTbgDDc.jpg"
+                                 style="width: 150px; height: 150px" onmouseenter="changeSizeImageToBig(this)"
+                                 onmouseleave="changeSizeImageToSmall(this)">
+                        </div>
+                        <div class="col-6">
+                            <div class="ml-3" id="productName2">
+                                <div style="font-size: 16px" onmouseleave="reduceFontSize(this)"
+                                     onmouseenter="increaseFontSize(this)">
+                                    Stickers
+                                </div>
+                                <h5>
+                                    <small id="description2">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                    </small>
+                                </h5>
+                                <h4>
+                                    <small id="price2">40$</small>
+                                </h4>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <button type="button" class="close" data-dismiss="alert" style="padding: 0">×</button>
+                            <div id="voter1" class=""
+                                 style="font-family: 'DejaVu Sans Mono', monospace; font-size: 16px; padding: 0">
+                                <span class="down">-</span>
+                                <span class="vote">0</span>
+                                <span class="up">+</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="3">
+                <div class="alert alert-dismissible">
+                    <div class="row">
+                        <div class="col-3">
+                            <img src="https://www.dhresource.com/600x600/f2/albu/g9/M00/68/3B/rBVaVVzSfCqAEdhIAAFtHGWu-GQ284.jpg"
+                                 style="width: 150px; height: 150px" onmouseenter="changeSizeImageToBig(this)"
+                                 onmouseleave="changeSizeImageToSmall(this)">
+                        </div>
+                        <div class="col-6">
+                            <div class="ml-3" id="productName3">
+                                <div style="font-size: 16px" onmouseleave="reduceFontSize(this)"
+                                     onmouseenter="increaseFontSize(this)"> T-shirt "Not today"
+                                </div>
+                                <h5>
+                                    <small id="description3">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                    </small>
+                                </h5>
+                                <h4>
+                                    <small id="price3">50$</small>
+                                </h4>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <button type="button" class="close" data-dismiss="alert" style="padding: 0">×</button>
+                            <div id="voter2" class=""
+                                 style="font-family: 'DejaVu Sans Mono', monospace; font-size: 16px; padding: 0">
+                                <span class="down" style="">-</span>
+                                <span class="vote" style="">0</span>
+                                <span class="up" style="">+</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr style="color: #5a6268"/>
+        <div class="row justify-content-end">
+            <button type="button" class="col-3 mr-4 ml-3 btn btn-secondary" id="next"><a href="shippingDetails.html" style="text-decoration: none; color: white" > Next</a></button>
+        </div>
+    </div>
+</div>
+<br>
+<br>
+<br>
+<footer class="page-footer font-small cyan darken-3" style="background-color: #efefef"> <!-- doesn't work(?) -->
+    <div class="container text-center">
+        <div class="col-md-12 py-5">
+            <div class="flex-center">
+                <!-- Twitter -->
+                <a class="tw-ic">
+                    <i class="fab fa-twitter fa-lg white-text mr-md-5 mr-3 ml-5 fa-2x"> </i>
+                </a>
+                <!--Instagram-->
+                <a class="ins-ic">
+                    <i class="fab fa-instagram fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+                </a>
+                <!--Vk-->
+                <a class="ins-ic">
+                    <i class="fab fa-vk fa-lg white-text mr-md-5 mr-3 fa-2x"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="text-center py-3">
+        <a>Our links</a>
+    </div>
+</footer> <!-- Footer -->
+</body>
+<script>
+    function Voter(options) {
+        var elem = options.elem;
+
+        var voteElem = elem.querySelector('.vote');
+        var voteMinus = elem.querySelector('.down');
+        var votePlus = elem.querySelector('.up');
+        voteElem.style.cursor = "default";
+        votePlus.style.cursor = "pointer";
+        voteMinus.style.cursor = "pointer";
+
+        elem.onclick = function (event) {
+            if (event.target.closest('.down')) {
+                voteDecrease();
+            } else if (event.target.closest('.up')) {
+                voteIncrease();
+            }
+        };
+
+        elem.onmousedown = function () {
+            return false;
+        };
+
+        function voteDecrease() {
+            if (+voteElem.innerHTML === 0) {
+                return;
+            }
+            voteElem.innerHTML = +voteElem.innerHTML - 1;
+        }
+
+        function voteIncrease() {
+            voteElem.innerHTML = +voteElem.innerHTML + 1;
+        }
+
+        this.setVote = function (vote) {
+            voteElem.innerHTML = +vote;
+        };
+
+    }
+
+    var voter = new Voter({
+        elem: document.getElementById('voter')
+    });
+    var voter1 = new Voter({
+        elem: document.getElementById('voter1')
+    });
+    var voter2 = new Voter({
+        elem: document.getElementById('voter2')
+    });
+    voter.setVote(1);
+    voter1.setVote(1);
+    voter2.setVote(1);
+
+</script>
+
+<script>
+    var bigsize = "170px"; //Размер большой картинки
+    var smallsize = "150px"; //Размер маленькой картинки
+    function changeSizeImageToSmall(im) {
+        im.style.height = smallsize;
+        im.style.width = smallsize;
+        im.style.cursor = "pointer";
+    }
+
+    function changeSizeImageToBig(im) {
+        im.style.height = bigsize;
+        im.style.width = bigsize;
+    }
+</script>
+
+<script>
+
+    var bigSize = "18px";
+    var smallSize = "16px";
+
+    function increaseFontSize(text) {
+        text.style.fontSize = bigSize;
+        text.style.cursor = "pointer";
+    }
+
+    function reduceFontSize(text) {
+        text.style.fontSize = smallSize;
+    }
+
+</script>
+</html>
