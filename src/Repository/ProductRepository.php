@@ -15,5 +15,9 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
  */
 class ProductRepository extends ServiceEntityRepository
 {
+    public function __construct()
+    {
+        parent::__construct();
+    }
 
 }

@@ -14,5 +14,9 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
  */
 class CommentRepository extends ServiceEntityRepository
 {
+    public function __construct()
+    {
+        parent::__construct();
+    }
 
 }
