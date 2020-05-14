@@ -49,6 +49,9 @@
 
                 <br>
                 {{ form_start(form) }}
+                <input type="hidden" name="_csrf_token"
+                       value="{{ csrf_token('authenticate') }}"
+                >
                     <div class="form-group">
                         <label for="inputUsername">Username</label>
                         {{ form_row(form.name) }}
@@ -61,7 +64,7 @@
                     </div>
                     <div class="form-group">
                         <label for="inputPassword">Password</label>
-                        {{ form_row(form.password) }}
+                        {{ form_row(form._password) }}
 {#                        <input type="password" class="form-control" id="inputPassword" oninput="checkPassword()" placeholder="Password" name="password">#}
                     </div>
 
