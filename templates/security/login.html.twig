@@ -51,7 +51,7 @@
                 <span><h1><b>Login</b></h1></span>
                 <br>
                 {% if error %}
-                    <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                    <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
                 {% endif %}
                 <form action="{{ path('login') }}" method="post">
                     <div class="form-group">
