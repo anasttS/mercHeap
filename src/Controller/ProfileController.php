@@ -11,7 +11,7 @@ class ProfileController extends AbstractController
     /**
      * @Route("/profile", name="profile")
      */
-    public function index(ProfileService $service)
+    public function profile(ProfileService $service)
     {
 //        TODO достать данные из бд
         $username = "Merc";
