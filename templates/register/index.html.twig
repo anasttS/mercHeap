@@ -48,42 +48,42 @@
                 <span><h1>Registration</h1></span>
 
                 <br>
-                <form>
+                {{ form_start(form) }}
                     <div class="form-group">
                         <label for="inputUsername">Username</label>
-                        <input type="text" class="form-control" id="inputUsername" placeholder="Enter username" name="username">
+                        {{ form_row(form.name) }}
+{#                        <input type="text" class="form-control" id="inputUsername" placeholder="Enter username" name="username">#}
                     </div>
                     <div class="form-group">
                         <label for="inputEmail">Email address</label>
-                        <input type="email" class="form-control" id="inputEmail" placeholder="Enter email" name="email">
+                        {{ form_row(form.email) }}
+{#                        <input type="email" class="form-control" id="inputEmail" placeholder="Enter email" name="email">#}
                     </div>
                     <div class="form-group">
                         <label for="inputPassword">Password</label>
-                        <input type="password" class="form-control" id="inputPassword" oninput="checkPassword()" placeholder="Password" name="password">
+                        {{ form_row(form.password) }}
+{#                        <input type="password" class="form-control" id="inputPassword" oninput="checkPassword()" placeholder="Password" name="password">#}
                     </div>
-                    <div class="form-group">
-                        <label for="example-date-input">Birth Date</label>
-                        <input class="form-control" type="date" id="example-date-input" name="birthDate">
-                    </div>
-                    <div class="form-group">
-                        <div class="card-body__text-info" style="color: #000000; font-size: 16px">
-                            Your password should follow requirements:
-                            <ul>
-                                <li id="passwordLengthError">
-                                    Password should be at least 8 characters long
-                                </li>
-                                <li id="passwordContainUpperCaseLetterError">
-                                    Password should contain at least 1 letter
-                                </li>
-                                <li id="passwordContainNumberError">
-                                    Password should contain at least 1 number
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+
+{#                    <div class="form-group">#}
+{#                        <div class="card-body__text-info" style="color: #000000; font-size: 16px">#}
+{#                            Your password should follow requirements:#}
+{#                            <ul>#}
+{#                                <li id="passwordLengthError">#}
+{#                                    Password should be at least 8 characters long#}
+{#                                </li>#}
+{#                                <li id="passwordContainUpperCaseLetterError">#}
+{#                                    Password should contain at least 1 letter#}
+{#                                </li>#}
+{#                                <li id="passwordContainNumberError">#}
+{#                                    Password should contain at least 1 number#}
+{#                                </li>#}
+{#                            </ul>#}
+{#                        </div>#}
+{#                    </div>#}
                     <br>
-                    <button type="button" class="col-3 mr-4 ml-3 btn btn-secondary" style="width: 120px; padding: 5px">Register</button>
-                </form>
+                    <button type="submit" class="col-3 mr-4 ml-3 btn btn-secondary" style="width: 120px; padding: 5px">Register</button>
+                {{ form_end(form) }}
             </div>
             <div class="col"></div>
         </div>
