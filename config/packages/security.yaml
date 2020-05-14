@@ -16,6 +16,11 @@ security:
     main:
       anonymous: lazy
       provider: app_user_provider
+      remember_me:
+        secret:   '%kernel.secret%'
+        lifetime: 2592000 # 30 days in seconds
+      logout:
+        path: logout
       guard:
         authenticators:
           - App\Security\LoginFormAuthenticator

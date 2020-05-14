@@ -54,6 +54,9 @@
                     <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
                 {% endif %}
                 <form action="{{ path('login') }}" method="post">
+                    <input type="hidden" name="_csrf_token"
+                           value="{{ csrf_token('authenticate') }}"
+                    >
                     <div class="form-group">
                         <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp"
                                placeholder="Enter email" name="email" value="{{ last_username }}">
@@ -63,7 +66,7 @@
                                name="_password">
                     </div>
                     <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="exampleCheck1" name="rememberMe">
+                        <input type="checkbox" class="custom-control-input" id="exampleCheck1" name="_remember_me">
                         <label class="custom-control-label" for="exampleCheck1"><b>Remember me</b></label>
                     </div>
                     <br>
