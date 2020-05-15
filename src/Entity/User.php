@@ -161,7 +161,7 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getinks(): array
+    public function getLinks(): array
     {
         $links = $this->links;
         return array_unique($links);
