@@ -35,4 +35,11 @@ security:
   # Note: Only the *first* access control that matches will be used
   access_control:
     - { path: ^/admin, roles: ROLE_ADMIN }
-    # - { path: ^/profile, roles: ROLE_USER }
+    - { path: ^/main, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+    - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+    - { path: ^/register, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+    - { path: ^/cart, roles: IS_AUTHENTICATED_REMEMBERED }
+    - { path: ^/profile, roles: IS_AUTHENTICATED_REMEMBERED }
+    - { path: ^/shipping, roles: IS_AUTHENTICATED_REMEMBERED }
+    - { path: ^/goods, roles: IS_AUTHENTICATED_REMEMBERED }
+    - { path: ^/product, roles: IS_AUTHENTICATED_REMEMBERED }

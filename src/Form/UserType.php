@@ -15,7 +15,7 @@ class UserType extends AbstractType
     {
         $builder
             ->add('email', EmailType::class)
-           ->add('name', TextType::class)
+            ->add('name', TextType::class)
             ->add('_password', PasswordType::class);
     }
 
