@@ -85,7 +85,7 @@ class User implements UserInterface
     }
 
     /**
-     * @param mixed $name
+     * @param mixed $about
      */
     public function setAbout($about): void
     {
