@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use App\Services\ProfileService;
 use Psr\Log\LoggerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -20,9 +19,10 @@ class ProfileController extends AbstractController
         $logger->debug('Checking account page for '.$this->getUser()->getEmail());
         $username = $this->getUser()->getName();
         $about = $this->getUser()->getAbout();
-        $merch = array([]);
-        $my_orders = array([]);
-        $links = array([]);
+        $merch = $this->getUser()->getProducts();
+        $my_orders = $this->getUser()->getOrders();
+        $links = $this->getUser()->getLinks();
+        $count = ceil(count($merch)/3);
 
         return $this->render('profile/profile.html.twig', [
             'controller_name' => 'ProfileController',
@@ -30,7 +30,8 @@ class ProfileController extends AbstractController
             'about' => $about,
             'merch' => $merch,
             'my_orders' => $my_orders,
-            'links' => $links
+            'links' => $links,
+            'count' => $count
         ]);
 //        dd($this->getUser()->getUsername());
     }
