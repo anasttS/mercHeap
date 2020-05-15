@@ -37,9 +37,20 @@ class User implements UserInterface
     private $name;
 
     /**
+     * @ORM\Column(type="string", length=180)
+     * @Assert\NotBlank()
+     */
+    private $about;
+
+    /**
      * @ORM\Column(type="json")
      */
     private $roles = [];
+
+    /**
+     * @ORM\Column(type="json")
+     */
+    private $links = [];
 
     /**
      * @var string The hashed password
@@ -68,6 +79,18 @@ class User implements UserInterface
         $this->name = $name;
     }
 
+    public function getAbout()
+    {
+        return $this->about;
+    }
+
+    /**
+     * @param mixed $name
+     */
+    public function setAbout($about): void
+    {
+        $this->name = $about;
+    }
 
     public function getEmail(): ?string
     {
@@ -101,17 +124,31 @@ class User implements UserInterface
      */
     public function getRoles(): array
     {
-//        $roles = $this->roles;
-//        // guarantee every user at least has ROLE_USER
-//        $roles[] = 'ROLE_USER';
-//
-//        return array_unique($roles);
-        return $this->roles;
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
+//        return $this->roles;
     }
 
     public function setRoles(array $roles): self
     {
         $this->roles = $roles;
+
+        return $this;
+    }
+
+    public function getinks(): array
+    {
+        $links = $this->links;
+        return array_unique($links);
+//        return $this->roles;
+    }
+
+    public function settinks(array $links): self
+    {
+        $this->links = $links;
 
         return $this;
     }
