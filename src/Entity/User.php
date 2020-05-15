@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use PhpParser\Node\Scalar\String_;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -40,6 +42,12 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=180)
      * @Assert\NotBlank()
      */
+    private $photo;
+
+    /**
+     * @ORM\Column(type="string", length=180)
+     * @Assert\NotBlank()
+     */
     private $about;
 
     /**
@@ -52,11 +60,23 @@ class User implements UserInterface
      */
     private $links = [];
 
+
+
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
      */
     private $password;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Product::class, mappedBy="user", orphanRemoval=true)
+     */
+    private $products;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Order::class, mappedBy="user", orphanRemoval=true)
+     */
+    private $orders;
 
     public function getId(): ?int
     {
@@ -117,6 +137,8 @@ class User implements UserInterface
     public function __construct()
     {
         $this->roles = array('ROLE_USER');
+        $this->products = new ArrayCollection();
+        $this->orders = new ArrayCollection();
     }
 
     /**
@@ -146,7 +168,7 @@ class User implements UserInterface
 //        return $this->roles;
     }
 
-    public function settinks(array $links): self
+    public function setLinks(array $links): self
     {
         $this->links = $links;
 
@@ -183,5 +205,78 @@ class User implements UserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    /**
+     * @return Collection|Product[]
+     */
+    public function getProducts(): Collection
+    {
+        return $this->products;
+    }
+
+    public function addProduct(Product $product): self
+    {
+        if (!$this->products->contains($product)) {
+            $this->products[] = $product;
+            $product->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProduct(Product $product): self
+    {
+        if ($this->products->contains($product)) {
+            $this->products->removeElement($product);
+            // set the owning side to null (unless already changed)
+            if ($product->getUser() === $this) {
+                $product->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Order[]
+     */
+    public function getOrders(): Collection
+    {
+        return $this->orders;
+    }
+
+    public function addOrder(Order $order): self
+    {
+        if (!$this->orders->contains($order)) {
+            $this->orders[] = $order;
+            $order->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOrder(Order $order): self
+    {
+        if ($this->orders->contains($order)) {
+            $this->orders->removeElement($order);
+            // set the owning side to null (unless already changed)
+            if ($order->getUser() === $this) {
+                $order->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getPhoto(): ?string
+    {
+        return $this->photo;
+    }
+
+    public function setPhoto(string $photo): void
+    {
+        $this->photo = $photo;
+
     }
 }

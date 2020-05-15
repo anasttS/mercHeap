@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use App\Services\ProfileService;
 use Psr\Log\LoggerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

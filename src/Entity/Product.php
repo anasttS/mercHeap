@@ -35,9 +35,9 @@ class Product
      */
     private $cost;
 
-    public function getCost(): string
+    public function getCost(): float
     {
-        return (string) $this->cost;
+        return (float) $this->cost;
     }
 
     /**
@@ -45,9 +45,27 @@ class Product
      */
     private $description;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="products")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
+
     public function getDescription(): string
     {
         return (string) $this->description;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
     }
 
 }
