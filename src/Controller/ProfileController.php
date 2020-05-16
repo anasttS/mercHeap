@@ -2,6 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
+use Cassandra\Type\UserType;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Psr\Log\LoggerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -39,14 +43,25 @@ class ProfileController extends AbstractController
     }
 
     /**
+     * @Route("/profile/change", name="change")
+     */
+    public function change(User $user, Request $request, EntityManagerInterface $em)
+    {
+        $form = $this->createForm(UserType::class);
+        return $this->render('profile/profile.html.twig', [
+            'profileForm'=> $form->createView()
+        ]);
+    }
+
+    /**
      * @Route("/profile/addImage", name="upload_image")
      */
-    public function changeProfile(Request $request)
+    public function addPhoto(Request $request)
     {
         $uploadedFile = $request->files->get('image');
-        $destination = $this->getParameter('kernel.project_dir').'/public/uploads';
+        $destination = $this->getParameter('kernel.project_dir') . '/public/uploads';
         $originalFilename = pathinfo($uploadedFile->getClientOriginalName(), PATHINFO_FILENAME);
-        $newFilename = $originalFilename.'-'.uniqid().'.'.$uploadedFile->guessExtension();
+        $newFilename = $originalFilename . '-' . uniqid() . '.' . $uploadedFile->guessClientExtension();
         dd($uploadedFile->move($destination,
             $newFilename
         ));
