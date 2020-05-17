@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
-use Cassandra\Type\UserType;
+use UserChangeType;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Psr\Log\LoggerInterface;
@@ -43,11 +43,11 @@ class ProfileController extends AbstractController
     }
 
     /**
-     * @Route("/profile/change", name="change")
+     * @Route("/profile", name="change")
      */
     public function change(User $user, Request $request, EntityManagerInterface $em)
     {
-        $form = $this->createForm(UserType::class);
+        $form = $this->createForm(UserChangeType::class);
         return $this->render('profile/profile.html.twig', [
             'profileForm'=> $form->createView()
         ]);
