@@ -187,8 +187,11 @@
                 <form method="post" action="{{ path('upload_image') }}" enctype="multipart/form-data">
                     <input type="file" name="image">
                     <button type="submit" class="btn btn-primary">Upload</button>
-                </form>>
+                </form>
+                >
             </div>
+
+
             <div class="col-md-8">
                 {#                <h1>Username</h1>#}
                 <h1>{{ name }}</h1>
@@ -206,7 +209,13 @@
                     <p><i class="fa fa-link"></i> link</p>
                     <p><i class="fa fa-link"></i> link</p>
                 </div>
+                {{ form_start(profileForm) }}
+                    {{ form_widget(profileForm) }}
+                    <button type="submit" class="btn btn-primary">Change</button>
+                {{ form_end(profileForm) }}
             </div>
+
+
         </div>
         <hr>
         <div class="row">
