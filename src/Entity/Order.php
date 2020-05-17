@@ -2,6 +2,8 @@
 
 
 namespace App\Entity;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -62,6 +64,16 @@ class Order
      */
     private $user;
 
+    /**
+     * @ORM\OneToMany(targetEntity=ShopList::class, mappedBy="orderId", orphanRemoval=true)
+     */
+    private $shopLists;
+
+    public function __construct()
+    {
+        $this->shopLists = new ArrayCollection();
+    }
+
     public function getCountry(): string
     {
         return (string) $this->country;
@@ -75,6 +87,37 @@ class Order
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|ShopList[]
+     */
+    public function getShopLists(): Collection
+    {
+        return $this->shopLists;
+    }
+
+    public function addShopList(ShopList $shopList): self
+    {
+        if (!$this->shopLists->contains($shopList)) {
+            $this->shopLists[] = $shopList;
+            $shopList->setOrderId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeShopList(ShopList $shopList): self
+    {
+        if ($this->shopLists->contains($shopList)) {
+            $this->shopLists->removeElement($shopList);
+            // set the owning side to null (unless already changed)
+            if ($shopList->getOrderId() === $this) {
+                $shopList->setOrderId(null);
+            }
+        }
 
         return $this;
     }

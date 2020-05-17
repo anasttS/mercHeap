@@ -205,14 +205,19 @@
                 {#                </div>#}
                 <div class="media-text text-justify" style="">{{ about }}</div>
                 <div class="links">
-                    <p style="padding-top: 30px"><i class="fa fa-link"></i> link</p>
-                    <p><i class="fa fa-link"></i> link</p>
-                    <p><i class="fa fa-link"></i> link</p>
+                    {% if links!= null %}
+                        {% for link in links %}
+                            <p style="padding-top: 30px"><i class="fa fa-link"></i> {{link}}</p>
+                        {% endfor %}
+                    {% endif %}
                 </div>
-                {{ form_start(profileForm) }}
+                <div>
+                    {{ form_start(profileForm) }}
                     {{ form_widget(profileForm) }}
                     <button type="submit" class="btn btn-primary">Change</button>
-                {{ form_end(profileForm) }}
+                    {{ form_end(profileForm) }}
+                </div>
+
             </div>
 
 
