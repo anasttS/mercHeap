@@ -184,6 +184,10 @@
             <div class="col-md-4">
                 <img src="../z.jpg" alt="Avatar_img"
                      style="padding-left: 10px;width:300px;height:350px" class="ava">
+                <form method="post" action="{{ path('upload_image') }}" enctype="multipart/form-data">
+                    <input type="file" name="image">
+                    <button type="submit" class="btn btn-primary">Upload</button>
+                </form>>
             </div>
             <div class="col-md-8">
                 {#                <h1>Username</h1>#}
@@ -315,7 +319,8 @@
     </div>
     <div class="container" style="margin-bottom: 30px">
         <h2>My orders:</h2>
-        {% for order in my_orders %}
+        {% if my_orders!= null %}
+            {#        {% for order in my_orders %}#}
             <div class="row orders">
                 <div class="col-md-4">
                     <img src="http://tarabeiser.com/ux/imgux/searchEmptyState.png" alt="Avatar_img" class="order_img">
@@ -323,12 +328,13 @@
                 <div class="col-md-8">
                     <h1>Product name</h1>
                     <div class="media-text text-justify status1" style="">
-                        {{ order }}
+                        {#                        {{ order.id }}#}
                         Status
                     </div>
                 </div>
             </div>
-        {% endfor %}
+            {#        {% endfor %}#}
+        {% endif %}
         {#        <div class="row orders">#}
         {#            <div class="col-md-4">#}
         {#                <img src="http://tarabeiser.com/ux/imgux/searchEmptyState.png" alt="Avatar_img" class="order_img">#}
