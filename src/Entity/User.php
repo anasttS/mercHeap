@@ -44,7 +44,7 @@ class User implements UserInterface
     private $photo;
 
     /**
-     * @ORM\Column(type="string", length=180, nullable=true)
+     * @ORM\Column(type="text", length=180, nullable=true)
      * @Assert\NotBlank()
      */
     private $about;

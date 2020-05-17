@@ -29,7 +29,16 @@ class ProfileController extends AbstractController
         $my_orders = $this->getUser()->getOrders();
         $links = $this->getUser()->getLinks();
         $count = ceil(count($merch) / 3);
-        $form = $this->createForm(UserChangeType::class);
+
+        $user = $this->getUser();
+        $form = $this->createForm(UserChangeType::class, $user);
+        $form->handleRequest($request);
+        if($form->isSubmitted()){
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($user);
+            $em->flush();
+            return $this->redirectToRoute('profile');
+        }
 
 
         return $this->render('profile/profile.html.twig', [
