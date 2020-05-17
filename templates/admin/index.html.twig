@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}AdminController!{% endblock %}
+
+{% block body %}
+ADMIN controller
+    {% if is_granted('ROLE_ADMIN') %}
+        <a href="/">Delete</a>
+    {% endif %}
+{% endblock %}

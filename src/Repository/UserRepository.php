@@ -22,8 +22,10 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     {
         parent::__construct($registry, User::class);
     }
+
     /**
      * Used to upgrade (rehash) the user's password automatically over time.
+     * @throws \Doctrine\ORM\ORMException
      */
     public function upgradePassword(UserInterface $user, string $newEncodedPassword): void
     {
@@ -53,15 +55,16 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     }
     */
 
-    /*
+
     public function findOneBySomeField($value): ?User
     {
         return $this->createQueryBuilder('u')
             ->andWhere('u.exampleField = :val')
             ->setParameter('val', $value)
             ->getQuery()
-            ->getOneOrNullResult()
-        ;
+            ->getOneOrNullResult();
     }
-    */
+
+
+
 }
