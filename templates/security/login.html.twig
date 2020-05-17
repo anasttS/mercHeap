@@ -1,39 +1,42 @@
 {% extends 'base.html.twig' %}
 
-
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
 {% block body %}
     <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top border" style="box-shadow: black">
         <div class="container-fluid">
-            <a href="/main" class="navbar-brad"><img
-                        src="https://sun7-6.userapi.com/2JYupaQXK7tuU6qqEN3Y3W0C568RoyyJq1Pu6g/8gOYGcN_NqE.jpg"> MERCHEAP</a>
+            <a href="/" class="navbar-brad"><img
+                        src="https://sun7-6.userapi.com/2JYupaQXK7tuU6qqEN3Y3W0C568RoyyJq1Pu6g/8gOYGcN_NqE.jpg">
+                MERCHEAP</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse"
                     data-target="#navbarResponsive">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
+{#                    <li class="navbar-item">#}
+{#                        <a href="/profile" class="nav-link">Profile</a>#}
+{#                    </li>#}
+{#                    <li class="navbar-item">#}
+{#                        <a href="/goods" class="nav-link">Shop</a>#}
+{#                    </li>#}
                     <li class="navbar-item active">
-                        <a href="/main" class="nav-link">Home</a>
+                        <a href="/login" class="nav-link">Login</a>
                     </li>
-                    <li class="navbar-item">
-                        <a href="/profile" class="nav-link">Profile</a>
-                    </li>
-                    <li class="navbar-item">
-                        <a href="/goods" class="nav-link">Shop</a>
-                    </li>
-                    <li class="navbar-item">
-                        <a href="/register" class="nav-link">Become author</a>
+                    <li class="navbar-item  active">
+                        <a href="/register" class="nav-link">Register</a>
                     </li>
                 </ul>
-                <div class="navbar-item">
+{#                <div class="navbar-item">#}
 
-                    <button class="btn-dark"><a href="/cart"
-                                                style="text-decoration: none; color: white">
-                            <i class="fas fa-shopping-cart"></i>
-                            Your Cart
-                        </a>
-                    </button>
-                </div>
+{#                    <button class="btn-dark"><a href="/cart"#}
+{#                                                style="text-decoration: none; color: white">#}
+{#                            <i class="fas fa-shopping-cart"></i>#}
+{#                            Your Cart#}
+{#                        </a>#}
+{#                    </button>#}
+{#                </div>#}
 
             </div>
 
@@ -47,17 +50,23 @@
             <div class="col-md-3" align="center">
                 <span><h1><b>Login</b></h1></span>
                 <br>
-                <form method="post">
+                {% if error %}
+                    <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                {% endif %}
+                <form action="{{ path('login') }}" method="post">
+                    <input type="hidden" name="_csrf_token"
+                           value="{{ csrf_token('authenticate') }}"
+                    >
                     <div class="form-group">
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                               placeholder="Enter email" name="email">
+                        <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp"
+                               placeholder="Enter email" name="email" value="{{ last_username }}">
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"
-                               name="password">
+                        <input type="password" class="form-control" id="inputPassword" placeholder="Password"
+                               name="_password">
                     </div>
                     <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="exampleCheck1" name="rememberMe">
+                        <input type="checkbox" class="custom-control-input" id="exampleCheck1" name="_remember_me">
                         <label class="custom-control-label" for="exampleCheck1"><b>Remember me</b></label>
                     </div>
                     <br>
