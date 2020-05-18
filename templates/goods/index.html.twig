@@ -1,231 +1,202 @@
 {% extends 'base.html.twig' %}
-{% block stylesheets %}
-
-    <script src="../js/ShopScript.js"></script>
-    <link rel="stylesheet" type="text/css" href="../css/ShopStyle.css">
-{% endblock %}
 
 {% block body %}
     <style>
+        ::-webkit-scrollbar {
+            display: none;
+        }
+
         .navbar-item {
             margin-right: 10px;
             margin-left: 10px;
         }
 
-        .goodImg {
-            width: 100%;
+        .imgcont {
             height: 250px;
-        }
-        ul {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
+            width: 100%;
+            position: relative;
             overflow: hidden;
-            background-color: white;
         }
 
-        li {
-            float: left;
-        }
-
-        li a {
-            display: block;
-            color: black;
-            text-align: center;
-            padding: 16px;
-            text-decoration: none;
-        }
-
-        li a:hover {
-            background-color: gainsboro;
-        }
-
-        .good{
-            display: inline-block;
-            height: 450px;
-            width: 20%;
-            border: #cccccc solid 2px;
-            margin-right: 2px;
-            margin-bottom: 2px;
-        }
-        .dropdown{
-            height: 66px;
-            width: 15%;
-            background-color: white;
-            border-color: #cccccc;
-        }
-        /*.dropdown-selected:after {
-            position: absolute;
-            content: "";
-            top: 14px;
-            right: 10px;
-            width: 0;
-            height: 0;
-        }*/
-        .search{
-            height: 60px;
-            width: 65%;
-            background-color: white;
-            border-color: #cccccc;
-
-        }
-        .searchButton{
-            height: 66px;
-            width: 15%;
-            background-color: white;
-            border-color: #cccccc;
-        }
-        .uppermenu{
+        .card {
             margin-bottom: 10px;
-            padding-top: 10px;
-        }
-        .lowerMenu{
-            padding-bottom: 20px;
-        }
-        .upperImgDiv{
-            height: 300px;
-            width: 100%;
-        }
-        .upperImg{
-            height: 300px;
-            width: 100%;
-        }
-        .footerText{
-            margin-left: 40%;
-        }
-        .cartButton{
-            background-color: black;
-            color: white;
-            border: solid;
-            display: block;
-            text-align: center;
-            padding: 16px;
-            text-decoration: none;
-        }
-        .number{
-            position: center;
-            margin-left: 45%;
         }
     </style>
+
     <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top border" style="box-shadow: black">
         <div class="container-fluid">
-            <a href="/" class="navbar-brad"><img
-                        src="https://sun7-6.userapi.com/2JYupaQXK7tuU6qqEN3Y3W0C568RoyyJq1Pu6g/8gOYGcN_NqE.jpg"> MERCHEAP</a>
+            <a href="/" class="navbar-brand" style="font-family: 'Bebas Neue', cursive; font-size: 23px">
+                <img class="pr-2"
+                     src="https://sun7-6.userapi.com/2JYupaQXK7tuU6qqEN3Y3W0C568RoyyJq1Pu6g/8gOYGcN_NqE.jpg">
+                MERCHEAP</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse"
                     data-target="#navbarResponsive">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
-                    <li class="navbar-item">
-                        <a href="/profile" class="nav-link">Profile</a>
-                    </li>
-                    <li class="navbar-item">
-                        <a href="/goods" class="nav-link">Shop</a>
-                    </li>
-{#                    <li class="navbar-item active">#}
-{#                        <a href="/login" class="nav-link">Login</a>#}
-{#                    </li>#}
-                    <li class="navbar-item">
-                        <a href="/logout" class="nav-link">Logout</a>
-                    </li>
+                    {% if is_granted('ROLE_USER') %}
+                        <li class="navbar-item">
+                            <a href="/profile" class="nav-link">Profile</a>
+                        </li>
+                        <li class="navbar-item">
+                            <a href="/goods" class="nav-link">Shop</a>
+                        </li>
+                        <li class="navbar-item">
+                            <a href="/logout" class="nav-link">Logout</a>
+                        </li>
+                    {% else %}
+                        <li class="navbar-item active">
+                            <a href="/login" class="nav-link">Login</a>
+                        </li>
+                        <li class="navbar-item  active">
+                            <a href="/register" class="nav-link">Register</a>
+                        </li>
+                    {% endif %}
                 </ul>
                 <div class="navbar-item">
-
-                    <button class="btn-dark"><a href="/cart"
-                                                style="text-decoration: none; color: white">
-                            <i class="fas fa-shopping-cart"></i>
-                            Your Cart
-                        </a>
-                    </button>
+                    {% if is_granted('ROLE_USER') %}
+                        <button class="btn-dark"><a href="/cart"
+                                                    style="text-decoration: none; color: white">
+                                <i class="fas fa-shopping-cart"></i>
+                                Your Cart
+                            </a>
+                        </button>
+                    {% endif %}
                 </div>
 
             </div>
 
         </div>
     </nav>
-    <div class="container-fluid" style="padding: 0">
-        <div class="upperImgDiv">
-            <img alt="goodImg" src="https://shapka-youtube.ru/wp-content/uploads/2018/10/beztexta-category.jpg"
-                 class="upperImg">
+
+    <div class="container-fluid p-0">
+        <img class="w-100" style="height: 250px" alt="goodImg"
+             src="https://d4y70tum9c2ak.cloudfront.net/articleBanner/OsJATF0e2Hz8jkTjS9s7rAkog8cp4hlVoTReZkbuido/1600.jpg">
+    </div>
+
+    <div class="container mb-2 mt-2">
+        <div class="input-group">
+            <select class="custom-select col-3 mt-2 mb-2">
+                <option selected>Choose...</option>
+                <option value="Clothes">Clothes</option>
+                <option value="Cups">Cups</option>
+                <option value="Stickers">Stickers</option>
+                <option value="Others">Others</option>
+            </select>
+            <input class="form-control col-7 m-2">
+            <button class="btn btn-dark col-2 mt-2 mb-2">Search</button>
         </div>
     </div>
-    <div class="container">
-        <div class="uppermenu">
-            <select class="dropdown">
-                <option value="T-shirt">T-shirt</option>
-                <option value="Other stuff">Other stuff</option>
-                <option value="Something else">Something else</option>
-            </select>
-            <input class="search" placeholder="Search">
-            <button class="searchButton" value="Search">Search</button>
-        </div>
-        <div class="lowerMenu text-center">
-            <div class="goods">
-                <div class="good">
-                    <img alt="goodImg"
-                         src="http://kayrosblog.ru/wp-content/uploads/2012/07/Samy-e-kreativny-e-kruzhki-so-vsego-sveta-1.jpg"
-                         class="goodImg">
-                    <h2>Funny cup</h2>
-                    <h2>10$</h2>
-                </div>
-                <div class="good"><a href="/product" style="text-decoration: none; color: white">
-                        <img alt="goodImg"
-                             src="https://www.dhresource.com/600x600/f2/albu/g9/M00/68/3B/rBVaVVzSfCqAEdhIAAFtHGWu-GQ284.jpg"
-                             class="goodImg">
-                    </a>
-                    <h2>"Not today"</h2>
-                    <h2>30$</h2>
 
+    <div class="container" id="goods">
+        <div class="row">
+            <div class="col-3">
+                <div class="card p-0" style="max-height: 500px">
+                    <div class="imgcont">
+                        <img src="https://sun7-9.userapi.com/t03FHBbDltzQd9xZVE-SA7WxUjcQqIoSIsSvng/u9Xt1KV6yNo.jpg"
+                             class="card-img-top img-responsive">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Name of product</h5>
+                        <p class="card-text w-25 ">15$</p>
+                        <button class="btn-dark btn">View</button>
+                        <button class="btn btn-light"><i class="fas fa-cart-plus"></i></button>
+                    </div>
                 </div>
-                <div class="good">
-                    <img alt="goodImg"
-                         src="https://avatars.mds.yandex.net/get-pdb/224463/55fb2042-b030-47b7-aca9-4f6f9c57abe7/s1200"
-                         class="goodImg">
-                    <h2>Stickers</h2>
-                    <h2>5$</h2>
+            </div>
+            <div class="col-3">
+                <div class="card p-0" style="max-height: 500px">
+                    <div class="imgcont">
+                        <img src="https://sun9-19.userapi.com/impg/HUdYCUhqhZQWWRcWHBJnk-_GnyPi3BpPgDjtCQ/OanY4O6gcvM.jpg?size=520x0&quality=90&sign=09344c14d0fdcfb3383a6835a1a49bf6"
+                             class="card-img-top img-responsive">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Name of product</h5>
+                        <p class="card-text w-25 ">15$</p>
+                        <button class="btn-dark btn">View</button>
+                        <button class="btn btn-light"><i class="fas fa-cart-plus"></i></button>
+                    </div>
                 </div>
-                <div class="good">
-                    <img alt="goodImg"
-                         src="https://ontrend.ru/upload/iblock/0b6/0b65fc9a0a546f51c4eaec501c76b7d6.jpg"
-                         class="goodImg">
-                    <h2>Bear t-shirt</h2>
-                    <h2>16$</h2>
+            </div>
+            <div class="col-3">
+                <div class="card p-0" style="max-height: 500px">
+                    <div class="imgcont">
+                        <img src="https://sun7-9.userapi.com/impg/NH2z24DxCAjXG_0MmlMFMHe7voBYO_-3G5XdDw/s1pPceV9Jmk.jpg?size=520x0&quality=90&sign=dd825c9d990435aa64ae85eddff11de0"
+                             class="card-img-top img-responsive">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Name of product</h5>
+                        <p class="card-text w-25 ">15$</p>
+                        <button class="btn-dark btn">View</button>
+                        <button class="btn btn-light"><i class="fas fa-cart-plus"></i></button>
+                    </div>
                 </div>
-                <div class="good">
-                    <img alt="goodImg" src="https://ae01.alicdn.com/kf/HTB1_BkrbdjvK1RjSspiq6AEqXXaU/300.jpg_q50.jpg"
-                         class="goodImg">
-                    <h2>Cup bruh</h2>
-                    <h2>10$</h2>
+            </div>
+            <div class="col-3">
+                <div class="card p-0" style="max-height: 500px">
+                    <div class="imgcont">
+                        <img src="https://sun7-9.userapi.com/i9Z7yzRumC-EVmlDuQOIkb4Tmh5GxgSkmczp9g/y7KNo-S7epg.jpg"
+                             class="card-img-top img-responsive">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Name of product</h5>
+                        <p class="card-text w-25 ">15$</p>
+                        <button class="btn-dark btn">View</button>
+                        <button class="btn btn-light"><i class="fas fa-cart-plus"></i></button>
+                    </div>
                 </div>
-                <div class="good">
-                    <img alt="goodImg"
-                         src="https://alexponies.ru/wp-content/uploads/2017/03/znachok-gravity-falls-mystery-shack-set.jpg"
-                         class="goodImg">
-                    <h2>Gravity falls</h2>
-                    <h2>2$</h2>
+            </div>
+            <div class="col-3">
+                <div class="card p-0" style="max-height: 500px">
+                    <div class="imgcont">
+                        <img src="https://sun9-23.userapi.com/impf/c849424/v849424980/d5913/hYwnR4RRf3Y.jpg?size=520x0&quality=90&sign=7f6d0c64b7083074b6e6e2aa639b27cf"
+                             class="card-img-top img-responsive">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Name of product</h5>
+                        <p class="card-text w-25 ">15$</p>
+                        <button class="btn-dark btn">View</button>
+                        <button class="btn btn-light"><i class="fas fa-cart-plus"></i></button>
+                    </div>
                 </div>
-                <div class="good">
-                    <img alt="goodImg"
-                         src="https://cdn.fishki.net/upload/post/201506/01/1551299/21bc8fc8f68357133ccd5d2de24771a3.jpg"
-                         class="goodImg">
-                    <h2>Pins cute cats</h2>
-                    <h2>5$</h2>
-                </div>
-                <div class="good">
-                    <img alt="goodImg" src="https://www.fresher.ru/images10/kreativnye-futbolki/8.jpg" class="goodImg">
-                    <h2>"Sorry"</h2>
-                    <h2>13$</h2>
+            </div>
+            <div class="col-3">
+                <div class="card p-0" style="max-height: 500px">
+                    <div class="imgcont">
+                        <img src="https://img2.wbstatic.net/big/new/11790000/11795032-1.jpg"
+                             class="card-img-top img-responsive">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Name of product</h5>
+                        <p class="card-text w-25 ">15$</p>
+                        <button class="btn-dark btn">View</button>
+                        <button class="btn btn-light"><i class="fas fa-cart-plus"></i></button>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="number">
-            <a href="#">1</a>
-            <a href="#">2</a>
-            <a href="#">3</a>
-            <a href="#">4</a>
-        </div>
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+                <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Previous">
+                        <i class="fas fa-chevron-left"></i>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Next">
+                        <i class="fas fa-chevron-right"></i>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
     </div>
+
     <footer class="page-footer font-small cyan darken-3" style="background-color: #efefef"> <!-- doesn't work(?) -->
         <div class="container text-center">
             <div class="col-md-12 py-5">
@@ -249,35 +220,4 @@
             <a>Our links</a>
         </div>
     </footer> <!-- Footer -->
-
-    <script>
-        /*window.addEventListener('mousedown', hoverEnter, false);
-    window.addEventListener('mouseut',hoverLeave,false);
-    hoverEnter = function (evt) {
-        let target = evt.target;
-        //if(target.className == 'good'){
-            target.style.backgroundColor ='grey';
-        }
-
-    }
-    hoverLeave = function (evt) {
-        let target = evt.target;
-        if(target.className == 'good'){
-            target.style.backgroundColor ='white';
-        }
-    }*/
-        window.onmousedown = function (evt) {
-            let target = evt.target;
-            if (target.className == 'good') {
-                target.style.backgroundColor = 'grey';
-            }
-        }
-        window.onmouseup = function (evt) {
-            let target = evt.target;
-            if (target.className == 'good') {
-                target.style.backgroundColor = 'white';
-            }
-        }
-
-    </script>
 {% endblock %}
