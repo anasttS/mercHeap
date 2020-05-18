@@ -1,28 +1,34 @@
 {% extends 'base.html.twig' %}
-{% block stylesheets %}
-    <script src="../js/ShopScript.js"></script>
+
+{% block body %}
     <style>
         ::-webkit-scrollbar {
             display: none;
         }
+
+        .navbar-item {
+            margin-right: 10px;
+            margin-left: 10px;
+        }
+
         .imgcont {
-            height: 200px;
+            height: 250px;
             width: 100%;
             position: relative;
             overflow: hidden;
         }
+
         .card {
             margin-bottom: 10px;
         }
     </style>
-{% endblock %}
-
-{% block body %}
 
     <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top border" style="box-shadow: black">
         <div class="container-fluid">
-            <a href="/" class="navbar-brad"><img
-                        src="https://sun7-6.userapi.com/2JYupaQXK7tuU6qqEN3Y3W0C568RoyyJq1Pu6g/8gOYGcN_NqE.jpg"> MERCHEAP</a>
+            <a href="/" class="navbar-brand" style="font-family: 'Bebas Neue', cursive; font-size: 23px">
+                <img class="pr-2"
+                     src="https://sun7-6.userapi.com/2JYupaQXK7tuU6qqEN3Y3W0C568RoyyJq1Pu6g/8gOYGcN_NqE.jpg">
+                MERCHEAP</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse"
                     data-target="#navbarResponsive">
                 <span class="navbar-toggler-icon"></span>
@@ -40,9 +46,6 @@
                             <a href="/logout" class="nav-link">Logout</a>
                         </li>
                     {% else %}
-                        <li class="navbar-item">
-                            <a href="/goods" class="nav-link">Shop</a>
-                        </li>
                         <li class="navbar-item active">
                             <a href="/login" class="nav-link">Login</a>
                         </li>
@@ -50,8 +53,6 @@
                             <a href="/register" class="nav-link">Register</a>
                         </li>
                     {% endif %}
-
-
                 </ul>
                 <div class="navbar-item">
                     {% if is_granted('ROLE_USER') %}
@@ -70,7 +71,8 @@
     </nav>
 
     <div class="container-fluid p-0">
-        <img class="w-100" style="height: 250px" alt="goodImg" src="https://d4y70tum9c2ak.cloudfront.net/articleBanner/OsJATF0e2Hz8jkTjS9s7rAkog8cp4hlVoTReZkbuido/1600.jpg">
+        <img class="w-100" style="height: 250px" alt="goodImg"
+             src="https://d4y70tum9c2ak.cloudfront.net/articleBanner/OsJATF0e2Hz8jkTjS9s7rAkog8cp4hlVoTReZkbuido/1600.jpg">
     </div>
 
     <div class="container mb-2 mt-2">
@@ -92,7 +94,8 @@
             <div class="col-3">
                 <div class="card p-0" style="max-height: 500px">
                     <div class="imgcont">
-                        <img src="https://sun7-9.userapi.com/t03FHBbDltzQd9xZVE-SA7WxUjcQqIoSIsSvng/u9Xt1KV6yNo.jpg" class="card-img-top img-responsive">
+                        <img src="https://sun7-9.userapi.com/t03FHBbDltzQd9xZVE-SA7WxUjcQqIoSIsSvng/u9Xt1KV6yNo.jpg"
+                             class="card-img-top img-responsive">
                     </div>
                     <div class="card-body">
                         <h5 class="card-title">Name of product</h5>
@@ -105,7 +108,8 @@
             <div class="col-3">
                 <div class="card p-0" style="max-height: 500px">
                     <div class="imgcont">
-                        <img src="https://sun9-19.userapi.com/impg/HUdYCUhqhZQWWRcWHBJnk-_GnyPi3BpPgDjtCQ/OanY4O6gcvM.jpg?size=520x0&quality=90&sign=09344c14d0fdcfb3383a6835a1a49bf6" class="card-img-top img-responsive">
+                        <img src="https://sun9-19.userapi.com/impg/HUdYCUhqhZQWWRcWHBJnk-_GnyPi3BpPgDjtCQ/OanY4O6gcvM.jpg?size=520x0&quality=90&sign=09344c14d0fdcfb3383a6835a1a49bf6"
+                             class="card-img-top img-responsive">
                     </div>
                     <div class="card-body">
                         <h5 class="card-title">Name of product</h5>
@@ -118,7 +122,8 @@
             <div class="col-3">
                 <div class="card p-0" style="max-height: 500px">
                     <div class="imgcont">
-                        <img src="https://sun7-9.userapi.com/impg/NH2z24DxCAjXG_0MmlMFMHe7voBYO_-3G5XdDw/s1pPceV9Jmk.jpg?size=520x0&quality=90&sign=dd825c9d990435aa64ae85eddff11de0" class="card-img-top img-responsive">
+                        <img src="https://sun7-9.userapi.com/impg/NH2z24DxCAjXG_0MmlMFMHe7voBYO_-3G5XdDw/s1pPceV9Jmk.jpg?size=520x0&quality=90&sign=dd825c9d990435aa64ae85eddff11de0"
+                             class="card-img-top img-responsive">
                     </div>
                     <div class="card-body">
                         <h5 class="card-title">Name of product</h5>
@@ -131,7 +136,8 @@
             <div class="col-3">
                 <div class="card p-0" style="max-height: 500px">
                     <div class="imgcont">
-                        <img src="https://sun7-9.userapi.com/i9Z7yzRumC-EVmlDuQOIkb4Tmh5GxgSkmczp9g/y7KNo-S7epg.jpg" class="card-img-top img-responsive">
+                        <img src="https://sun7-9.userapi.com/i9Z7yzRumC-EVmlDuQOIkb4Tmh5GxgSkmczp9g/y7KNo-S7epg.jpg"
+                             class="card-img-top img-responsive">
                     </div>
                     <div class="card-body">
                         <h5 class="card-title">Name of product</h5>
@@ -144,7 +150,8 @@
             <div class="col-3">
                 <div class="card p-0" style="max-height: 500px">
                     <div class="imgcont">
-                        <img src="https://sun9-23.userapi.com/impf/c849424/v849424980/d5913/hYwnR4RRf3Y.jpg?size=520x0&quality=90&sign=7f6d0c64b7083074b6e6e2aa639b27cf" class="card-img-top img-responsive">
+                        <img src="https://sun9-23.userapi.com/impf/c849424/v849424980/d5913/hYwnR4RRf3Y.jpg?size=520x0&quality=90&sign=7f6d0c64b7083074b6e6e2aa639b27cf"
+                             class="card-img-top img-responsive">
                     </div>
                     <div class="card-body">
                         <h5 class="card-title">Name of product</h5>
@@ -157,7 +164,8 @@
             <div class="col-3">
                 <div class="card p-0" style="max-height: 500px">
                     <div class="imgcont">
-                        <img src="https://img2.wbstatic.net/big/new/11790000/11795032-1.jpg" class="card-img-top img-responsive">
+                        <img src="https://img2.wbstatic.net/big/new/11790000/11795032-1.jpg"
+                             class="card-img-top img-responsive">
                     </div>
                     <div class="card-body">
                         <h5 class="card-title">Name of product</h5>
@@ -212,35 +220,4 @@
             <a>Our links</a>
         </div>
     </footer> <!-- Footer -->
-
-    <script>
-        /*window.addEventListener('mousedown', hoverEnter, false);
-    window.addEventListener('mouseut',hoverLeave,false);
-    hoverEnter = function (evt) {
-        let target = evt.target;
-        //if(target.className == 'good'){
-            target.style.backgroundColor ='grey';
-        }
-
-    }
-    hoverLeave = function (evt) {
-        let target = evt.target;
-        if(target.className == 'good'){
-            target.style.backgroundColor ='white';
-        }
-    }*/
-        window.onmousedown = function (evt) {
-            let target = evt.target;
-            if (target.className == 'good') {
-                target.style.backgroundColor = 'grey';
-            }
-        }
-        window.onmouseup = function (evt) {
-            let target = evt.target;
-            if (target.className == 'good') {
-                target.style.backgroundColor = 'white';
-            }
-        }
-
-    </script>
 {% endblock %}
