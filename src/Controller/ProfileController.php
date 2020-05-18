@@ -30,26 +30,17 @@ class ProfileController extends AbstractController
         $links = $this->getUser()->getLinks();
         $count = ceil(count($merch) / 3);
 
+        $form = $this->createForm(UserChangeType::class);
+
         return $this->render('profile/profile.html.twig', [
             'controller_name' => 'ProfileController',
+            'profileForm'=> $form->createView(),
             'name' => $username,
             'about' => $about,
             'merch' => $merch,
             'my_orders' => $my_orders,
             'links' => $links,
             'count' => $count
-        ]);
-//        dd($this->getUser()->getUsername());
-    }
-
-    /**
-     * @Route("/profile", name="change")
-     */
-    public function change(User $user, Request $request, EntityManagerInterface $em)
-    {
-        $form = $this->createForm(UserChangeType::class);
-        return $this->render('profile/profile.html.twig', [
-            'profileForm'=> $form->createView()
         ]);
     }
 
