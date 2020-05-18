@@ -41,5 +41,5 @@ security:
     - { path: ^/cart, roles: IS_AUTHENTICATED_REMEMBERED }
     - { path: ^/profile, roles: IS_AUTHENTICATED_REMEMBERED }
     - { path: ^/shipping, roles: IS_AUTHENTICATED_REMEMBERED }
-    - { path: ^/goods, roles: IS_AUTHENTICATED_REMEMBERED }
-    - { path: ^/product, roles: IS_AUTHENTICATED_REMEMBERED }
+    - { path: ^/goods, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+    - { path: ^/product, roles: IS_AUTHENTICATED_ANONYMOUSLY }
