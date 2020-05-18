@@ -46,11 +46,20 @@
                             <a href="/logout" class="nav-link">Logout</a>
                         </li>
                     {% else %}
-                        <li class="navbar-item active">
-                            <a href="/login" class="nav-link">Login</a>
+                        <li class="navbar-item">
+                            <button class="btn-dark">
+                            <a href="/goods" class="nav-link"  style="text-decoration: none; color: white">Shop</a>
+                            </button>
                         </li>
-                        <li class="navbar-item  active">
-                            <a href="/register" class="nav-link">Register</a>
+                        <li class="navbar-item">
+                            <button class="btn-dark">
+                                <a href="/login"  class="nav-link" style="text-decoration: none; color: white">Login</a>
+                            </button>
+                        </li>
+                        <li class="navbar-item">
+                            <button class="btn-dark">
+                                <a href="/register"  class="nav-link"  style="text-decoration: none; color: white">Register</a>
+                            </button>
                         </li>
                     {% endif %}
                 </ul>
