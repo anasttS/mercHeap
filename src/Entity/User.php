@@ -44,7 +44,7 @@ class User implements UserInterface
     private $photo;
 
     /**
-     * @ORM\Column(type="string", length=180, nullable=true)
+     * @ORM\Column(type="text", length=180, nullable=true)
      * @Assert\NotBlank()
      */
     private $about;
@@ -55,7 +55,7 @@ class User implements UserInterface
     private $roles = [];
 
     /**
-     * @ORM\Column(type="json")
+     * @ORM\Column(type="json", nullable=true)
      */
     private $links = [];
 
@@ -104,7 +104,7 @@ class User implements UserInterface
     }
 
     /**
-     * @param mixed $about
+     * @param mixed $name
      */
     public function setAbout($about): void
     {

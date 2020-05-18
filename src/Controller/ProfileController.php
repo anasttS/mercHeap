@@ -20,7 +20,7 @@ class ProfileController extends AbstractController
     /**
      * @Route("/profile", name="profile")
      */
-    public function profile(LoggerInterface $logger)
+    public function profile(LoggerInterface $logger, Request $request, EntityManagerInterface $em)
     {
         $logger->debug('Checking account page for ' . $this->getUser()->getEmail());
         $username = $this->getUser()->getName();
@@ -30,7 +30,16 @@ class ProfileController extends AbstractController
         $links = $this->getUser()->getLinks();
         $count = ceil(count($merch) / 3);
 
-        $form = $this->createForm(UserChangeType::class);
+        $user = $this->getUser();
+        $form = $this->createForm(UserChangeType::class, $user);
+        $form->handleRequest($request);
+        if($form->isSubmitted()){
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($user);
+            $em->flush();
+            return $this->redirectToRoute('profile');
+        }
+
 
         return $this->render('profile/profile.html.twig', [
             'controller_name' => 'ProfileController',
@@ -42,7 +51,19 @@ class ProfileController extends AbstractController
             'links' => $links,
             'count' => $count
         ]);
+//        dd($this->getUser()->getUsername());
     }
+
+//    /**
+//     * @Route("/profile", name="change")
+//     */
+//    public function change(User $user, Request $request, EntityManagerInterface $em)
+//    {
+//        $form = $this->createForm(UserChangeType::class);
+//        return $this->render('profile/profile.html.twig', [
+//            'profileForm'=> $form->createView()
+//        ]);
+//    }
 
     /**
      * @Route("/profile/addImage", name="upload_image")
