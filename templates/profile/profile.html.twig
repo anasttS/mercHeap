@@ -138,15 +138,24 @@
 
         }
 
-        .tabs { width: 100%; padding: 0px; margin: 0 auto; }
-        .tabs>input { display: none; }
-        .tabs>div {
+        .tabs {
+            width: 100%;
+            padding: 0px;
+            margin: 0 auto;
+        }
+
+        .tabs > input {
+            display: none;
+        }
+
+        .tabs > div {
             display: none;
             padding: 12px;
             border: 1px solid #C0C0C0;
             background: #FFFFFF;
         }
-        .tabs>label {
+
+        .tabs > label {
             display: inline-block;
             padding: 7px;
             margin: 0 -5px -1px 0;
@@ -156,14 +165,18 @@
             background: #E0E0E0;
             cursor: pointer;
         }
-        .tabs>input:checked + label {
+
+        .tabs > input:checked + label {
             color: #000000;
             border: 1px solid #C0C0C0;
             border-bottom: 1px solid #FFFFFF;
             background: #FFFFFF;
         }
+
         #tab_1:checked ~ #txt_1,
-        #tab_2:checked ~ #txt_2 { display: block; }
+        #tab_2:checked ~ #txt_2 {
+            display: block;
+        }
 
 
     </style>
@@ -210,13 +223,13 @@
     <div class="container">
         <div class="row username" style="margin-top:45px;">
             <div class="col-md-4">
+                {% if photo is empty%}
                 <img src="../media/z.jpg" alt="Avatar_img"
                      style="padding-left: 10px;width:300px;height:350px" class="ava">
-                <form method="post" action="{{ path('upload_image') }}" enctype="multipart/form-data">
-                    <input type="file" name="image">
-                    <button type="submit" class="btn btn-primary">Upload</button>
-                </form>
-                >
+                {% else %}
+                <img src="../public/uploads/{{ photo }}" alt="Avatar"
+                     style="padding-left: 10px;width:300px;height:350px" class="ava">
+                {% endif %}
             </div>
 
 
@@ -248,6 +261,9 @@
                 <div id="txt_2">
                     <h3>Change Profile</h3>
                     {{ form_start(profileForm) }}
+                    {{ form_row(profileForm.name) }}
+                    {{ form_row(profileForm.photoPath) }}
+                    {{ form_row(profileForm.about) }}
                     <input type="hidden" name="_csrf_token"
                            value="{{ csrf_token('authenticate') }}"
                     >
@@ -270,17 +286,19 @@
         <div class="row">
             <div class="col-md-10 col-center m-auto">
                 <h2><span>Merch</span></h2>
-                <li class="navbar-item">
-                    <a href="/addProduct" class="nav-link">Add product</a>
-                </li>
+                <form action="addProduct">
+                    <button type="button" class="col-3 mr-4 ml-3 btn btn-secondary" id="next" disabled>Add product</button>
+                </form>
+
+{#                <li class="navbar-item">#}
+{#                    <a href="/addProduct" class="nav-link">Add product</a>#}
+{#                </li>#}
 
                 <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="0">
                     <!-- Carousel indicators -->
                     <ol class="carousel-indicators">
                         {% for c in count %}
                             <li data-target="#myCarousel" data-slide-to={{ c }}></li>
-                            {#                                <li data-target="#myCarousel" data-slide-to="1" class="active></li>#}
-                            {#                                <li data-target="#myCarousel" data-slide-to="2"></li>#}
                         {% endfor %}
                     </ol>
                     <!-- Wrapper for carousel items -->
@@ -294,76 +312,19 @@
                                                     src="https://dreamshirts.ru/media/catalog/product/cache/1/small_image/176x177/9df78eab33525d08d6e5fb8d27136e95/1/b/1black-allgtwet3t523-4.jpg"
                                                     class="img-responsive img-fluid" alt=""></div>
                                     </div>
-                                    <div class="col-sm-4">
-                                        <div class="img-box"><img
-                                                    src="https://images.kz.prom.st/97935606_list-stikerov-hos.jpg"
-                                                    class="img-responsive img-fluid" alt=""></div>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class="img-box"><img
-                                                    src="https://fanparty.ru/fanclubs/avatar/gallery/256947_avatar.jpg"
-                                                    class="img-responsive img-fluid" alt=""></div>
-                                    </div>
+{#                                    <div class="col-sm-4">#}
+{#                                        <div class="img-box"><img#}
+{#                                                    src="https://images.kz.prom.st/97935606_list-stikerov-hos.jpg"#}
+{#                                                    class="img-responsive img-fluid" alt=""></div>#}
+{#                                    </div>#}
+{#                                    <div class="col-sm-4">#}
+{#                                        <div class="img-box"><img#}
+{#                                                    src="https://fanparty.ru/fanclubs/avatar/gallery/256947_avatar.jpg"#}
+{#                                                    class="img-responsive img-fluid" alt=""></div>#}
+{#                                    </div>#}
                                 </div>
                             </div>
                         {% endfor %}
-                        {#                            <div class="item carousel-item active">#}
-                        {#                                <div class="row">#}
-                        {#                                    <div class="col-sm-4">#}
-                        {#                                        <div class="img-box"><img#}
-                        {#                                                    src="https://dreamshirts.ru/media/catalog/product/cache/1/small_image/176x177/9df78eab33525d08d6e5fb8d27136e95/1/b/1black-allgtwet3t523-4.jpg"#}
-                        {#                                                    class="img-responsive img-fluid" alt=""></div>#}
-                        {#                                    </div>#}
-                        {#                                    <div class="col-sm-4">#}
-                        {#                                        <div class="img-box"><img#}
-                        {#                                                    src="https://images.kz.prom.st/97935606_list-stikerov-hos.jpg"#}
-                        {#                                                    class="img-responsive img-fluid" alt=""></div>#}
-                        {#                                    </div>#}
-                        {#                                    <div class="col-sm-4">#}
-                        {#                                        <div class="img-box"><img#}
-                        {#                                                    src="https://fanparty.ru/fanclubs/avatar/gallery/256947_avatar.jpg"#}
-                        {#                                                    class="img-responsive img-fluid" alt=""></div>#}
-                        {#                                    </div>#}
-                        {#                                </div>#}
-                        {#                            </div>#}
-                        {#                            <div class="item carousel-item">#}
-                        {#                                <div class="row">#}
-                        {#                                    <div class="col-sm-4">#}
-                        {#                                        <div class="img-box"><img#}
-                        {#                                                    src="https://merchiumru.gcdn.co/users/13811/images/detailed/85/MS01048002_white.jpg?t=1495067284"#}
-                        {#                                                    class="img-responsive img-fluid" alt=""></div>#}
-                        {#                                    </div>#}
-                        {#                                    <div class="col-sm-4">#}
-                        {#                                        <div class="img-box"><img#}
-                        {#                                                    src="https://images.kz.prom.st/97935606_list-stikerov-hos.jpg"#}
-                        {#                                                    class="img-responsive img-fluid" alt=""></div>#}
-                        {#                                    </div>#}
-                        {#                                    <div class="col-sm-4">#}
-                        {#                                        <div class="img-box"><img#}
-                        {#                                                    src="https://fanparty.ru/fanclubs/avatar/gallery/256947_avatar.jpg"#}
-                        {#                                                    class="img-responsive img-fluid" alt=""></div>#}
-                        {#                                    </div>#}
-                        {#                                </div>#}
-                        {#                            </div>#}
-                        {#                            <div class="item carousel-item">#}
-                        {#                                <div class="row">#}
-                        {#                                    <div class="col-sm-4">#}
-                        {#                                        <div class="img-box"><img#}
-                        {#                                                    src="http://tarabeiser.com/ux/imgux/searchEmptyState.png"#}
-                        {#                                                    class="img-responsive img-fluid" alt=""></div>#}
-                        {#                                    </div>#}
-                        {#                                    <div class="col-sm-4">#}
-                        {#                                        <div class="img-box"><img#}
-                        {#                                                    src="http://tarabeiser.com/ux/imgux/searchEmptyState.png"#}
-                        {#                                                    class="img-responsive img-fluid" alt=""></div>#}
-                        {#                                    </div>#}
-                        {#                                    <div class="col-sm-4">#}
-                        {#                                        <div class="img-box"><img#}
-                        {#                                                    src="http://tarabeiser.com/ux/imgux/searchEmptyState.png"#}
-                        {#                                                    class="img-responsive img-fluid" alt=""></div>#}
-                        {#                                    </div>#}
-                        {#                                </div>#}
-                        {#                            </div>#}
                     </div>
                     <!-- Carousel controls -->
 

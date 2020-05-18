@@ -18,15 +18,16 @@ class UserChangeType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('email', EmailType::class)
+//            ->add('email', EmailType::class)
             ->add('name', TextType::class)
-            ->add('photo',TextType::class, [
-                'help'=> 'Choose img'
+            ->add('photoPath',FileType::class, [
+                'help'=> 'Choose img',
+                'mapped'=>false
             ])
-            ->add('links', CollectionType::class,[
-                'entry_type' => UrlType::class,
-                'entry_options' => ['label' => false],
-                'allow_add'=>true])
+//            ->add('links', CollectionType::class,[
+//                'entry_type' => UrlType::class,
+//                'entry_options' => ['label' => false],
+//                'allow_add'=>true])
             ->add('about',TextareaType::class);
     }
 
