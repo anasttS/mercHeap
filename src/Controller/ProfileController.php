@@ -33,7 +33,7 @@ class ProfileController extends AbstractController
         $user = $this->getUser();
         $form = $this->createForm(UserChangeType::class, $user);
         $form->handleRequest($request);
-        if($form->isSubmitted()){
+        if($form->isSubmitted() && $form->isValid()){
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();
