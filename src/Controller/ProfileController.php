@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use UserChangeType;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
@@ -28,13 +29,25 @@ class ProfileController extends AbstractController
         $merch = $this->getUser()->getProducts();
         $my_orders = $this->getUser()->getOrders();
         $links = $this->getUser()->getLinks();
-        $count = ceil(count($merch) / 3);
+        $photo = $this->getUser()->getPhoto();
+        $count = count($merch);
 
         $user = $this->getUser();
         $form = $this->createForm(UserChangeType::class, $user);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
-            $em = $this->getDoctrine()->getManager();
+//            $em = $this->getDoctrine()->getManager();
+            /** @var UploadedFile $uploadedFile*/
+//            $uploadedFile = $request->files->get('image');
+            $uploadedFile = $form['photoPath']->getData();
+            if ($uploadedFile) {
+                $destination = $this->getParameter('kernel.project_dir') . '/public/uploads';
+                $originalFilename = pathinfo($uploadedFile->getClientOriginalName(), PATHINFO_FILENAME);
+                $newFilename = $originalFilename . '-' . uniqid() . '.' . $uploadedFile->guessClientExtension();
+                $uploadedFile->move($destination, $newFilename);
+            }
+            $user->setPhoto($newFilename);
+//            dd($user);
             $em->persist($user);
             $em->flush();
             return $this->redirectToRoute('profile');
@@ -49,6 +62,7 @@ class ProfileController extends AbstractController
             'merch' => $merch,
             'my_orders' => $my_orders,
             'links' => $links,
+            'photo' => $photo,
             'count' => $count
         ]);
 //        dd($this->getUser()->getUsername());
@@ -65,17 +79,5 @@ class ProfileController extends AbstractController
 //        ]);
 //    }
 
-    /**
-     * @Route("/profile/addImage", name="upload_image")
-     */
-    public function addPhoto(Request $request)
-    {
-        $uploadedFile = $request->files->get('image');
-        $destination = $this->getParameter('kernel.project_dir') . '/public/uploads';
-        $originalFilename = pathinfo($uploadedFile->getClientOriginalName(), PATHINFO_FILENAME);
-        $newFilename = $originalFilename . '-' . uniqid() . '.' . $uploadedFile->guessClientExtension();
-        dd($uploadedFile->move($destination,
-            $newFilename
-        ));
-    }
+
 }
