@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="mercheap@localhost" uuid="2c6038fd-f18c-433c-bc85-7be385320cda">
+    <data-source source="LOCAL" name="mercheap" uuid="54ee199f-3dc2-455c-bb75-03505c99999e">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://localhost:3306/mercheap</jdbc-url>
-      <driver-properties>
-        <property name="serverTimezone" value="UTC" />
-      </driver-properties>
+      <jdbc-url>jdbc:mysql://localhost:3306/mercheap?serverTimezone=Europe/Moscow</jdbc-url>
     </data-source>
   </component>
 </project>
