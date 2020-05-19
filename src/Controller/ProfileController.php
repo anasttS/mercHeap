@@ -47,7 +47,6 @@ class ProfileController extends AbstractController
                 $uploadedFile->move($destination, $newFilename);
             }
             $user->setPhoto($newFilename);
-//            dd($user);
             $em->persist($user);
             $em->flush();
             return $this->redirectToRoute('profile');
