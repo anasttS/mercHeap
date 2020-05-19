@@ -4,14 +4,14 @@
 namespace App\Repository;
 
 
-use App\Entity\Order;
+use App\Entity\OrderUser;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
- * @method Order|null find($id, $lockMode = null, $lockVersion = null)
- * @method Order|null findOneBy(array $criteria, array $orderBy = null)
- * @method Order[]    findAll()
- * @method Order[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method OrderUser|null find($id, $lockMode = null, $lockVersion = null)
+ * @method OrderUser|null findOneBy(array $criteria, array $orderBy = null)
+ * @method OrderUser[]    findAll()
+ * @method OrderUser[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
 class OrderRepository extends ServiceEntityRepository
 {

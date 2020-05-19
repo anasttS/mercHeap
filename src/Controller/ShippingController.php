@@ -2,11 +2,12 @@
 
 namespace App\Controller;
 
-use App\Entity\Order;
+use App\Entity\OrderUser;
 use App\Entity\Product;
 use App\Entity\ShopList;
 use App\Entity\User;
 use App\Repository\ProductRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use OrderType;
 use PhpParser\Node\Expr\List_;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -50,36 +51,21 @@ class ShippingController extends AbstractController
 //            '2' => 2,
 //            '3' => 3
         );
-//        $em = $this->getDoctrine()->getManager();
         $json = json_encode($array);
         $array = json_decode($json);
-//        foreach ($array as $value){
-//            $shopList = new ShopList();
-//            $product = $em->getRepository(Product::class)->find(key($value));
-//            $shopList->setProduct($this->$product);
-//            $shopList->setCount($array[key($value)]);
-//
-//        }
-
-
-
-        $order = new Order();
+        $order = new OrderUser();
         $user = $this->getUser();
-//        $em = $this->getDoctrine()->getManager();
-//        $findUser = $em->getRepository(User::class)->find($user->getId());
-
         $form = $this->createForm(OrderType::class, $order);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()){
-
-            $order = $form->getData();
-            $order->setUser($user);
-            $order->setPrice(0);
-            $order->setSubtotal(0);
-
-
             $em = $this->getDoctrine()->getManager();
+//            $order = $form->getData();
+            $order->setUser($user);
+//            $order->setPrice(0);
+//            $order->setSubtotal(0);
             $em->persist($order);
+//            dd($order);
+            $em->flush();
 
             foreach ($array as $k => $v){
 //                $product = $em->getRepository(Product::class)->find((int)$k);
@@ -91,13 +77,13 @@ class ShippingController extends AbstractController
                 $em->persist($shopList);
 //                $order->addShopList($shopList);
             }
-
-
+            $em->flush();
+            dd($order);
 //        нужно по одному добавлять в лист шоплисты
 //            $order->addShopLists();
 //            $em = $this->getDoctrine()->getManager();
 //            $em->persist($order);
-            $em->flush();
+//            $em->flush();
 
             return $this->redirect("profile");
         }
