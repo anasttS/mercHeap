@@ -1,6 +1,8 @@
 <?php
-use App\Entity\User;
+
+use App\Entity\Order;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -15,16 +17,17 @@ class OrderType extends AbstractType
             ->add('first_name', TextType::class, ['label' => 'First_name'])
             ->add('last_name', TextType::class, ['label' => 'Last_name'])
             ->add('address', TextType::class, ['label' => 'Address'])
-            ->add('country', TextType::class)
-            ->add('city', TextType::class)
-            ->add('zip/portal_code', IntegerType::class)
-            ->add('phone_number', TextType::class);
+//            ->add('shopLists', CollectionType::class, ['label' => 'ShopLists'])
+            ->add('country', TextType::class, ['label'=>'Country'])
+            ->add('city', TextType::class, ['label' => 'City'])
+            ->add('zip', IntegerType::class, ['label' => 'Zip'])
+            ->add('phone_number', IntegerType::class, ['label'=>'Phone_number']);
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => User::class,
+            'data_class' => Order::class,
         ));
     }
 }

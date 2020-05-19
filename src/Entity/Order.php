@@ -33,6 +33,13 @@ class Order
         return (string) $this->firstName;
     }
 
+    public function setFirstName(String $firstName): self
+    {
+        $this->firstName = $firstName;
+
+        return $this;
+    }
+
     /**
      * @ORM\Column(type="string", length=180)
      */
@@ -41,6 +48,13 @@ class Order
     public function getLastName(): string
     {
         return (string) $this->lastName;
+    }
+
+    public function setLastName(String $lastName): self
+    {
+        $this->lastName = $lastName;
+
+        return $this;
     }
 
     /**
@@ -53,11 +67,24 @@ class Order
         return (string) $this->address;
     }
 
+    public function setAddress(String $address): self
+    {
+        $this->address = $address;
+
+        return $this;
+    }
+
     /**
      * @ORM\Column(type="string", length=180)
      */
     private $country;
 
+    public function setCountry(String $country): self
+    {
+        $this->country = $country;
+
+        return $this;
+    }
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="orders")
@@ -66,7 +93,7 @@ class Order
     private $user;
 
     /**
-     * @ORM\OneToMany(targetEntity=ShopList::class, mappedBy="orderId", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=ShopList::class, mappedBy="orderId", orphanRemoval=true,cascade={"persist"})
      */
     private $shopLists;
 
@@ -83,15 +110,15 @@ class Order
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $phone;
+    private $phoneNumber;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $price;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $subtotal;
 
@@ -135,6 +162,7 @@ class Order
         return $this;
     }
 
+
     public function removeShopList(ShopList $shopList): self
     {
         if ($this->shopLists->contains($shopList)) {
@@ -172,14 +200,14 @@ class Order
         return $this;
     }
 
-    public function getPhone(): ?string
+    public function getPhoneNumber(): ?string
     {
-        return $this->phone;
+        return $this->phoneNumber;
     }
 
-    public function setPhone(string $phone): self
+    public function setPhoneNumber(string $phone): self
     {
-        $this->phone = $phone;
+        $this->phoneNumber = $phone;
 
         return $this;
     }
