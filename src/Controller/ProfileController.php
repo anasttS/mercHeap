@@ -35,10 +35,9 @@ class ProfileController extends AbstractController
         $user = $this->getUser();
         $form = $this->createForm(UserChangeType::class, $user);
         $form->handleRequest($request);
-        if($form->isSubmitted() && $form->isValid()){
+        if ($form->isSubmitted() && $form->isValid()) {
 //            $em = $this->getDoctrine()->getManager();
-            /** @var UploadedFile $uploadedFile*/
-//            $uploadedFile = $request->files->get('image');
+            /** @var UploadedFile $uploadedFile */
             $uploadedFile = $form['photoPath']->getData();
             if ($uploadedFile) {
                 $destination = $this->getParameter('kernel.project_dir') . '/public/uploads';
@@ -52,10 +51,9 @@ class ProfileController extends AbstractController
             return $this->redirectToRoute('profile');
         }
 
-
         return $this->render('profile/profile.html.twig', [
             'controller_name' => 'ProfileController',
-            'profileForm'=> $form->createView(),
+            'profileForm' => $form->createView(),
             'name' => $username,
             'about' => $about,
             'merch' => $merch,

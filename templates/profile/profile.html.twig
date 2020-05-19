@@ -223,12 +223,12 @@
     <div class="container">
         <div class="row username" style="margin-top:45px;">
             <div class="col-md-4">
-                {% if photo is empty%}
-                <img src="media/z.jpg" alt="Avatar_img"
-                     style="padding-left: 10px;width:300px;height:350px" class="ava">
+                {% if photo is empty %}
+                    <img src="media/z.jpg" alt="Avatar_img"
+                         style="padding-left: 10px;width:300px;height:350px" class="ava">
                 {% else %}
-                <img src="uploads/{{ photo }}" alt="Avatar"
-                     style="padding-left: 10px;width:300px;height:350px" class="ava">
+                    <img src="uploads/{{ photo }}" alt="Avatar"
+                         style="padding-left: 10px;width:300px;height:350px" class="ava">
                 {% endif %}
             </div>
 
@@ -261,15 +261,15 @@
                 <div id="txt_2">
                     <h3>Change Profile</h3>
                     {{ form_start(profileForm) }}
-{#                    {{ form_widget(profileForm) }}#}
+                    {#                    {{ form_widget(profileForm) }}#}
                     {{ form_row(profileForm.email) }}
                     {{ form_row(profileForm.name) }}
                     {{ form_row(profileForm.photoPath) }}
-{#                    {{ form_row(profileForm.links) }}#}
+                    {#                    {{ form_row(profileForm.links) }}#}
                     {{ form_row(profileForm.about) }}
-{#                    <input type="hidden" name="_csrf_token"#}
-{#                           value="{{ csrf_token('authenticate') }}"#}
-{#                    >#}
+                    {#                    <input type="hidden" name="_csrf_token"#}
+                    {#                           value="{{ csrf_token('authenticate') }}"#}
+                    {#                    >#}
 
                     {#                    <ul class="link" data-prototype="{{ form_widget(profileForm.links.vars.prototype)|e('html_attr') }}">#}
                     {#                    <ul class="tags">#}
@@ -290,12 +290,13 @@
             <div class="col-md-10 col-center m-auto">
                 <h2><span>Merch</span></h2>
                 <form action="addProduct">
-                    <button type="button" class="col-3 mr-4 ml-3 btn btn-secondary" id="next" disabled>Add product</button>
+                    <button type="button" class="col-3 mr-4 ml-3 btn btn-secondary" id="next" disabled>Add product
+                    </button>
                 </form>
 
-{#                <li class="navbar-item">#}
-{#                    <a href="/addProduct" class="nav-link">Add product</a>#}
-{#                </li>#}
+                {#                <li class="navbar-item">#}
+                {#                    <a href="/addProduct" class="nav-link">Add product</a>#}
+                {#                </li>#}
 
                 <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="0">
                     <!-- Carousel indicators -->
@@ -307,24 +308,14 @@
                     <!-- Wrapper for carousel items -->
 
                     <div class="carousel-inner">
-                        {% for c in count %}
+                        {% for product in merch %}
                             <div class="item carousel-item ">
                                 <div class="row">
                                     <div class="col-sm-4">
-                                        <div class="img-box"><img
-                                                    src="https://dreamshirts.ru/media/catalog/product/cache/1/small_image/176x177/9df78eab33525d08d6e5fb8d27136e95/1/b/1black-allgtwet3t523-4.jpg"
-                                                    class="img-responsive img-fluid" alt=""></div>
+                                        <div class="img-box"><img src="uploads/{{ product.photo }}"
+                                                    class="img-responsive img-fluid" alt="">
+                                        </div>
                                     </div>
-{#                                    <div class="col-sm-4">#}
-{#                                        <div class="img-box"><img#}
-{#                                                    src="https://images.kz.prom.st/97935606_list-stikerov-hos.jpg"#}
-{#                                                    class="img-responsive img-fluid" alt=""></div>#}
-{#                                    </div>#}
-{#                                    <div class="col-sm-4">#}
-{#                                        <div class="img-box"><img#}
-{#                                                    src="https://fanparty.ru/fanclubs/avatar/gallery/256947_avatar.jpg"#}
-{#                                                    class="img-responsive img-fluid" alt=""></div>#}
-{#                                    </div>#}
                                 </div>
                             </div>
                         {% endfor %}
