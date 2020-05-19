@@ -2,18 +2,26 @@
 
 namespace App\Controller;
 
+use App\Entity\Product;
+use App\Repository\ProductRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
 class GoodsController extends AbstractController
 {
+
+
     /**
      * @Route("/goods", name="goods")
      */
-    public function index()
+    public function index(ProductRepository $repository)
     {
+//        $repository = $this->getDoctrine()->getRepository(Product::class);
+        $products = $repository->findAll();
+
         return $this->render('goods/index.html.twig', [
-            'controller_name' => 'GoodsController',
+            'products' => $products,
+            'controller_name' => 'GoodsController'
         ]);
     }
 }

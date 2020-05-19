@@ -1,105 +1,107 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <style>
-        ::-webkit-scrollbar {
-            display: none;
-        }
+<style>
+    ::-webkit-scrollbar {
+        display: none;
+    }
 
-        .navbar-item {
-            margin-right: 10px;
-            margin-left: 10px;
-        }
+    .navbar-item {
+        margin-right: 10px;
+        margin-left: 10px;
+    }
 
-        .imgcont {
-            height: 250px;
-            width: 100%;
-            position: relative;
-            overflow: hidden;
-        }
+    .imgcont {
+        height: 250px;
+        width: 100%;
+        position: relative;
+        overflow: hidden;
+    }
 
-        .card {
-            margin-bottom: 10px;
-        }
-    </style>
+    .card {
+        margin-bottom: 10px;
+    }
+</style>
 
-    <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top border" style="box-shadow: black">
-        <div class="container-fluid">
-            <a href="/" class="navbar-brand" style="font-family: 'Bebas Neue', cursive; font-size: 23px">
-                <img class="pr-2"
-                     src="https://sun7-6.userapi.com/2JYupaQXK7tuU6qqEN3Y3W0C568RoyyJq1Pu6g/8gOYGcN_NqE.jpg">
-                MERCHEAP</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse"
-                    data-target="#navbarResponsive">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ml-auto">
-                    {% if is_granted('ROLE_USER') %}
-                        <li class="navbar-item">
-                            <a href="/profile" class="nav-link">Profile</a>
-                        </li>
-                        <li class="navbar-item">
-                            <a href="/goods" class="nav-link">Shop</a>
-                        </li>
-                        <li class="navbar-item">
-                            <a href="/logout" class="nav-link">Logout</a>
-                        </li>
-                    {% else %}
-                        <li class="navbar-item">
-                            <button class="btn-dark">
-                            <a href="/goods" class="nav-link"  style="text-decoration: none; color: white">Shop</a>
-                            </button>
-                        </li>
-                        <li class="navbar-item">
-                            <button class="btn-dark">
-                                <a href="/login"  class="nav-link" style="text-decoration: none; color: white">Login</a>
-                            </button>
-                        </li>
-                        <li class="navbar-item">
-                            <button class="btn-dark">
-                                <a href="/register"  class="nav-link"  style="text-decoration: none; color: white">Register</a>
-                            </button>
-                        </li>
-                    {% endif %}
-                </ul>
-                <div class="navbar-item">
-                    {% if is_granted('ROLE_USER') %}
-                        <button class="btn-dark"><a href="/cart"
-                                                    style="text-decoration: none; color: white">
-                                <i class="fas fa-shopping-cart"></i>
-                                Your Cart
-                            </a>
+<nav class="navbar navbar-expand-md navbar-light bg-light sticky-top border" style="box-shadow: black">
+    <div class="container-fluid">
+        <a href="/" class="navbar-brand" style="font-family: 'Bebas Neue', cursive; font-size: 23px">
+            <img class="pr-2"
+                 src="https://sun7-6.userapi.com/2JYupaQXK7tuU6qqEN3Y3W0C568RoyyJq1Pu6g/8gOYGcN_NqE.jpg">
+            MERCHEAP</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                data-target="#navbarResponsive">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                {% if is_granted('ROLE_USER') %}
+                    <li class="navbar-item">
+                        <a href="/profile" class="nav-link">Profile</a>
+                    </li>
+                    <li class="navbar-item">
+                        <a href="/goods" class="nav-link">Shop</a>
+                    </li>
+                    <li class="navbar-item">
+                        <a href="/logout" class="nav-link">Logout</a>
+                    </li>
+                {% else %}
+                    <li class="navbar-item">
+                        <button class="btn-dark">
+                            <a href="/goods" class="nav-link" style="text-decoration: none; color: white">Shop</a>
                         </button>
-                    {% endif %}
-                </div>
-
+                    </li>
+                    <li class="navbar-item">
+                        <button class="btn-dark">
+                            <a href="/login" class="nav-link" style="text-decoration: none; color: white">Login</a>
+                        </button>
+                    </li>
+                    <li class="navbar-item">
+                        <button class="btn-dark">
+                            <a href="/register" class="nav-link"
+                               style="text-decoration: none; color: white">Register</a>
+                        </button>
+                    </li>
+                {% endif %}
+            </ul>
+            <div class="navbar-item">
+                {% if is_granted('ROLE_USER') %}
+                    <button class="btn-dark"><a href="/cart"
+                                                style="text-decoration: none; color: white">
+                            <i class="fas fa-shopping-cart"></i>
+                            Your Cart
+                        </a>
+                    </button>
+                {% endif %}
             </div>
 
         </div>
-    </nav>
 
-    <div class="container-fluid p-0">
-        <img class="w-100" style="height: 250px" alt="goodImg"
-             src="https://d4y70tum9c2ak.cloudfront.net/articleBanner/OsJATF0e2Hz8jkTjS9s7rAkog8cp4hlVoTReZkbuido/1600.jpg">
     </div>
+</nav>
 
-    <div class="container mb-2 mt-2">
-        <div class="input-group">
-            <select class="custom-select col-3 mt-2 mb-2">
-                <option selected>Choose...</option>
-                <option value="Clothes">Clothes</option>
-                <option value="Cups">Cups</option>
-                <option value="Stickers">Stickers</option>
-                <option value="Others">Others</option>
-            </select>
-            <input class="form-control col-7 m-2">
-            <button class="btn btn-dark col-2 mt-2 mb-2">Search</button>
-        </div>
+<div class="container-fluid p-0">
+    <img class="w-100" style="height: 250px" alt="goodImg"
+         src="https://d4y70tum9c2ak.cloudfront.net/articleBanner/OsJATF0e2Hz8jkTjS9s7rAkog8cp4hlVoTReZkbuido/1600.jpg">
+</div>
+
+<div class="container mb-2 mt-2">
+    <div class="input-group">
+        <select class="custom-select col-3 mt-2 mb-2">
+            <option selected>Choose...</option>
+            <option value="Clothes">Clothes</option>
+            <option value="Cups">Cups</option>
+            <option value="Stickers">Stickers</option>
+            <option value="Others">Others</option>
+        </select>
+        <input class="form-control col-7 m-2">
+        <button class="btn btn-dark col-2 mt-2 mb-2">Search</button>
     </div>
+</div>
 
-    <div class="container" id="goods">
-        <div class="row">
+<div class="container" id="goods">
+    <div class="row">
+        {% for product in products %}
             <div class="col-3">
                 <div class="card p-0" style="max-height: 500px">
                     <div class="imgcont">
@@ -107,103 +109,33 @@
                              class="card-img-top img-responsive">
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title">Name of product</h5>
-                        <p class="card-text w-25 ">15$</p>
-                        <button class="btn-dark btn">View</button>
+                        <h5 class="card-title">{{ product.name }}</h5>
+                        <p class="card-text w-25 ">{{ product.cost }}</p>
+                        <button class="btn-dark btn" value="{{ product.id }}">View</button>
                         <button class="btn btn-light"><i class="fas fa-cart-plus"></i></button>
                     </div>
                 </div>
             </div>
-            <div class="col-3">
-                <div class="card p-0" style="max-height: 500px">
-                    <div class="imgcont">
-                        <img src="https://sun9-19.userapi.com/impg/HUdYCUhqhZQWWRcWHBJnk-_GnyPi3BpPgDjtCQ/OanY4O6gcvM.jpg?size=520x0&quality=90&sign=09344c14d0fdcfb3383a6835a1a49bf6"
-                             class="card-img-top img-responsive">
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">Name of product</h5>
-                        <p class="card-text w-25 ">15$</p>
-                        <button class="btn-dark btn">View</button>
-                        <button class="btn btn-light"><i class="fas fa-cart-plus"></i></button>
-                    </div>
-                </div>
-            </div>
-            <div class="col-3">
-                <div class="card p-0" style="max-height: 500px">
-                    <div class="imgcont">
-                        <img src="https://sun7-9.userapi.com/impg/NH2z24DxCAjXG_0MmlMFMHe7voBYO_-3G5XdDw/s1pPceV9Jmk.jpg?size=520x0&quality=90&sign=dd825c9d990435aa64ae85eddff11de0"
-                             class="card-img-top img-responsive">
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">Name of product</h5>
-                        <p class="card-text w-25 ">15$</p>
-                        <button class="btn-dark btn">View</button>
-                        <button class="btn btn-light"><i class="fas fa-cart-plus"></i></button>
-                    </div>
-                </div>
-            </div>
-            <div class="col-3">
-                <div class="card p-0" style="max-height: 500px">
-                    <div class="imgcont">
-                        <img src="https://sun7-9.userapi.com/i9Z7yzRumC-EVmlDuQOIkb4Tmh5GxgSkmczp9g/y7KNo-S7epg.jpg"
-                             class="card-img-top img-responsive">
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">Name of product</h5>
-                        <p class="card-text w-25 ">15$</p>
-                        <button class="btn-dark btn">View</button>
-                        <button class="btn btn-light"><i class="fas fa-cart-plus"></i></button>
-                    </div>
-                </div>
-            </div>
-            <div class="col-3">
-                <div class="card p-0" style="max-height: 500px">
-                    <div class="imgcont">
-                        <img src="https://sun9-23.userapi.com/impf/c849424/v849424980/d5913/hYwnR4RRf3Y.jpg?size=520x0&quality=90&sign=7f6d0c64b7083074b6e6e2aa639b27cf"
-                             class="card-img-top img-responsive">
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">Name of product</h5>
-                        <p class="card-text w-25 ">15$</p>
-                        <button class="btn-dark btn">View</button>
-                        <button class="btn btn-light"><i class="fas fa-cart-plus"></i></button>
-                    </div>
-                </div>
-            </div>
-            <div class="col-3">
-                <div class="card p-0" style="max-height: 500px">
-                    <div class="imgcont">
-                        <img src="https://img2.wbstatic.net/big/new/11790000/11795032-1.jpg"
-                             class="card-img-top img-responsive">
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">Name of product</h5>
-                        <p class="card-text w-25 ">15$</p>
-                        <button class="btn-dark btn">View</button>
-                        <button class="btn btn-light"><i class="fas fa-cart-plus"></i></button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <nav aria-label="Page navigation example">
-            <ul class="pagination justify-content-center">
-                <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Previous">
-                        <i class="fas fa-chevron-left"></i>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Next">
-                        <i class="fas fa-chevron-right"></i>
-                        <span class="sr-only">Next</span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
+        {% endfor %}
+        {#        <nav aria-label="Page navigation example">#}
+        {#            <ul class="pagination justify-content-center">#}
+        {#                <li class="page-item">#}
+        {#                    <a class="page-link" href="#" aria-label="Previous">#}
+        {#                        <i class="fas fa-chevron-left"></i>#}
+        {#                        <span class="sr-only">Previous</span>#}
+        {#                    </a>#}
+        {#                </li>#}
+        {#                <li class="page-item"><a class="page-link" href="#">1</a></li>#}
+        {#                <li class="page-item"><a class="page-link" href="#">2</a></li>#}
+        {#                <li class="page-item"><a class="page-link" href="#">3</a></li>#}
+        {#                <li class="page-item">#}
+        {#                    <a class="page-link" href="#" aria-label="Next">#}
+        {#                        <i class="fas fa-chevron-right"></i>#}
+        {#                        <span class="sr-only">Next</span>#}
+        {#                    </a>#}
+        {#                </li>#}
+        {#            </ul>#}
+        {#        </nav>#}
     </div>
 
     <footer class="page-footer font-small cyan darken-3" style="background-color: #efefef"> <!-- doesn't work(?) -->
@@ -229,4 +161,4 @@
             <a>Our links</a>
         </div>
     </footer> <!-- Footer -->
-{% endblock %}
+    {% endblock %}

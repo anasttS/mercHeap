@@ -2,7 +2,9 @@
 
 
 namespace App\Entity;
+
 use Doctrine\ORM\Mapping as ORM;
+
 /**
  * @ORM\Entity(repositoryClass=Product::class)
  */
@@ -27,7 +29,7 @@ class Product
 
     public function getName(): string
     {
-        return (string) $this->name;
+        return (string)$this->name;
     }
 
     /**
@@ -37,8 +39,13 @@ class Product
 
     public function getCost(): float
     {
-        return (float) $this->cost;
+        return (float)$this->cost;
     }
+
+    /**
+     * @ORM\Column(type="string", columnDefinition="ENUM('clothes', 'cups','stikers','others')")
+     */
+    private $type;
 
     /**
      * @ORM\Column(type="string")
@@ -53,7 +60,7 @@ class Product
 
     public function getDescription(): string
     {
-        return (string) $this->description;
+        return (string)$this->description;
     }
 
     public function getUser(): ?User
