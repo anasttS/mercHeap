@@ -50,7 +50,7 @@ class ShippingController extends AbstractController
 //            '2' => 2,
 //            '3' => 3
         );
-        $em = $this->getDoctrine()->getManager();
+//        $em = $this->getDoctrine()->getManager();
         $json = json_encode($array);
         $array = json_decode($json);
 //        foreach ($array as $value){
