@@ -43,11 +43,6 @@ class Product
     }
 
     /**
-     * @ORM\Column(type="string", columnDefinition="ENUM('clothes', 'cups','stikers','others')")
-     */
-    private $type;
-
-    /**
      * @ORM\Column(type="string")
      */
     private $description;

@@ -37,15 +37,15 @@ class ProfileController extends AbstractController
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
 //            $em = $this->getDoctrine()->getManager();
-            /** @var UploadedFile $uploadedFile*/
+        /** @var UploadedFile $uploadedFile */
 //            $uploadedFile = $request->files->get('image');
-            $uploadedFile = $form['photoPath']->getData();
-            if ($uploadedFile) {
-                $destination = $this->getParameter('kernel.project_dir') . '/public/uploads';
-                $originalFilename = pathinfo($uploadedFile->getClientOriginalName(), PATHINFO_FILENAME);
-                $newFilename = $originalFilename . '-' . uniqid() . '.' . $uploadedFile->guessClientExtension();
-                $uploadedFile->move($destination, $newFilename);
-            }
+        $uploadedFile = $form['photoPath']->getData();
+        if ($uploadedFile) {
+            $destination = $this->getParameter('kernel.project_dir') . '/public/uploads';
+            $originalFilename = pathinfo($uploadedFile->getClientOriginalName(), PATHINFO_FILENAME);
+            $newFilename = $originalFilename . '-' . uniqid() . '.' . $uploadedFile->guessClientExtension();
+            $uploadedFile->move($destination, $newFilename);
+        }
             $user->setPhoto($newFilename);
 //            dd($user);
             $em->persist($user);
@@ -53,10 +53,9 @@ class ProfileController extends AbstractController
             return $this->redirectToRoute('profile');
         }
 
-
         return $this->render('profile/profile.html.twig', [
             'controller_name' => 'ProfileController',
-            'profileForm'=> $form->createView(),
+            'profileForm' => $form->createView(),
             'name' => $username,
             'about' => $about,
             'merch' => $merch,
