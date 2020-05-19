@@ -9,7 +9,6 @@
             margin-left: 10px;
         }
 
-
         .backgroundImage {
             background-image: url("https://images.pexels.com/photos/1696726/pexels-photo-1696726.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
             background-size: 100%;
@@ -22,11 +21,23 @@
             padding-top: 20px;
         }
 
+        ::-webkit-scrollbar {
+            display: none;
+        }
+
+        .card {
+            height: 250px;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
     </style>
+
     <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top border" style="box-shadow: black">
         <div class="container-fluid">
-            <a href="/" class="navbar-brad"><img
-                        src="https://sun7-6.userapi.com/2JYupaQXK7tuU6qqEN3Y3W0C568RoyyJq1Pu6g/8gOYGcN_NqE.jpg">
+            <a href="/" class="navbar-brand" style="font-family: 'Bebas Neue', cursive; font-size: 23px">
+                <img class="pr-2"
+                     src="https://sun7-6.userapi.com/2JYupaQXK7tuU6qqEN3Y3W0C568RoyyJq1Pu6g/8gOYGcN_NqE.jpg">
                 MERCHEAP</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse"
                     data-target="#navbarResponsive">
@@ -45,24 +56,31 @@
                             <a href="/logout" class="nav-link">Logout</a>
                         </li>
                     {% else %}
-                        <li class="navbar-item active">
-                            <a href="/login" class="nav-link">Login</a>
+                        <li class="navbar-item">
+                            <button class="btn-dark">
+                                <a href="/goods"  style="text-decoration: none; color: white">Shop</a>
+                            </button>
                         </li>
-                        <li class="navbar-item  active">
-                            <a href="/register" class="nav-link">Register</a>
+                        <li class="navbar-item">
+                            <button class="btn-dark">
+                            <a href="/login" style="text-decoration: none; color: white">Login</a>
+                            </button>
+                        </li>
+                        <li class="navbar-item">
+                            <button class="btn-dark">
+                            <a href="/register" style="text-decoration: none; color: white">Register</a>
+                            </button>
                         </li>
                     {% endif %}
-
-
                 </ul>
                 <div class="navbar-item">
                     {% if is_granted('ROLE_USER') %}
-                    <button class="btn-dark"><a href="/cart"
-                                                style="text-decoration: none; color: white">
-                            <i class="fas fa-shopping-cart"></i>
-                            Your Cart
-                        </a>
-                    </button>
+                        <button class="btn-dark"><a href="/cart"
+                                                    style="text-decoration: none; color: white">
+                                <i class="fas fa-shopping-cart"></i>
+                                Your Cart
+                            </a>
+                        </button>
                     {% endif %}
                 </div>
 
@@ -70,6 +88,7 @@
 
         </div>
     </nav>
+
     <div id="bgimage" class="container-fluid  backgroundImage">
         <div class="container">
             <h1 class="label">
@@ -118,7 +137,7 @@
                             <div class="card mb-2">
 {#                                <a href="#"> <!— ссылка на итем-->#}
                                     <img class="card-img-top"
-                                         src="https://sun9-59.userapi.com/c850216/v850216010/14456/S1vVkTbgDDc.jpg"
+                                         src="https://sun9-59.userapi.com/c850216/v850216010/14456/S1vVkTbgDDc.jpg">
 {#                                         style="max-height: 250px"/>#}
                                 </a>
                             </div>

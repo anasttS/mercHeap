@@ -44,7 +44,7 @@ class User implements UserInterface
     private $photo;
 
     /**
-     * @ORM\Column(type="string", length=180, nullable=true)
+     * @ORM\Column(type="text", length=180, nullable=true)
      * @Assert\NotBlank()
      */
     private $about;
@@ -104,11 +104,11 @@ class User implements UserInterface
     }
 
     /**
-     * @param mixed $name
+     * @param mixed $about
      */
     public function setAbout($about): void
     {
-        $this->name = $about;
+        $this->about = $about;
     }
 
     public function getEmail(): ?string

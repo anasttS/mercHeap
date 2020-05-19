@@ -60,39 +60,62 @@
                     <small class="text-secondary">Shipping detail</small>
                 </h2>
                 <hr/>
+                {{ form_start(form) }}
                 <div class="row">
-                    <input class="form-control col-5 mr-4 ml-3" id="firstName" placeholder="First Name" onblur="f()">
-                    <input class="form-control col-5" id="lastName" placeholder="Last Name" onblur="f()">
+{#                    <input class="form-control col-5 mr-4 ml-3" id="firstName" placeholder="First Name" onblur="f()" value={{ form_label(form.first_name) }}>#}
+{#                    <label for="input" >First name</label>#}
+                </br>
+                    {{ form_widget(form.first_name, {'attr': {'class': "form-control col-5 mr-4 ml-3", 'onblur': "f()", 'placeholder': "First Name"}}, {'id': 'firstName' }) }}
+
+{#                    <input class="form-control col-5" id="lastName" placeholder="Last Name" onblur="f()" value={{ form_label(form.last_name) }}>#}
+{#                    <label for="input" >Last name</label>#}
+                     {{ form_widget(form.last_name, {'attr': {'class': "form-control col-5 mr-4 ml-3", 'onblur': "f()", 'placeholder': "Last Name"}}, {'id': 'lastName' }) }}
                 </div>
                 </br>
-                <input class="form-control col-10" id="address" placeholder="Address" onblur="f()">
+{#                <input class="form-control col-10" id="address" placeholder="Address" onblur="f()" value={{ form_label(form.address) }}>#}
+{#                <label for="input"  >Address</label>#}
+                {{ form_widget(form.address, {'attr': {'class': "form-control col-10", 'onblur': "f()", 'placeholder': "Address"}}, {'id': 'address' }) }}
                 </br>
                 <div class="row">
                     <!--        <input class="form-control col-5 mr-4 ml-3" id="country" placeholder="Country">-->
-                    <select id="country" class="custom-select form-control col-5 mr-4 ml-3" onblur="f()">
-                        <option selected>Country</option>
-                        <option value="1">Russia</option>
-                        <option value="2">Ukraine</option>
-                        <option value="3">Kazakhstan</option>
-                    </select>
-                    <input class="form-control col-5" id="city" placeholder="City" onblur="f()">
+{#                    <select id="country" class="custom-select form-control col-5 mr-4 ml-3" onblur="f()">#}
+{#                        <option selected>Country</option>#}
+{#                        <option value={{ form_label(form.country) }}>Russia</option>#}
+{#                        <option value={{ form_label(form.country) }}>Ukraine</option>#}
+{#                        <option value={{ form_label(form.country) }}>Kazakhstan</option>#}
+{#                    </select>#}
+{#                    <label for="input"  >Country</label>#}
+                    {{ form_widget(form.country, {'attr': {'class': "form-control col-5 mr-4 ml-3", 'onblur': "f()", 'placeholder': "Country"}}, {'id': 'country' }) }}
+{#                    <input class="form-control col-5" id="city" placeholder="City" onblur="f()" value={{ form_label(form.city) }}>#}
+{#                    <label for="input" >City</label>#}
+                    {{ form_widget(form.city, {'attr': {'class': "form-control col-5 mr-4 ml-3", 'onblur': "f()", 'placeholder': "City"}}, {'id': 'city' }) }}
                 </div>
                 </br>
                 <div class="row">
-                    <input class="form-control col-5 mr-4 ml-3" id="code" placeholder="Zip/Postal Code" onblur="f()">
-                    <input class="form-control col-5" id="phoneNumber" placeholder="Phone Number" onblur="f()">
+
+
+{#                    <input class="form-control col-5 mr-4 ml-3" id="code" placeholder="Zip/Postal Code" onblur="f()" value={{ form_label(form.zip/portal_code) }}>#}
+{#                    <label for="input" class="form-control col-5 mr-4 ml-3">{{ form_label(form.zip/portal_code) }}</label>#}
+                    {{ form_widget(form.zip, {'attr': {'class': "form-control col-5 mr-4 ml-3", 'onblur': "f()", 'placeholder': "Zip/Postal Code"}}, {'id': 'code' }) }}
+
+
+{#                    <input class="form-control col-5" id="phoneNumber" placeholder="Phone Number" onblur="f()" value={{ form_label(form.phone_number) }}>#}
+{#                    <label for="input" >Phone number</label>#}
+                    {{ form_widget(form.phone_number, {'attr': {'class': "form-control col-5 mr-4 ml-3", 'onblur': "f()", 'placeholder': "Phone Number"}}, {'id': 'phoneNumber' }) }}
                 </div>
                 <hr color="black"/>
                 <div class="row">
-                    <button type="button" class="col-3 mr-4 ml-3 btn btn-secondary" id="next" disabled>Next</button>
+{#                    <a type="submit" class="col-3 mr-4 ml-3 btn btn-secondary" id="next" href="/to_order" disabled>Next</a>#}
+                    <button type="submit" class="col-3 mr-4 ml-3 btn btn-secondary" id="next" href="/to_order" >Next</button>
                     <button type="button" class="col-3 mr-4 ml-3 btn btn-light" id="btn_modal_window">Cancel</button>
                     <div id="error" class="error" style="color: red"></div>
                 </div>
+                {{ form_end(form) }}
                 <div id="my_modal" class="modal">
                     <div class="modal_content">
                         <span class="close_modal_window">×</span>
                         <p>Are you sure you want to cancel the order?</p>
-                        <button type="button" class="col-3 btn btn-light">Cancel</button>
+                        <a type="button" href="/" class="col-3 btn btn-light">Cancel</a>
                     </div>
                 </div>
             </div>

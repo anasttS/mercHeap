@@ -27,10 +27,11 @@ class ShopList
     private $count;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Order::class, inversedBy="shopLists")
+     * @ORM\ManyToOne(targetEntity=Order::class, inversedBy="shopLists",cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $orderId;
+
 
 
     public function getId(): ?int
