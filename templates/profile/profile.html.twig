@@ -138,6 +138,47 @@
 
         }
 
+        .tabs {
+            width: 100%;
+            padding: 0px;
+            margin: 0 auto;
+        }
+
+        .tabs > input {
+            display: none;
+        }
+
+        .tabs > div {
+            display: none;
+            padding: 12px;
+            border: 1px solid #C0C0C0;
+            background: #FFFFFF;
+        }
+
+        .tabs > label {
+            display: inline-block;
+            padding: 7px;
+            margin: 0 -5px -1px 0;
+            text-align: center;
+            color: #666666;
+            border: 1px solid #C0C0C0;
+            background: #E0E0E0;
+            cursor: pointer;
+        }
+
+        .tabs > input:checked + label {
+            color: #000000;
+            border: 1px solid #C0C0C0;
+            border-bottom: 1px solid #FFFFFF;
+            background: #FFFFFF;
+        }
+
+        #tab_1:checked ~ #txt_1,
+        #tab_2:checked ~ #txt_2 {
+            display: block;
+        }
+
+
     </style>
 
     <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top border" style="box-shadow: black">
@@ -182,45 +223,60 @@
     <div class="container">
         <div class="row username" style="margin-top:45px;">
             <div class="col-md-4">
-                <img src="../z.jpg" alt="Avatar_img"
-                     style="padding-left: 10px;width:300px;height:350px" class="ava">
-                <form method="post" action="{{ path('upload_image') }}" enctype="multipart/form-data">
-                    <input type="file" name="image">
-                    <button type="submit" class="btn btn-primary">Upload</button>
-                </form>
-                >
+                {% if photo is empty %}
+                    <img src="media/z.jpg" alt="Avatar_img"
+                         style="padding-left: 10px;width:300px;height:350px" class="ava">
+                {% else %}
+                    <img src="uploads/{{ photo }}" alt="Avatar"
+                         style="padding-left: 10px;width:300px;height:350px" class="ava">
+                {% endif %}
             </div>
 
 
-            <div class="col-md-8">
+            <div class="col-md-8 tabs">
+                <input type="radio" name="inset" value="" id="tab_1" checked>
+                <label for="tab_1">Profile</label>
+                <input type="radio" name="inset" value="" id="tab_2">
+                <label for="tab_2">Change</label>
                 {#                <h1>Username</h1>#}
-                <h1>{{ name }}</h1>
-                {#                <div class="media-text text-justify" style="">#}
-                {#                    Lorem ipsum dolor sit amet. Blanditiis praesentium voluptatum#}
-                {#                    deleniti atque. Autem vel illum, qui blanditiis praesentium voluptatum deleniti atque corrupti.#}
-                {#                    Dolor repellendus cum soluta nobis. Corporis suscipit laboriosam, nisi ut enim. Debitis aut#}
-                {#                    perferendis doloribus asperiores repellat. sint, obcaecati cupiditate non numquam eius. Itaque earum#}
-                {#                    rerum facilis. Similique sunt in ea commodi. Dolor repellendus numquam eius modi. Quam nihil#}
-                {#                    molestiae consequatur, vel illum, qui ratione voluptatem accusantium doloremque.#}
-                {#                </div>#}
-                <div class="media-text text-justify" style="">{{ about }}</div>
-                <div class="links">
-                    {% if links!= null %}
-                        {% for link in links %}
-                            <p style="padding-top: 30px"><i class="fa fa-link"></i> {{link}}</p>
-                        {% endfor %}
-                    {% endif %}
+                <div id="txt_1">
+                    <h1>{{ name }}</h1>
+                    {#                <div class="media-text text-justify" style="">#}
+                    {#                    Lorem ipsum dolor sit amet. Blanditiis praesentium voluptatum#}
+                    {#                    deleniti atque. Autem vel illum, qui blanditiis praesentium voluptatum deleniti atque corrupti.#}
+                    {#                    Dolor repellendus cum soluta nobis. Corporis suscipit laboriosam, nisi ut enim. Debitis aut#}
+                    {#                    perferendis doloribus asperiores repellat. sint, obcaecati cupiditate non numquam eius. Itaque earum#}
+                    {#                    rerum facilis. Similique sunt in ea commodi. Dolor repellendus numquam eius modi. Quam nihil#}
+                    {#                    molestiae consequatur, vel illum, qui ratione voluptatem accusantium doloremque.#}
+                    {#                </div>#}
+                    <div class="media-text text-justify" style="">{{ about }}</div>
+                    <div class="links">
+                        {% if links!= null %}
+                            {% for link in links %}
+                                <p style="padding-top: 30px"><i class="fa fa-link"></i> {{ link }}</p>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
                 </div>
-                <div>
+                <div id="txt_2">
                     <h3>Change Profile</h3>
                     {{ form_start(profileForm) }}
-                    {{ form_widget(profileForm) }}
-{#                    <ul class="link" data-prototype="{{ form_widget(profileForm.links.vars.prototype)|e('html_attr') }}">#}
-{#                    <ul class="tags">#}
-{#                        {% for link in profileForm.links %}#}
-{#                            <li>{{ form_row(link.name) }}</li>#}
-{#                        {% endfor %}#}
-{#                    </ul>#}
+                    {#                    {{ form_widget(profileForm) }}#}
+                    {{ form_row(profileForm.email) }}
+                    {{ form_row(profileForm.name) }}
+                    {{ form_row(profileForm.photoPath) }}
+                    {#                    {{ form_row(profileForm.links) }}#}
+                    {{ form_row(profileForm.about) }}
+                    {#                    <input type="hidden" name="_csrf_token"#}
+                    {#                           value="{{ csrf_token('authenticate') }}"#}
+                    {#                    >#}
+
+                    {#                    <ul class="link" data-prototype="{{ form_widget(profileForm.links.vars.prototype)|e('html_attr') }}">#}
+                    {#                    <ul class="tags">#}
+                    {#                        {% for link in profileForm.links %}#}
+                    {#                            <li>{{ form_row(link.name) }}</li>#}
+                    {#                        {% endfor %}#}
+                    {#                    </ul>#}
                     <button type="submit" class="btn btn-primary">Change</button>
                     {{ form_end(profileForm) }}
                 </div>
@@ -233,97 +289,36 @@
         <div class="row">
             <div class="col-md-10 col-center m-auto">
                 <h2><span>Merch</span></h2>
+                <form action="/addProduct">
+                    <button type="button" class="col-3 mr-4 ml-3 btn btn-secondary" id="next" disabled>Add product
+                    </button>
+                </form>
+
+                {#                <li class="navbar-item">#}
+                {#                    <a href="/addProduct" class="nav-link">Add product</a>#}
+                {#                </li>#}
 
                 <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="0">
                     <!-- Carousel indicators -->
                     <ol class="carousel-indicators">
                         {% for c in count %}
                             <li data-target="#myCarousel" data-slide-to={{ c }}></li>
-                            {#                                <li data-target="#myCarousel" data-slide-to="1" class="active></li>#}
-                            {#                                <li data-target="#myCarousel" data-slide-to="2"></li>#}
                         {% endfor %}
                     </ol>
                     <!-- Wrapper for carousel items -->
 
                     <div class="carousel-inner">
-                        {% for c in count %}
+                        {% for product in merch %}
                             <div class="item carousel-item ">
                                 <div class="row">
                                     <div class="col-sm-4">
-                                        <div class="img-box"><img
-                                                    src="https://dreamshirts.ru/media/catalog/product/cache/1/small_image/176x177/9df78eab33525d08d6e5fb8d27136e95/1/b/1black-allgtwet3t523-4.jpg"
-                                                    class="img-responsive img-fluid" alt=""></div>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class="img-box"><img
-                                                    src="https://images.kz.prom.st/97935606_list-stikerov-hos.jpg"
-                                                    class="img-responsive img-fluid" alt=""></div>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class="img-box"><img
-                                                    src="https://fanparty.ru/fanclubs/avatar/gallery/256947_avatar.jpg"
-                                                    class="img-responsive img-fluid" alt=""></div>
+                                        <div class="img-box"><img src="uploads/{{ product.photo }}"
+                                                    class="img-responsive img-fluid" alt="">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         {% endfor %}
-                        {#                            <div class="item carousel-item active">#}
-                        {#                                <div class="row">#}
-                        {#                                    <div class="col-sm-4">#}
-                        {#                                        <div class="img-box"><img#}
-                        {#                                                    src="https://dreamshirts.ru/media/catalog/product/cache/1/small_image/176x177/9df78eab33525d08d6e5fb8d27136e95/1/b/1black-allgtwet3t523-4.jpg"#}
-                        {#                                                    class="img-responsive img-fluid" alt=""></div>#}
-                        {#                                    </div>#}
-                        {#                                    <div class="col-sm-4">#}
-                        {#                                        <div class="img-box"><img#}
-                        {#                                                    src="https://images.kz.prom.st/97935606_list-stikerov-hos.jpg"#}
-                        {#                                                    class="img-responsive img-fluid" alt=""></div>#}
-                        {#                                    </div>#}
-                        {#                                    <div class="col-sm-4">#}
-                        {#                                        <div class="img-box"><img#}
-                        {#                                                    src="https://fanparty.ru/fanclubs/avatar/gallery/256947_avatar.jpg"#}
-                        {#                                                    class="img-responsive img-fluid" alt=""></div>#}
-                        {#                                    </div>#}
-                        {#                                </div>#}
-                        {#                            </div>#}
-                        {#                            <div class="item carousel-item">#}
-                        {#                                <div class="row">#}
-                        {#                                    <div class="col-sm-4">#}
-                        {#                                        <div class="img-box"><img#}
-                        {#                                                    src="https://merchiumru.gcdn.co/users/13811/images/detailed/85/MS01048002_white.jpg?t=1495067284"#}
-                        {#                                                    class="img-responsive img-fluid" alt=""></div>#}
-                        {#                                    </div>#}
-                        {#                                    <div class="col-sm-4">#}
-                        {#                                        <div class="img-box"><img#}
-                        {#                                                    src="https://images.kz.prom.st/97935606_list-stikerov-hos.jpg"#}
-                        {#                                                    class="img-responsive img-fluid" alt=""></div>#}
-                        {#                                    </div>#}
-                        {#                                    <div class="col-sm-4">#}
-                        {#                                        <div class="img-box"><img#}
-                        {#                                                    src="https://fanparty.ru/fanclubs/avatar/gallery/256947_avatar.jpg"#}
-                        {#                                                    class="img-responsive img-fluid" alt=""></div>#}
-                        {#                                    </div>#}
-                        {#                                </div>#}
-                        {#                            </div>#}
-                        {#                            <div class="item carousel-item">#}
-                        {#                                <div class="row">#}
-                        {#                                    <div class="col-sm-4">#}
-                        {#                                        <div class="img-box"><img#}
-                        {#                                                    src="http://tarabeiser.com/ux/imgux/searchEmptyState.png"#}
-                        {#                                                    class="img-responsive img-fluid" alt=""></div>#}
-                        {#                                    </div>#}
-                        {#                                    <div class="col-sm-4">#}
-                        {#                                        <div class="img-box"><img#}
-                        {#                                                    src="http://tarabeiser.com/ux/imgux/searchEmptyState.png"#}
-                        {#                                                    class="img-responsive img-fluid" alt=""></div>#}
-                        {#                                    </div>#}
-                        {#                                    <div class="col-sm-4">#}
-                        {#                                        <div class="img-box"><img#}
-                        {#                                                    src="http://tarabeiser.com/ux/imgux/searchEmptyState.png"#}
-                        {#                                                    class="img-responsive img-fluid" alt=""></div>#}
-                        {#                                    </div>#}
-                        {#                                </div>#}
-                        {#                            </div>#}
                     </div>
                     <!-- Carousel controls -->
 

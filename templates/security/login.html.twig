@@ -1,62 +1,61 @@
 {% extends 'base.html.twig' %}
 
-{% block stylesheets %}
-    {{ parent() }}
-{% endblock %}
+{#{% block stylesheets %}#}
+{#    {{ parent() }}#}
+{#{% endblock %}#}
 {% block body %}
+    <style>
+        .navbar-item {
+            margin-right: 10px;
+            margin-left: 10px;
+        }
+
+        ::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+
     <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top border" style="box-shadow: black">
         <div class="container-fluid">
-            <a href="/" class="navbar-brad"><img
-                        src="https://sun7-6.userapi.com/2JYupaQXK7tuU6qqEN3Y3W0C568RoyyJq1Pu6g/8gOYGcN_NqE.jpg">
-                MERCHEAP</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse"
-                    data-target="#navbarResponsive">
+            <a href="/" class="navbar-brand" style="font-family: 'Bebas Neue', cursive; font-size: 23px">
+                <img class="pr-2"
+                     src="https://sun7-6.userapi.com/2JYupaQXK7tuU6qqEN3Y3W0C568RoyyJq1Pu6g/8gOYGcN_NqE.jpg">MERCHEAP</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
-{#                    <li class="navbar-item">#}
-{#                        <a href="/profile" class="nav-link">Profile</a>#}
-{#                    </li>#}
-{#                    <li class="navbar-item">#}
-{#                        <a href="/goods" class="nav-link">Shop</a>#}
-{#                    </li>#}
-                    <li class="navbar-item active">
-                        <a href="/login" class="nav-link">Login</a>
+                    {#                                        <li class="navbar-item">#}
+                    {#                                            <a href="/goods" class="nav-link">Shop</a>#}
+                    {#                                        </li>#}
+                    <li class="navbar-item">
+                        <button class="btn-dark">
+                            <a href="/login" style="text-decoration: none; color: white">Login</a>
+                        </button>
                     </li>
-                    <li class="navbar-item  active">
-                        <a href="/register" class="nav-link">Register</a>
+                    <li class="navbar-item">
+                        <button class="btn-dark">
+                            <a href="/register" style="text-decoration: none; color: white">Register</a>
+                        </button>
                     </li>
                 </ul>
-{#                <div class="navbar-item">#}
-
-{#                    <button class="btn-dark"><a href="/cart"#}
-{#                                                style="text-decoration: none; color: white">#}
-{#                            <i class="fas fa-shopping-cart"></i>#}
-{#                            Your Cart#}
-{#                        </a>#}
-{#                    </button>#}
-{#                </div>#}
-
             </div>
-
         </div>
     </nav>
 
     <div class="container-fluid">
         <br>
-        <div class="row">
+        <div class="row mb-5 mt-4">
             <div class="col"></div>
-            <div class="col-md-3" align="center">
-                <span><h1><b>Login</b></h1></span>
+            <div class="col-md-3" style="text-align: center">
+                <span><h1>Login</h1></span>
                 <br>
                 {% if error %}
                     <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
                 {% endif %}
                 <form action="{{ path('login') }}" method="post">
                     <input type="hidden" name="_csrf_token"
-                           value="{{ csrf_token('authenticate') }}"
-                    >
+                           value="{{ csrf_token('authenticate') }}">
                     <div class="form-group">
                         <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp"
                                placeholder="Enter email" name="email" value="{{ last_username }}">
@@ -65,26 +64,21 @@
                         <input type="password" class="form-control" id="inputPassword" placeholder="Password"
                                name="_password">
                     </div>
-                    <div class="custom-control custom-checkbox">
+
+                    <div class="custom-control custom-checkbox" style="text-align: justify">
                         <input type="checkbox" class="custom-control-input" id="exampleCheck1" name="_remember_me">
-                        <label class="custom-control-label" for="exampleCheck1"><b>Remember me</b></label>
+                        <label class="custom-control-label" for="exampleCheck1" style="position: unset">Remember me</label>
                     </div>
-                    <br>
-                    <button type="submit" class="col-3 mr-4 ml-3 btn btn-secondary">Login</button>
+                    <div>
+                        <button type="submit" class="m-3 btn btn-secondary">Login</button>
+                    </div>
                 </form>
             </div>
             <div class="col"></div>
         </div>
     </div>
-    <div class="col"></div>
-    </div>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <footer class="page-footer font-small cyan darken-3" style="background-color: #efefef">
+
+    <footer class="page-footer font-small cyan darken-3" style="background-color: #efefef"> <!-- doesn't work(?) -->
         <div class="container text-center">
             <div class="col-md-12 py-5">
                 <div class="flex-center">

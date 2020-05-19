@@ -2,38 +2,42 @@
 
 
 {% block body %}
+    <style>
+        .navbar-item {
+            margin-right: 10px;
+            margin-left: 10px;
+        }
+
+        ::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+
     <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top border" style="box-shadow: black">
         <div class="container-fluid">
-            <a href="/" class="navbar-brad"><img
-                        src="https://sun7-6.userapi.com/2JYupaQXK7tuU6qqEN3Y3W0C568RoyyJq1Pu6g/8gOYGcN_NqE.jpg"> MERCHEAP</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse"
-                    data-target="#navbarResponsive">
+            <a href="/" class="navbar-brand" style="font-family: 'Bebas Neue', cursive; font-size: 23px">
+                <img class="pr-2"
+                     src="https://sun7-6.userapi.com/2JYupaQXK7tuU6qqEN3Y3W0C568RoyyJq1Pu6g/8gOYGcN_NqE.jpg">MERCHEAP</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
-{#                    <li class="navbar-item">#}
-{#                        <a href="/goods" class="nav-link">Shop</a>#}
-{#                    </li>#}
-                    <li class="navbar-item active">
-                        <a href="/login" class="nav-link">Login</a>
+                    {#                                        <li class="navbar-item">#}
+                    {#                                            <a href="/goods" class="nav-link">Shop</a>#}
+                    {#                                        </li>#}
+                    <li class="navbar-item">
+                        <button class="btn-dark">
+                            <a href="/login" style="text-decoration: none; color: white">Login</a>
+                        </button>
                     </li>
-                    <li class="navbar-item  active">
-                        <a href="/register" class="nav-link">Register</a>
+                    <li class="navbar-item">
+                        <button class="btn-dark">
+                            <a href="/register" style="text-decoration: none; color: white">Register</a>
+                        </button>
                     </li>
                 </ul>
-{#                <div class="navbar-item">#}
-
-{#                    <button class="btn-dark"><a href="/cart"#}
-{#                                                style="text-decoration: none; color: white">#}
-{#                            <i class="fas fa-shopping-cart"></i>#}
-{#                            Your Cart#}
-{#                        </a>#}
-{#                    </button>#}
-{#                </div>#}
-
             </div>
-
         </div>
     </nav>
 
@@ -41,48 +45,46 @@
         <br>
         <div class="row">
             <div class="col"></div>
-            <div class="col-md-4" align="center">
+            <div class="col-md-4" style="text-align: center">
                 <span><h1>Registration</h1></span>
-
-                <br>
                 {{ form_start(form) }}
                 <input type="hidden" name="_csrf_token"
-                       value="{{ csrf_token('authenticate') }}"
-                >
-                    <div class="form-group">
-                        <label for="inputUsername">Username</label>
-                        {{ form_row(form.name) }}
-{#                        <input type="text" class="form-control" id="inputUsername" placeholder="Enter username" name="username">#}
-                    </div>
-                    <div class="form-group">
-                        <label for="inputEmail">Email address</label>
-                        {{ form_row(form.email) }}
-{#                        <input type="email" class="form-control" id="inputEmail" placeholder="Enter email" name="email">#}
-                    </div>
-                    <div class="form-group">
-                        <label for="inputPassword">Password</label>
-                        {{ form_row(form._password) }}
-{#                        <input type="password" class="form-control" id="inputPassword" oninput="checkPassword()" placeholder="Password" name="password">#}
-                    </div>
+                       value="{{ csrf_token('authenticate') }}">
+                <div class="form-group">
+{#                    <label for="inputUsername">Username</label>#}
+                    {{ form_row(form.name) }}
+                    {#                        <input type="text" class="form-control" id="inputUsername" placeholder="Enter username" name="username">#}
+                </div>
+                <div class="form-group">
+{#                    <label for="inputEmail">Email address</label>#}
+                    {{ form_row(form.email) }}
+                    {#                        <input type="email" class="form-control" id="inputEmail" placeholder="Enter email" name="email">#}
+                </div>
+                <div class="form-group">
+{#                    <label for="inputPassword">Password</label>#}
+                    {{ form_row(form._password) }}
+                    {#                        <input type="password" class="form-control" id="inputPassword" oninput="checkPassword()" placeholder="Password" name="password">#}
+                </div>
 
-{#                    <div class="form-group">#}
-{#                        <div class="card-body__text-info" style="color: #000000; font-size: 16px">#}
-{#                            Your password should follow requirements:#}
-{#                            <ul>#}
-{#                                <li id="passwordLengthError">#}
-{#                                    Password should be at least 8 characters long#}
-{#                                </li>#}
-{#                                <li id="passwordContainUpperCaseLetterError">#}
-{#                                    Password should contain at least 1 letter#}
-{#                                </li>#}
-{#                                <li id="passwordContainNumberError">#}
-{#                                    Password should contain at least 1 number#}
-{#                                </li>#}
-{#                            </ul>#}
-{#                        </div>#}
-{#                    </div>#}
-                    <br>
-                    <button type="submit" class="col-3 mr-4 ml-3 btn btn-secondary" style="width: 120px; padding: 5px">Register</button>
+{#                                    <div class="form-group">#}
+{#                                        <div class="card-body__text-info" style="color: #000000; font-size: 16px">#}
+{#                                            Your password should follow requirements:#}
+{#                                            <ul>#}
+{#                                                <li id="passwordLengthError">#}
+{#                                                    Password should be at least 8 characters long#}
+{#                                                </li>#}
+{#                                                <li id="passwordContainUpperCaseLetterError">#}
+{#                                                    Password should contain at least 1 letter#}
+{#                                                </li>#}
+{#                                                <li id="passwordContainNumberError">#}
+{#                                                    Password should contain at least 1 number#}
+{#                                                </li>#}
+{#                                            </ul>#}
+{#                                        </div>#}
+{#                                    </div>#}
+                <button type="submit" class="mr-4 ml-3 btn btn-secondary" style="width: 120px; padding: 5px">
+                    Register
+                </button>
                 {{ form_end(form) }}
             </div>
             <div class="col"></div>
@@ -112,6 +114,7 @@
             <a>Our links</a>
         </div>
     </footer> <!-- Footer -->
+
     <script>
         function checkPassword() {
             var password = document.getElementById('inputPassword').value;
