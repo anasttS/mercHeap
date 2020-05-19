@@ -16,7 +16,6 @@ class GoodsController extends AbstractController
      */
     public function index(ProductRepository $repository)
     {
-//        $repository = $this->getDoctrine()->getRepository(Product::class);
         $products = $repository->findAll();
 
         return $this->render('goods/index.html.twig', [

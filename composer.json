@@ -27,7 +27,8 @@
         "symfony/twig-pack": "*",
         "symfony/validator": "5.0.*",
         "symfony/web-link": "5.0.*",
-        "symfony/yaml": "5.0.*"
+        "symfony/yaml": "5.0.*",
+        "teamtnt/tntsearch": "^2.3"
     },
     "require-dev": {
         "symfony/debug-pack": "*",
