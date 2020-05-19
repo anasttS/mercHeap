@@ -5,11 +5,12 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\OrderRepository;
 
 /**
- * @ORM\Entity(repositoryClass=Order::class)
+ * @ORM\Entity(repositoryClass=OrderRepository::class)
  */
-class Order
+class OrderUser
 {
     /**
      * @ORM\Id()
@@ -93,7 +94,7 @@ class Order
     private $user;
 
     /**
-     * @ORM\OneToMany(targetEntity=ShopList::class, mappedBy="orderId", orphanRemoval=true,cascade={"persist"})
+     * @ORM\OneToMany(targetEntity=ShopList::class, mappedBy="orderId", cascade={"persist"})
      */
     private $shopLists;
 
@@ -105,7 +106,7 @@ class Order
     /**
      * @ORM\Column(type="integer")
      */
-    private $zip;
+    private $zipCode;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -115,12 +116,12 @@ class Order
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
-    private $price;
+    private $priceOf;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
-    private $subtotal;
+    private $subtotalOf;
 
     public function __construct()
     {
@@ -190,12 +191,12 @@ class Order
 
     public function getZip(): ?int
     {
-        return $this->zip;
+        return $this->zipCode;
     }
 
-    public function setZip(int $zip): self
+    public function setZip(int $zipCode): self
     {
-        $this->zip = $zip;
+        $this->zipCode = $zipCode;
 
         return $this;
     }
@@ -214,24 +215,24 @@ class Order
 
     public function getPrice(): ?int
     {
-        return $this->price;
+        return $this->priceOf;
     }
 
-    public function setPrice(int $price): self
+    public function setPrice(int $priceOf): self
     {
-        $this->price = $price;
+        $this->priceOf = $priceOf;
 
         return $this;
     }
 
     public function getSubtotal(): ?int
     {
-        return $this->subtotal;
+        return $this->subtotalOf;
     }
 
-    public function setSubtotal(int $subtotal): self
+    public function setSubtotal(int $subtotalOf): self
     {
-        $this->subtotal = $subtotal;
+        $this->subtotalOf = $subtotalOf;
 
         return $this;
     }

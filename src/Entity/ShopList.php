@@ -27,7 +27,7 @@ class ShopList
     private $count;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Order::class, inversedBy="shopLists",cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity=OrderUser::class, inversedBy="shopLists",cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $orderId;
@@ -63,12 +63,12 @@ class ShopList
         return $this;
     }
 
-    public function getOrderId(): ?Order
+    public function getOrderId(): ?OrderUser
     {
         return $this->orderId;
     }
 
-    public function setOrderId(?Order $orderId): self
+    public function setOrderId(?OrderUser $orderId): self
     {
         $this->orderId = $orderId;
 

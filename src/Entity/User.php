@@ -73,7 +73,7 @@ class User implements UserInterface
     private $products;
 
     /**
-     * @ORM\OneToMany(targetEntity=Order::class, mappedBy="user", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=OrderUser::class, mappedBy="user", orphanRemoval=true)
      */
     private $orders;
 
@@ -238,14 +238,14 @@ class User implements UserInterface
     }
 
     /**
-     * @return Collection|Order[]
+     * @return Collection|OrderUser[]
      */
     public function getOrders(): Collection
     {
         return $this->orders;
     }
 
-    public function addOrder(Order $order): self
+    public function addOrder(OrderUser $order): self
     {
         if (!$this->orders->contains($order)) {
             $this->orders[] = $order;
@@ -255,7 +255,7 @@ class User implements UserInterface
         return $this;
     }
 
-    public function removeOrder(Order $order): self
+    public function removeOrder(OrderUser $order): self
     {
         if ($this->orders->contains($order)) {
             $this->orders->removeElement($order);
