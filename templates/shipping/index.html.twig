@@ -62,50 +62,35 @@
                 <hr/>
                 {{ form_start(form) }}
                 <div class="row">
-{#                    <input class="form-control col-5 mr-4 ml-3" id="firstName" placeholder="First Name" onblur="f()" value={{ form_label(form.first_name) }}>#}
-{#                    <label for="input" >First name</label>#}
                 </br>
                     {{ form_widget(form.first_name, {'attr': {'class': "form-control col-5 mr-4 ml-3", 'onblur': "f()", 'placeholder': "First Name"}}, {'id': 'firstName' }) }}
 
-{#                    <input class="form-control col-5" id="lastName" placeholder="Last Name" onblur="f()" value={{ form_label(form.last_name) }}>#}
-{#                    <label for="input" >Last name</label>#}
                      {{ form_widget(form.last_name, {'attr': {'class': "form-control col-5 mr-4 ml-3", 'onblur': "f()", 'placeholder': "Last Name"}}, {'id': 'lastName' }) }}
                 </div>
                 </br>
-{#                <input class="form-control col-10" id="address" placeholder="Address" onblur="f()" value={{ form_label(form.address) }}>#}
-{#                <label for="input"  >Address</label>#}
+
                 {{ form_widget(form.address, {'attr': {'class': "form-control col-10", 'onblur': "f()", 'placeholder': "Address"}}, {'id': 'address' }) }}
                 </br>
                 <div class="row">
-                    <!--        <input class="form-control col-5 mr-4 ml-3" id="country" placeholder="Country">-->
-{#                    <select id="country" class="custom-select form-control col-5 mr-4 ml-3" onblur="f()">#}
-{#                        <option selected>Country</option>#}
-{#                        <option value={{ form_label(form.country) }}>Russia</option>#}
-{#                        <option value={{ form_label(form.country) }}>Ukraine</option>#}
-{#                        <option value={{ form_label(form.country) }}>Kazakhstan</option>#}
-{#                    </select>#}
-{#                    <label for="input"  >Country</label>#}
+
                     {{ form_widget(form.country, {'attr': {'class': "form-control col-5 mr-4 ml-3", 'onblur': "f()", 'placeholder': "Country"}}, {'id': 'country' }) }}
-{#                    <input class="form-control col-5" id="city" placeholder="City" onblur="f()" value={{ form_label(form.city) }}>#}
-{#                    <label for="input" >City</label>#}
+
                     {{ form_widget(form.city, {'attr': {'class': "form-control col-5 mr-4 ml-3", 'onblur': "f()", 'placeholder': "City"}}, {'id': 'city' }) }}
                 </div>
                 </br>
                 <div class="row">
 
 
-{#                    <input class="form-control col-5 mr-4 ml-3" id="code" placeholder="Zip/Postal Code" onblur="f()" value={{ form_label(form.zip/portal_code) }}>#}
-{#                    <label for="input" class="form-control col-5 mr-4 ml-3">{{ form_label(form.zip/portal_code) }}</label>#}
+
                     {{ form_widget(form.zip, {'attr': {'class': "form-control col-5 mr-4 ml-3", 'onblur': "f()", 'placeholder': "Zip/Postal Code"}}, {'id': 'code' }) }}
 
 
-{#                    <input class="form-control col-5" id="phoneNumber" placeholder="Phone Number" onblur="f()" value={{ form_label(form.phone_number) }}>#}
-{#                    <label for="input" >Phone number</label>#}
+
                     {{ form_widget(form.phone_number, {'attr': {'class': "form-control col-5 mr-4 ml-3", 'onblur': "f()", 'placeholder': "Phone Number"}}, {'id': 'phoneNumber' }) }}
                 </div>
                 <hr color="black"/>
                 <div class="row">
-{#                    <a type="submit" class="col-3 mr-4 ml-3 btn btn-secondary" id="next" href="/to_order" disabled>Next</a>#}
+
                     <button type="submit" class="col-3 mr-4 ml-3 btn btn-secondary" id="next" href="/to_order" >Next</button>
                     <button type="button" class="col-3 mr-4 ml-3 btn btn-light" id="btn_modal_window">Cancel</button>
                     <div id="error" class="error" style="color: red"></div>
@@ -115,7 +100,7 @@
                     <div class="modal_content">
                         <span class="close_modal_window">×</span>
                         <p>Are you sure you want to cancel the order?</p>
-                        <a type="button" href="/" class="col-3 btn btn-light">Cancel</a>
+                        <a type="button" href="/cart" class="col-3 btn btn-light">Cancel</a>
                     </div>
                 </div>
             </div>
@@ -127,42 +112,34 @@
                 </h2>
                 <hr/>
                 <div class="container">
+                    {% if products!= null %}
+                    {% for product in products %}
                     <div class="alert alert-dismissible"  onmouseover="this.style.borderColor = 'black'" onmouseout="this.style.borderColor = ''">
-                        <button type="button" class="close" data-dismiss="alert">×</button>
+
                         <div class="row">
-                            <img src="https://onerepublic.com/wp-content/uploads/2019/11/1R_RM_HATSIDE_MOCK.jpg" style="wight: 90px; height: 80px">
-                            <div class="ml-3" id="productName1">
-                                PRODUCT NAME
+{#                            <img src="https://onerepublic.com/wp-content/uploads/2019/11/1R_RM_HATSIDE_MOCK.jpg" style="wight: 90px; height: 80px">#}
+                            <img src="{{ product.product.photo }}" style="wight: 90px; height: 80px">
+                            <h4 class="ml-3" id="productName1">
+                                {{ product.product.name }}
                                 <h4>
-                                    <small id="price1">300$</small>
+                                    <h5 id="price1">{{ product.product.cost }}$</h5>
                                 </h4>
-                            </div>
+                                <h4>
+                                    <h6 id="count1">Product count - {{ product.count }}</h6>
+                                </h4>
+                            </h4>
                         </div>
                     </div>
-                    <div class="alert alert-dismissible"  onmouseover="this.style.borderColor = 'black'" onmouseout="this.style.borderColor = ''">
-                        <button type="button" class="close" data-dismiss="alert">×</button>
-                        <div class="row">
-                            <img src="https://sun9-59.userapi.com/c850216/v850216010/14456/S1vVkTbgDDc.jpg" style="wight: 90px; height: 80px">
-                            <div class="ml-3" id="productName2">
-                                PRODUCT NAME
-                                <h4>
-                                    <small id="price2">40$</small>
-                                </h4>
-                            </div>
-                        </div>
-                    </div>
+                        {% endfor %}
+                    {% endif %}
                     <hr/>
                     <div class="row">
                         <div class="col-9">SUBTOTAL</div>
-                        <div class="col-2" id="subtotal">$340</div>
-                    </div>
-                    <div class="row">
-                        <div class="col-9">SHIPPING</div>
-                        <div class="col-2" id="shipping">FREE</div>
+                        <div class="col-2" id="subtotal">${{ subtotal }}</div>
                     </div>
                     <div class="row">
                         <div class="col-9">TAXES</div>
-                        <div class="col-2" id="taxes">$13</div>
+                        <div class="col-2" id="taxes">${{ taxes }}</div>
                     </div>
                 </div>
                 <hr/>
@@ -171,7 +148,7 @@
                         <small>TOTAL</small>
                     </h3>
                     <h3 class="col-2" id="total">
-                        <small>$353</small>
+                        <small>${{ total }}</small>
                     </h3>
                 </div>
             </div>

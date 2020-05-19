@@ -7,7 +7,6 @@ use App\Entity\Product;
 use App\Entity\ShopList;
 use App\Entity\User;
 use App\Repository\ProductRepository;
-use Doctrine\ORM\EntityManagerInterface;
 use OrderType;
 use PhpParser\Node\Expr\List_;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -18,17 +17,7 @@ use UserType;
 
 class ShippingController extends AbstractController
 {
-//    /**
-//     * @Route("/shipping", name="shipping")
-//     */
-//    public function index()
-//    {
-////        $em = $this->getDoctrine()->getManager();
-////        $orders = $em->getRepository(Order::class)->findAll();
-//        return $this->render('shipping/index.html.twig', [
-//            'controller_name' => 'ShippingController',
-//        ]);
-//    }
+
 
         private ProductRepository $productRepository ;
 
@@ -38,8 +27,9 @@ class ShippingController extends AbstractController
         }
 
 
+
     /**
-     * @Route("/to_order", name="order")
+     * @Route("/shipping", name="order")
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
@@ -47,47 +37,66 @@ class ShippingController extends AbstractController
     {
 
         $array = array(
-            '1' => 1
-//            '2' => 2,
-//            '3' => 3
+            '1' => 1,
+            '4' => 2,
+            '5' => 3
         );
+        $em = $this->getDoctrine()->getManager();
         $json = json_encode($array);
         $array = json_decode($json);
+
+
         $order = new OrderUser();
         $user = $this->getUser();
+
+        $products = array();
+        $price = 0;
+        $taxes = 13;
+
+        foreach ($array as $k => $v){
+            $product = $this->productRepository->find($k);
+            $shopList = new ShopList();
+            $shopList->setProduct($product);
+            $shopList->setCount($v);
+            $shopList->setOrderId($order);
+            $price = $price + $product->getCost() * $v;
+            array_push($products, $shopList);
+        }
+        $order->setPrice($price);
+        $subtotal = $price + $taxes;
+        $order->setSubtotal($subtotal);
+
+
         $form = $this->createForm(OrderType::class, $order);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()){
-            $em = $this->getDoctrine()->getManager();
-//            $order = $form->getData();
+
+            $order = $form->getData();
             $order->setUser($user);
-//            $order->setPrice(0);
-//            $order->setSubtotal(0);
+            $em = $this->getDoctrine()->getManager();
             $em->persist($order);
-//            dd($order);
             $em->flush();
 
             foreach ($array as $k => $v){
-//                $product = $em->getRepository(Product::class)->find((int)$k);
                 $product = $this->productRepository->find($k);
                 $shopList = new ShopList();
                 $shopList->setProduct($product);
                 $shopList->setCount($v);
                 $shopList->setOrderId($order);
                 $em->persist($shopList);
-//                $order->addShopList($shopList);
             }
+
             $em->flush();
             dd($order);
-//        нужно по одному добавлять в лист шоплисты
-//            $order->addShopLists();
-//            $em = $this->getDoctrine()->getManager();
-//            $em->persist($order);
-//            $em->flush();
 
             return $this->redirect("profile");
         }
-        return $this->render('shipping/index.html.twig',
-            array('form' => $form->createView()));
+        return $this->render('shipping/index.html.twig',[
+            'form' => $form->createView(),
+            'products' => $products,
+            'subtotal' => $price,
+            'total' => $subtotal,
+            'taxes' => $taxes
+            ]);
     }
 }
