@@ -84,14 +84,15 @@
     <img class="w-100" style="height: 250px" alt="goodImg"
          src="https://d4y70tum9c2ak.cloudfront.net/articleBanner/OsJATF0e2Hz8jkTjS9s7rAkog8cp4hlVoTReZkbuido/1600.jpg">
 </div>
+<form>
+    <div class="container mb-2 mt-2">
 
-<div class="container mb-2 mt-2">
-    <div class="input-group">
-        <input class="form-control col-10 m-2">
-        <button name="query" value="query" class="btn btn-dark col-2 mt-2 mb-2">Search</button>
+        <div class="input-group">
+            <input type="text" name="query" value="{{ app.request.query.get('query') }}" class="form-control col-10 m-2">
+            <button class="btn btn-dark col-2 mt-2 mb-2">Search</button>
+        </div>
     </div>
-</div>
-
+</form>
 <div class="container" id="goods">
     <div class="row">
         {% for product in products %}
@@ -109,6 +110,12 @@
                     </div>
                 </div>
             </div>
+        {% else %}
+            <tr>
+                <td colspan="4" class="text-center">
+                    No products found
+                </td>
+            </tr>
         {% endfor %}
         {#        <nav aria-label="Page navigation example">#}
         {#            <ul class="pagination justify-content-center">#}
@@ -131,27 +138,27 @@
         {#        </nav>#}
     </div>
 
-{#    <footer class="page-footer font-small cyan darken-3" style="background-color: #efefef"> <!-- doesn't work(?) -->#}
-{#        <div class="container text-center">#}
-{#            <div class="col-md-12 py-5">#}
-{#                <div class="flex-center">#}
-{#                    <!-- Twitter -->#}
-{#                    <a class="tw-ic">#}
-{#                        <i class="fab fa-twitter fa-lg white-text mr-md-5 mr-3 ml-5 fa-2x"> </i>#}
-{#                    </a>#}
-{#                    <!--Instagram-->#}
-{#                    <a class="ins-ic">#}
-{#                        <i class="fab fa-instagram fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>#}
-{#                    </a>#}
-{#                    <!--Vk-->#}
-{#                    <a class="ins-ic">#}
-{#                        <i class="fab fa-vk fa-lg white-text mr-md-5 mr-3 fa-2x"></i>#}
-{#                    </a>#}
-{#                </div>#}
-{#            </div>#}
-{#        </div>#}
-{#        <div class="text-center py-3">#}
-{#            <a>Our links</a>#}
-{#        </div>#}
-{#    </footer> <!-- Footer -->#}
+    {#    <footer class="page-footer font-small cyan darken-3" style="background-color: #efefef"> <!-- doesn't work(?) -->#}
+    {#        <div class="container text-center">#}
+    {#            <div class="col-md-12 py-5">#}
+    {#                <div class="flex-center">#}
+    {#                    <!-- Twitter -->#}
+    {#                    <a class="tw-ic">#}
+    {#                        <i class="fab fa-twitter fa-lg white-text mr-md-5 mr-3 ml-5 fa-2x"> </i>#}
+    {#                    </a>#}
+    {#                    <!--Instagram-->#}
+    {#                    <a class="ins-ic">#}
+    {#                        <i class="fab fa-instagram fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>#}
+    {#                    </a>#}
+    {#                    <!--Vk-->#}
+    {#                    <a class="ins-ic">#}
+    {#                        <i class="fab fa-vk fa-lg white-text mr-md-5 mr-3 fa-2x"></i>#}
+    {#                    </a>#}
+    {#                </div>#}
+    {#            </div>#}
+    {#        </div>#}
+    {#        <div class="text-center py-3">#}
+    {#            <a>Our links</a>#}
+    {#        </div>#}
+    {#    </footer> <!-- Footer -->#}
     {% endblock %}

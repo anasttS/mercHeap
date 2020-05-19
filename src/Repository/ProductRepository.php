@@ -30,12 +30,19 @@ class ProductRepository extends ServiceEntityRepository
         $query = $qb->getQuery();
         return $query->execute();
     }
-    public function search($search){
+
+    /**
+     * @param string|null $search
+     * @return Product[]
+     */
+    public function search(?string $search){
         return $this->createQueryBuilder('product')
             ->andWhere('product.name LIKE :searchTerm')
             ->setParameter('searchTerm', '%'.$search.'%')
+            ->orderBy('product.name', 'ASC')
             ->getQuery()
-            ->execute();
+            ->getResult();
+//            ->execute();
     }
 
 }
