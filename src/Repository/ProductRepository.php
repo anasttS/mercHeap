@@ -21,4 +21,8 @@ class ProductRepository extends ServiceEntityRepository
         parent::__construct($registry, Product::class);
     }
 
+    public function findAllByName(){
+        $dql = 'SELECT product FROM  App\Entity\Product product';
+    }
+
 }
