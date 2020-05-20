@@ -153,119 +153,141 @@
         });
     </script>
 
-        <div class="container">
-            <div id="res">
-            </div>
-            All products:
-            <div class="row">
-                {% for product in products %}
-                    <div class="col-3">
-                        <div class="card p-0" style="max-height: 500px">
-                            <div class="imgcont">
-                                <img src="uploads/{{ product.photo }}"
-                                     class="card-img-top img-responsive">
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-title">{{ product.name }}</h5>
-                                <p class="card-text w-25 ">{{ product.cost }}</p>
-                                <button class="btn-dark btn" value="{{ product.id }}">View</button>
-                                <button class="btn btn-light"><i class="fas fa-cart-plus"></i></button>
-                            </div>
+    <div class="container">
+        <div id="res">
+        </div>
+        All products:
+        <div class="row">
+            {% for product in products %}
+                <div class="col-3">
+                    <div class="card p-0" style="max-height: 500px">
+                        <div class="imgcont">
+                            <img src="uploads/{{ product.photo }}"
+                                 class="card-img-top img-responsive">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">{{ product.name }}</h5>
+                            <p class="card-text w-25 ">{{ product.cost }}</p>
+{#                            <form action="{{ path('product', {'id':product.id} )}}" method="get">#}
+{#                                <button class="btn-dark btn" value="{{ product.id }}">View</button>#}
+{#                            </form>#}
+                            <form action="{{ path('product')}}" method="post">
+                                <button class="btn-dark btn" name ="id" id="id" value="{{ product.id }}">View</button>
+                            </form>
+                            <button name="add" class="add btn btn-light" data-art="{{ product.id }}"
+                                    onmouseover="mouseIn('add')" onmouseout="mouseOut()"
+                                    style=""><i class="fas fa-cart-plus"></i></button>
                         </div>
                     </div>
-                {% else %}
-                    <tr>
-                        <td colspan="4" class="text-center">
-                            No products found
-                        </td>
-                    </tr>
-                {% endfor %}
+                </div>
+            {% else %}
+                <tr>
+                    <td colspan="4" class="text-center">
+                        No products found
+                    </td>
+                </tr>
+            {% endfor %}
 
-    {#        <nav aria-label="Page navigation example">#}
-    {#            <ul class="pagination justify-content-center">#}
-    {#                <li class="page-item">#}
-    {#                    <a class="page-link" href="#" aria-label="Previous">#}
-    {#                        <i class="fas fa-chevron-left"></i>#}
-    {#                        <span class="sr-only">Previous</span>#}
-    {#                    </a>#}
-    {#                </li>#}
-    {#                <li class="page-item"><a class="page-link" href="#">1</a></li>#}
-    {#                <li class="page-item"><a class="page-link" href="#">2</a></li>#}
-    {#                <li class="page-item"><a class="page-link" href="#">3</a></li>#}
-    {#                <li class="page-item">#}
-    {#                    <a class="page-link" href="#" aria-label="Next">#}
-    {#                        <i class="fas fa-chevron-right"></i>#}
-    {#                        <span class="sr-only">Next</span>#}
-    {#                    </a>#}
-    {#                </li>#}
-    {#            </ul>#}
-    {#        </nav>#}
-    </div>
+            {#        <nav aria-label="Page navigation example">#}
+            {#            <ul class="pagination justify-content-center">#}
+            {#                <li class="page-item">#}
+            {#                    <a class="page-link" href="#" aria-label="Previous">#}
+            {#                        <i class="fas fa-chevron-left"></i>#}
+            {#                        <span class="sr-only">Previous</span>#}
+            {#                    </a>#}
+            {#                </li>#}
+            {#                <li class="page-item"><a class="page-link" href="#">1</a></li>#}
+            {#                <li class="page-item"><a class="page-link" href="#">2</a></li>#}
+            {#                <li class="page-item"><a class="page-link" href="#">3</a></li>#}
+            {#                <li class="page-item">#}
+            {#                    <a class="page-link" href="#" aria-label="Next">#}
+            {#                        <i class="fas fa-chevron-right"></i>#}
+            {#                        <span class="sr-only">Next</span>#}
+            {#                    </a>#}
+            {#                </li>#}
+            {#            </ul>#}
+            {#        </nav>#}
+        </div>
 
-    {#    <footer class="page-footer font-small cyan darken-3" style="background-color: #efefef"> <!-- doesn't work(?) -->#}
-    {#        <div class="container text-center">#}
-    {#            <div class="col-md-12 py-5">#}
-    {#                <div class="flex-center">#}
-    {#                    <!-- Twitter -->#}
-    {#                    <a class="tw-ic">#}
-    {#                        <i class="fab fa-twitter fa-lg white-text mr-md-5 mr-3 ml-5 fa-2x"> </i>#}
-    {#                    </a>#}
-    {#                    <!--Instagram-->#}
-    {#                    <a class="ins-ic">#}
-    {#                        <i class="fab fa-instagram fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>#}
-    {#                    </a>#}
-    {#                    <!--Vk-->#}
-    {#                    <a class="ins-ic">#}
-    {#                        <i class="fab fa-vk fa-lg white-text mr-md-5 mr-3 fa-2x"></i>#}
-    {#                    </a>#}
-    {#                </div>#}
-    {#            </div>#}
-    {#        </div>#}
-    {#        <div class="text-center py-3">#}
-    {#            <a>Our links</a>#}
-    {#        </div>#}
-    {#    </footer> <!-- Footer -->#}
+        {#    <footer class="page-footer font-small cyan darken-3" style="background-color: #efefef"> <!-- doesn't work(?) -->#}
+        {#        <div class="container text-center">#}
+        {#            <div class="col-md-12 py-5">#}
+        {#                <div class="flex-center">#}
+        {#                    <!-- Twitter -->#}
+        {#                    <a class="tw-ic">#}
+        {#                        <i class="fab fa-twitter fa-lg white-text mr-md-5 mr-3 ml-5 fa-2x"> </i>#}
+        {#                    </a>#}
+        {#                    <!--Instagram-->#}
+        {#                    <a class="ins-ic">#}
+        {#                        <i class="fab fa-instagram fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>#}
+        {#                    </a>#}
+        {#                    <!--Vk-->#}
+        {#                    <a class="ins-ic">#}
+        {#                        <i class="fab fa-vk fa-lg white-text mr-md-5 mr-3 fa-2x"></i>#}
+        {#                    </a>#}
+        {#                </div>#}
+        {#            </div>#}
+        {#        </div>#}
+        {#        <div class="text-center py-3">#}
+        {#            <a>Our links</a>#}
+        {#        </div>#}
+        {#    </footer> <!-- Footer -->#}
 
-    <!-- jQuery is necessary -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <!-- jQuery is necessary -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
-    {#    <script type="text/javascript">#}
-    {#        jQuery(document).ready(function () {#}
-    {#            var searchRequest = null;#}
-    {#            $("#search").keyup(function () {#}
-    {#                var minlength = 3;#}
-    {#                var that = this;#}
-    {#                var value = $(this).val();#}
-    {#                var entitySelector = $("#goods").html('');#}
-    {#                if (value.length >= minlength) {#}
-    {#                    if (searchRequest != null)#}
-    {#                        searchRequest.abort();#}
-    {#                    searchRequest = $.ajax({#}
-    {#                        type: "GET",#}
-    {#                        url: "{{ path('ajax_search') }}",#}
-    {#                        data: {#}
-    {#                            'query': value#}
-    {#                        },#}
-    {#                        dataType: "text",#}
-    {#                        success: function (msg) {#}
-    {#                            //we need to check if the value is the same#}
-    {#                            if (value == $(that).val()) {#}
-    {#                                var result = JSON.parse(msg);#}
-    {#                                $.each(result, function (key, arr) {#}
-    {#                                    $.each(arr, function (id, value) {#}
-    {#                                        if (key == 'entities') {#}
-    {#                                            entitySelector.append(' <div class="col-3"> <div class="card p-0" style="max-height: 500px"> <div class="imgcont"> <img src="uploads/{{ value }}"class="card-img-top img-responsive"> </div> <div class="card-body"> <h5 class="card-title">{{ product.name }}</h5> <p class="card-text w-25 ">{{ product.cost }}</p> <button class="btn-dark btn" value="{{ product.id }}">View</button> <button class="btn btn-light"><i class="fas fa-cart-plus"></i></button> </div> </div> </div>');#}
-    {#                                        }#}
-    {#                                    });#}
-    {#                                });#}
-    {#                            }#}
-    {#                        }#}
-    {#                    });#}
-    {#                }#}
-    {#            });#}
-    {#        });#}
-    {#    </script>#}
-    {#</div>#}
+        {#    <script type="text/javascript">#}
+        {#        jQuery(document).ready(function () {#}
+        {#            var searchRequest = null;#}
+        {#            $("#search").keyup(function () {#}
+        {#                var minlength = 3;#}
+        {#                var that = this;#}
+        {#                var value = $(this).val();#}
+        {#                var entitySelector = $("#goods").html('');#}
+        {#                if (value.length >= minlength) {#}
+        {#                    if (searchRequest != null)#}
+        {#                        searchRequest.abort();#}
+        {#                    searchRequest = $.ajax({#}
+        {#                        type: "GET",#}
+        {#                        url: "{{ path('ajax_search') }}",#}
+        {#                        data: {#}
+        {#                            'query': value#}
+        {#                        },#}
+        {#                        dataType: "text",#}
+        {#                        success: function (msg) {#}
+        {#                            //we need to check if the value is the same#}
+        {#                            if (value == $(that).val()) {#}
+        {#                                var result = JSON.parse(msg);#}
+        {#                                $.each(result, function (key, arr) {#}
+        {#                                    $.each(arr, function (id, value) {#}
+        {#                                        if (key == 'entities') {#}
+        {#                                            entitySelector.append(' <div class="col-3"> <div class="card p-0" style="max-height: 500px"> <div class="imgcont"> <img src="uploads/{{ value }}"class="card-img-top img-responsive"> </div> <div class="card-body"> <h5 class="card-title">{{ product.name }}</h5> <p class="card-text w-25 ">{{ product.cost }}</p> <button class="btn-dark btn" value="{{ product.id }}">View</button> <button class="btn btn-light"><i class="fas fa-cart-plus"></i></button> </div> </div> </div>');#}
+        {#                                        }#}
+        {#                                    });#}
+        {#                                });#}
+        {#                            }#}
+        {#                        }#}
+        {#                    });#}
+        {#                }#}
+        {#            });#}
+        {#        });#}
+        {#    </script>#}
+        {#</div>#}
+        <script language="javascript">
+            //для подстветки кнопки
+            var default_color;
+            var elem;
+
+            function mouseIn(id) {
+                elem = document.getElementById(id);
+                default_color = elem.style.background;
+                elem.style.background = "#bfbfbf";
+            }
+
+            function mouseOut() {
+                elem.style.background = default_color;
+            }
+        </script>
 
 
 {% endblock %}

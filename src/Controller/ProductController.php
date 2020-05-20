@@ -19,7 +19,8 @@ class ProductController extends AbstractController
      */
     public function index(ProductRepository $productRepository, Request $request)
     {
-        $product = $productRepository->find(1);
+        $id = $request->request->get('id');
+        $product = $productRepository->find($id);
         $user = $product->getUser();
         $userAut = $this->getUser();
         $comment = new Comment();
@@ -35,7 +36,7 @@ class ProductController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->persist($comment);
             $em->flush();
-            return $this->redirect("/product/");
+            return $this->redirect("/product/".$product->getId());
         }
 
         return $this->render('product/index.html.twig', [

@@ -43,8 +43,8 @@ class ShippingController extends AbstractController
         );
         $em = $this->getDoctrine()->getManager();
         $json = json_encode($array);
+//        $array = json_decode("localStorage.getItem('cart')");
         $array = json_decode($json);
-
 
         $order = new OrderUser();
         $user = $this->getUser();
