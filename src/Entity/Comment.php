@@ -37,6 +37,12 @@ class Comment
      */
     private $time;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Product::class, inversedBy="comments")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $product;
+
     public function getDescription(): string
     {
         return (string) $this->description;
@@ -62,6 +68,18 @@ class Comment
     public function setTime(\DateTimeInterface $time): self
     {
         $this->time = $time;
+
+        return $this;
+    }
+
+    public function getProduct(): ?Product
+    {
+        return $this->product;
+    }
+
+    public function setProduct(?Product $product): self
+    {
+        $this->product = $product;
 
         return $this;
     }
