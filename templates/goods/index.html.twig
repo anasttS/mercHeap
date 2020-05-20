@@ -1,141 +1,205 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<style>
-    ::-webkit-scrollbar {
-        display: none;
-    }
+    <style>
+        ::-webkit-scrollbar {
+            display: none;
+        }
 
-    .navbar-item {
-        margin-right: 10px;
-        margin-left: 10px;
-    }
+        .navbar-item {
+            margin-right: 10px;
+            margin-left: 10px;
+        }
 
-    .imgcont {
-        height: 250px;
-        width: 100%;
-        position: relative;
-        overflow: hidden;
-    }
+        .imgcont {
+            height: 250px;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
 
-    .card {
-        margin-bottom: 10px;
-    }
-</style>
+        .card {
+            margin-bottom: 10px;
+        }
+    </style>
 
-<nav class="navbar navbar-expand-md navbar-light bg-light sticky-top border" style="box-shadow: black">
-    <div class="container-fluid">
-        <a href="/" class="navbar-brand" style="font-family: 'Bebas Neue', cursive; font-size: 23px">
-            <img class="pr-2"
-                 src="https://sun7-6.userapi.com/2JYupaQXK7tuU6qqEN3Y3W0C568RoyyJq1Pu6g/8gOYGcN_NqE.jpg">
-            MERCHEAP</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse"
-                data-target="#navbarResponsive">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto">
-                {% if is_granted('ROLE_USER') %}
-                    <li class="navbar-item">
-                        <a href="/profile" class="nav-link">Profile</a>
-                    </li>
-                    <li class="navbar-item">
-                        <a href="/goods" class="nav-link">Shop</a>
-                    </li>
-                    <li class="navbar-item">
-                        <a href="/logout" class="nav-link">Logout</a>
-                    </li>
-                {% else %}
-                    <li class="navbar-item">
-                        <button class="btn-dark">
-                            <a href="/goods" class="nav-link" style="text-decoration: none; color: white">Shop</a>
+    <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top border" style="box-shadow: black">
+        <div class="container-fluid">
+            <a href="/" class="navbar-brand" style="font-family: 'Bebas Neue', cursive; font-size: 23px">
+                <img class="pr-2"
+                     src="https://sun7-6.userapi.com/2JYupaQXK7tuU6qqEN3Y3W0C568RoyyJq1Pu6g/8gOYGcN_NqE.jpg">
+                MERCHEAP</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarResponsive">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    {% if is_granted('ROLE_USER') %}
+                        <li class="navbar-item">
+                            <a href="/profile" class="nav-link">Profile</a>
+                        </li>
+                        <li class="navbar-item">
+                            <a href="/goods" class="nav-link">Shop</a>
+                        </li>
+                        <li class="navbar-item">
+                            <a href="/logout" class="nav-link">Logout</a>
+                        </li>
+                    {% else %}
+                        <li class="navbar-item">
+                            <button class="btn-dark">
+                                <a href="/goods" class="nav-link" style="text-decoration: none; color: white">Shop</a>
+                            </button>
+                        </li>
+                        <li class="navbar-item">
+                            <button class="btn-dark">
+                                <a href="/login" class="nav-link" style="text-decoration: none; color: white">Login</a>
+                            </button>
+                        </li>
+                        <li class="navbar-item">
+                            <button class="btn-dark">
+                                <a href="/register" class="nav-link"
+                                   style="text-decoration: none; color: white">Register</a>
+                            </button>
+                        </li>
+                    {% endif %}
+                </ul>
+                <div class="navbar-item">
+                    {% if is_granted('ROLE_USER') %}
+                        <button class="btn-dark"><a href="/cart"
+                                                    style="text-decoration: none; color: white">
+                                <i class="fas fa-shopping-cart"></i>
+                                Your Cart
+                            </a>
                         </button>
-                    </li>
-                    <li class="navbar-item">
-                        <button class="btn-dark">
-                            <a href="/login" class="nav-link" style="text-decoration: none; color: white">Login</a>
-                        </button>
-                    </li>
-                    <li class="navbar-item">
-                        <button class="btn-dark">
-                            <a href="/register" class="nav-link"
-                               style="text-decoration: none; color: white">Register</a>
-                        </button>
-                    </li>
-                {% endif %}
-            </ul>
-            <div class="navbar-item">
-                {% if is_granted('ROLE_USER') %}
-                    <button class="btn-dark"><a href="/cart"
-                                                style="text-decoration: none; color: white">
-                            <i class="fas fa-shopping-cart"></i>
-                            Your Cart
-                        </a>
-                    </button>
-                {% endif %}
-            </div>
-
-        </div>
-
-    </div>
-</nav>
-
-<div class="container-fluid p-0">
-    <img class="w-100" style="height: 250px" alt="goodImg"
-         src="https://d4y70tum9c2ak.cloudfront.net/articleBanner/OsJATF0e2Hz8jkTjS9s7rAkog8cp4hlVoTReZkbuido/1600.jpg">
-</div>
-<form>
-    <div class="container mb-2 mt-2">
-
-        <div class="input-group">
-            <input type="text" name="query" value="{{ app.request.query.get('query') }}" class="form-control col-10 m-2">
-            <button class="btn btn-dark col-2 mt-2 mb-2">Search</button>
-        </div>
-    </div>
-</form>
-<div class="container" id="goods">
-    <div class="row">
-        {% for product in products %}
-            <div class="col-3">
-                <div class="card p-0" style="max-height: 500px">
-                    <div class="imgcont">
-                        <img src="uploads/{{ product.photo }}"
-                             class="card-img-top img-responsive">
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">{{ product.name }}</h5>
-                        <p class="card-text w-25 ">{{ product.cost }}</p>
-                        <button class="btn-dark btn" value="{{ product.id }}">View</button>
-                        <button class="btn btn-light"><i class="fas fa-cart-plus"></i></button>
-                    </div>
+                    {% endif %}
                 </div>
+
             </div>
-        {% else %}
-            <tr>
-                <td colspan="4" class="text-center">
-                    No products found
-                </td>
-            </tr>
-        {% endfor %}
-        {#        <nav aria-label="Page navigation example">#}
-        {#            <ul class="pagination justify-content-center">#}
-        {#                <li class="page-item">#}
-        {#                    <a class="page-link" href="#" aria-label="Previous">#}
-        {#                        <i class="fas fa-chevron-left"></i>#}
-        {#                        <span class="sr-only">Previous</span>#}
-        {#                    </a>#}
-        {#                </li>#}
-        {#                <li class="page-item"><a class="page-link" href="#">1</a></li>#}
-        {#                <li class="page-item"><a class="page-link" href="#">2</a></li>#}
-        {#                <li class="page-item"><a class="page-link" href="#">3</a></li>#}
-        {#                <li class="page-item">#}
-        {#                    <a class="page-link" href="#" aria-label="Next">#}
-        {#                        <i class="fas fa-chevron-right"></i>#}
-        {#                        <span class="sr-only">Next</span>#}
-        {#                    </a>#}
-        {#                </li>#}
-        {#            </ul>#}
-        {#        </nav>#}
+
+        </div>
+    </nav>
+
+    <div class="container-fluid p-0">
+        <img class="w-100" style="height: 250px" alt="goodImg"
+             src="https://d4y70tum9c2ak.cloudfront.net/articleBanner/OsJATF0e2Hz8jkTjS9s7rAkog8cp4hlVoTReZkbuido/1600.jpg">
+    </div>
+    <form action="{{ path('ajax_search') }}">
+        <div class="container mb-2 mt-2">
+            <div class="input-group">
+                <input type="text" name="query" id="search"
+                       class="form-control col-12 m-2">
+                {#                <button class="btn btn-dark col-2 mt-2 mb-2">Search</button>#}
+            </div>
+        </div>
+    </form>
+
+    <script type="text/javascript">
+        jQuery(document).ready(function () {
+            var searchRequest = null;
+            $("#search").keyup(function () {
+                var minlength = 1;
+                var that = this;
+                var value = $(this).val();
+                var entitySelector = $("#res").html('');
+                if (value.length >= minlength) {
+                    if (searchRequest != null)
+                        searchRequest.abort();
+                    searchRequest = $.ajax({
+                        type: "GET",
+                        url: "{{ path('ajax_search') }}",
+                        data: {
+                            'query': value
+                        },
+                        dataType: "text",
+                        success: function (msg) {
+                            //we need to check if the value is the same
+                            if (value == $(that).val()) {
+                                var result = JSON.parse(msg);
+                                // $.each(result, function (key, arr) {
+                                //     $.each(arr, function (id, value) {
+                                //         if (key == 'entities') {
+                                //             if (id != 'error') {
+                                if (result["entities"].length > 0)
+                                    for (var i = 0; i < result["entities"].length; i++) {
+                                        var o = result["entities"][i];
+                                        var id_product = o.id;
+                                        var img = o.photo;
+                                        var name = o.name;
+                                        var cost = o.cost;
+                                        entitySelector.append("<div class=\"col-3\">" +
+                                            "<div class=\"card p-0\" style=\"max-height: 500px\">" +
+                                            "<div class=\"imgcont\">" +
+                                            "<img src=\"uploads/" + img + "\"" +
+                                            "class=\"card-img-top img-responsive\">" +
+                                            "</div>" +
+                                            "<div class=\"card-body\">" +
+                                            "<h5 class=\"card-title\">" + name + "</h5>" +
+                                            "<p class=\"card-text w-25 \">" + cost + "</p>" +
+                                            "<button class=\"btn-dark btn\" value=\"" + id_product + "\">View</button>" +
+                                            "<button class=\"btn btn-light\"><i class=\"fas fa-cart-plus\"></i></button>" +
+                                            "</div>" +
+                                            "</div>" +
+                                            "</div>");
+                                    } else {
+                                    entitySelector.append(" " + value + " ");
+                                }
+                            }
+                        }
+                    });
+                }
+
+            });
+        });
+    </script>
+
+        <div class="container">
+            <div id="res">
+            </div>
+            All products:
+            <div class="row">
+                {% for product in products %}
+                    <div class="col-3">
+                        <div class="card p-0" style="max-height: 500px">
+                            <div class="imgcont">
+                                <img src="uploads/{{ product.photo }}"
+                                     class="card-img-top img-responsive">
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">{{ product.name }}</h5>
+                                <p class="card-text w-25 ">{{ product.cost }}</p>
+                                <button class="btn-dark btn" value="{{ product.id }}">View</button>
+                                <button class="btn btn-light"><i class="fas fa-cart-plus"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                {% else %}
+                    <tr>
+                        <td colspan="4" class="text-center">
+                            No products found
+                        </td>
+                    </tr>
+                {% endfor %}
+
+    {#        <nav aria-label="Page navigation example">#}
+    {#            <ul class="pagination justify-content-center">#}
+    {#                <li class="page-item">#}
+    {#                    <a class="page-link" href="#" aria-label="Previous">#}
+    {#                        <i class="fas fa-chevron-left"></i>#}
+    {#                        <span class="sr-only">Previous</span>#}
+    {#                    </a>#}
+    {#                </li>#}
+    {#                <li class="page-item"><a class="page-link" href="#">1</a></li>#}
+    {#                <li class="page-item"><a class="page-link" href="#">2</a></li>#}
+    {#                <li class="page-item"><a class="page-link" href="#">3</a></li>#}
+    {#                <li class="page-item">#}
+    {#                    <a class="page-link" href="#" aria-label="Next">#}
+    {#                        <i class="fas fa-chevron-right"></i>#}
+    {#                        <span class="sr-only">Next</span>#}
+    {#                    </a>#}
+    {#                </li>#}
+    {#            </ul>#}
+    {#        </nav>#}
     </div>
 
     {#    <footer class="page-footer font-small cyan darken-3" style="background-color: #efefef"> <!-- doesn't work(?) -->#}
@@ -161,4 +225,47 @@
     {#            <a>Our links</a>#}
     {#        </div>#}
     {#    </footer> <!-- Footer -->#}
-    {% endblock %}
+
+    <!-- jQuery is necessary -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    {#    <script type="text/javascript">#}
+    {#        jQuery(document).ready(function () {#}
+    {#            var searchRequest = null;#}
+    {#            $("#search").keyup(function () {#}
+    {#                var minlength = 3;#}
+    {#                var that = this;#}
+    {#                var value = $(this).val();#}
+    {#                var entitySelector = $("#goods").html('');#}
+    {#                if (value.length >= minlength) {#}
+    {#                    if (searchRequest != null)#}
+    {#                        searchRequest.abort();#}
+    {#                    searchRequest = $.ajax({#}
+    {#                        type: "GET",#}
+    {#                        url: "{{ path('ajax_search') }}",#}
+    {#                        data: {#}
+    {#                            'query': value#}
+    {#                        },#}
+    {#                        dataType: "text",#}
+    {#                        success: function (msg) {#}
+    {#                            //we need to check if the value is the same#}
+    {#                            if (value == $(that).val()) {#}
+    {#                                var result = JSON.parse(msg);#}
+    {#                                $.each(result, function (key, arr) {#}
+    {#                                    $.each(arr, function (id, value) {#}
+    {#                                        if (key == 'entities') {#}
+    {#                                            entitySelector.append(' <div class="col-3"> <div class="card p-0" style="max-height: 500px"> <div class="imgcont"> <img src="uploads/{{ value }}"class="card-img-top img-responsive"> </div> <div class="card-body"> <h5 class="card-title">{{ product.name }}</h5> <p class="card-text w-25 ">{{ product.cost }}</p> <button class="btn-dark btn" value="{{ product.id }}">View</button> <button class="btn btn-light"><i class="fas fa-cart-plus"></i></button> </div> </div> </div>');#}
+    {#                                        }#}
+    {#                                    });#}
+    {#                                });#}
+    {#                            }#}
+    {#                        }#}
+    {#                    });#}
+    {#                }#}
+    {#            });#}
+    {#        });#}
+    {#    </script>#}
+    {#</div>#}
+
+
+{% endblock %}
