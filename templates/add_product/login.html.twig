@@ -1,20 +1,112 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello AddProductController!{% endblock %}
+{% block title %}
+
+{% endblock %}
 
 {% block body %}
 <style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    ::-webkit-scrollbar {
+        display: none;
+    }
 </style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top border" style="box-shadow: black">
+        <div class="container-fluid">
+            <a href="/" class="navbar-brad"><img
+                        src="https://sun7-6.userapi.com/2JYupaQXK7tuU6qqEN3Y3W0C568RoyyJq1Pu6g/8gOYGcN_NqE.jpg"> MERCHEAP</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarResponsive">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="navbar-item">
+                        <a href="/profile" class="nav-link">Profile</a>
+                    </li>
+                    <li class="navbar-item">
+                        <a href="/goods" class="nav-link">Shop</a>
+                    </li>
+                    <li class="navbar-item active">
+                        <a href="/logout" class="nav-link">Logout</a>
+                    </li>
+                    {#                    <li class="navbar-item  active">#}
+                    {#                        <a href="/register" class="nav-link">Register</a>#}
+                    {#                    </li>#}
+                </ul>
+                <div class="navbar-item">
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'D:/Study/All/2 course/PHP/sem/mercHeap/src/Controller/AddProductController.php'|file_link(0) }}">src/Controller/AddProductController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'D:/Study/All/2 course/PHP/sem/mercHeap/templates/add_product/login.html.twig'|file_link(0) }}">templates/add_product/login.html.twig</a></code></li>
-    </ul>
+                    <button class="btn-dark"><a href="/cart"
+                                                style="text-decoration: none; color: white">
+                            <i class="fas fa-shopping-cart"></i>
+                            Your Cart
+                        </a>
+                    </button>
+                </div>
+
+            </div>
+
+        </div>
+    </nav>
+
+<div class="container">
+    <div class="row mb-3 mt-3">
+        <div class="col-5">
+            <label for="productName">Product name:</label>
+            <input type="text" class="form-control" id="productName" placeholder="Name of your product" required>
+        </div>
+        <div class="col-5">
+            <label for="typeOfProduct">Type</label>
+            <select class="custom-select" id="typeOfProduct" required>
+                <option>T-shirts</option>
+                <option>Cups</option>
+                <option>Stickers</option>
+                <option>Arts</option>
+                <option>Pins</option>
+                <option>Others</option>
+            </select>
+        </div>
+        <div class="col-2">
+            <label for="price">Price:</label>
+            <input type="text" class="form-control" id="price" placeholder="Price" required>
+        </div>
+    </div>
+    <div class="row m-0">
+        <label for="description">Description:</label>
+        <textarea type="text" class="form-control" id="description"></textarea>
+    </div>
+    <div class="row mt-3">
+        <div class="form-group">
+            <label class="col-sm-3 control-label">
+                Photos:
+            </label>
+            <span class="btn">
+                    <input id="input" name="input[]" type="file" class="form-control-file" data-show-upload="false"
+                           data-show-caption="true" multiple> //how
+            </span>
+        </div>
+    </div>
+    <button class="btn btn-dark" data-toggle="modal" data-target="#exampleModal">Create</button>
 </div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Thank you!</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Your product has been submitted for review.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-dark">Ok</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 {% endblock %}

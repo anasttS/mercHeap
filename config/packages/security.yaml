@@ -43,3 +43,4 @@ security:
     - { path: ^/shipping, roles: IS_AUTHENTICATED_REMEMBERED }
     - { path: ^/goods, roles: IS_AUTHENTICATED_ANONYMOUSLY }
     - { path: ^/product, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+    - { path: ^/addProduct, roles: IS_AUTHENTICATED_REMEMBERED }

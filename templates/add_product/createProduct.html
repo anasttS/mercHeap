@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="../css/mainPageStyle.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/granim/1.1.1/granim.min.js'></script>
+    <meta charset="UTF-8">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    ::-webkit-scrollbar {
+        display: none;
+    }
+</style>
+<body>
+<nav class="navbar navbar-expand-md navbar-light bg-light sticky-top border" style="box-shadow: black">
+    <div class="container-fluid">
+        <a href="../../../../Users/smysh/Downloads/Telegram%20Desktop/mainPage.html" class="navbar-brand" style="font-family: 'Bebas Neue', cursive; font-size: 23px">
+            <img class="pr-2" src="https://sun7-6.userapi.com/2JYupaQXK7tuU6qqEN3Y3W0C568RoyyJq1Pu6g/8gOYGcN_NqE.jpg">MERCHEAP</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                data-target="#navbarResponsive">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="navbar-item active">
+                    <a href="../../../../Users/smysh/Downloads/Telegram%20Desktop/mainPage.html" class="nav-link">Home</a>
+                </li>
+                <li class="navbar-item">
+                    <a href="../../../../Users/smysh/Downloads/Telegram%20Desktop/profile.html" class="nav-link">Profile</a>
+                </li>
+                <li class="navbar-item">
+                    <a href="../../../../Users/smysh/Downloads/Telegram%20Desktop/goods.html" class="nav-link">Shop</a>
+                </li>
+                <li class="navbar-item">
+                    <a href="register.html" class="nav-link">Become author</a>
+                </li>
+            </ul>
+            <div class="navbar-item">
+                <button class="btn-dark"><a href="../../../../Users/smysh/Downloads/Telegram%20Desktop/cart.html"
+                                            style="text-decoration: none; color: white">
+                    <i class="fas fa-shopping-cart"></i>
+                    Your Cart
+                </a>
+                </button>
+            </div>
+
+        </div>
+
+    </div>
+</nav>
+
+<div class="container">
+    <div class="row mb-3 mt-3">
+        <div class="col-5">
+            <label for="productName">Product name:</label>
+            <input type="text" class="form-control" id="productName" placeholder="Name of your product" required>
+        </div>
+        <div class="col-5">
+            <label for="typeOfProduct">Type</label>
+            <select class="custom-select" id="typeOfProduct" required>
+                <option>T-shirts</option>
+                <option>Cups</option>
+                <option>Stickers</option>
+                <option>Arts</option>
+                <option>Pins</option>
+                <option>Others</option>
+            </select>
+        </div>
+        <div class="col-2">
+            <label for="price">Price:</label>
+            <input type="text" class="form-control" id="price" placeholder="Price" required>
+        </div>
+    </div>
+    <div class="row m-0">
+        <label for="description">Description:</label>
+        <textarea type="text" class="form-control" id="description"></textarea>
+    </div>
+    <div class="row mt-3">
+        <div class="form-group">
+            <label class="col-sm-3 control-label">
+                Photos:
+            </label>
+            <span class="btn">
+                    <input id="input" name="input[]" type="file" class="form-control-file" data-show-upload="false"
+                           data-show-caption="true" multiple> //how
+            </span>
+        </div>
+    </div>
+    <button class="btn btn-dark" data-toggle="modal" data-target="#exampleModal">Create</button>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Thank you!</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Your product has been submitted for review.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-dark">Ok</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
