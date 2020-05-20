@@ -30,7 +30,6 @@ class ProfileController extends AbstractController
         $my_orders = $this->getUser()->getOrders();
         $links = $this->getUser()->getLinks();
         $photo = $this->getUser()->getPhoto();
-        $count = count($merch);
 
         $user = $this->getUser();
         $form = $this->createForm(UserChangeType::class, $user);
@@ -50,7 +49,6 @@ class ProfileController extends AbstractController
             $em->flush();
             return $this->redirectToRoute('profile');
         }
-
         return $this->render('profile/profile.html.twig', [
             'controller_name' => 'ProfileController',
             'profileForm' => $form->createView(),
@@ -60,9 +58,8 @@ class ProfileController extends AbstractController
             'my_orders' => $my_orders,
             'links' => $links,
             'photo' => $photo,
-            'count' => $count
         ]);
-//        dd($this->getUser()->getUsername());
+
     }
 
 //    /**

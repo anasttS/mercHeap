@@ -301,23 +301,50 @@
                 <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="0">
                     <!-- Carousel indicators -->
                     <ol class="carousel-indicators">
-                        {% for c in count %}
-                            <li data-target="#myCarousel" data-slide-to={{ c }}></li>
+                        {% for key,product in merch %}
+                            {% if key==0 %}
+                                <li data-target="#myCarousel" data-slide-to={{ key }} class="active"></li>
+                            {% else %}
+                                <li data-target="#myCarousel" data-slide-to={{ key }}></li>
+                            {% endif %}
                         {% endfor %}
                     </ol>
                     <!-- Wrapper for carousel items -->
 
                     <div class="carousel-inner">
-                        {% for product in merch %}
-                            <div class="item carousel-item ">
-                                <div class="row">
-                                    <div class="col-sm-4">
-                                        <div class="img-box"><img src="uploads/{{ product.photo }}"
-                                                                  class="img-responsive img-fluid" alt="">
+                        {% for key,product in merch %}
+                            {% if key==0 %}
+                                <div class="item carousel-item active">
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <div class="img-box"><img src="uploads/{{ product.photo }}"
+                                                                      class="img-responsive img-fluid" alt="">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-8">
+                                            <h3>{{ product.name }}</h3>
+                                            <h5>{{ product.description }}</h5>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            {% else %}
+                                <div class="item carousel-item">
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <div class="img-box"><img src="uploads/{{ product.photo }}"
+                                                                      class="img-responsive img-fluid" alt="">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-8">
+                                            <h3>{{ product.name }}</h3>
+                                            <h5>{{ product.description }}</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endif %}
+
                         {% endfor %}
                     </div>
                     <!-- Carousel controls -->
@@ -336,20 +363,23 @@
     <div class="container" style="margin-bottom: 30px">
         <h2>My orders:</h2>
         {% if my_orders!= null %}
-            {#        {% for order in my_orders %}#}
-            <div class="row orders">
-                <div class="col-md-4">
-                    <img src="http://tarabeiser.com/ux/imgux/searchEmptyState.png" alt="Avatar_img" class="order_img">
-                </div>
-                <div class="col-md-8">
-                    <h1>Product name</h1>
-                    <div class="media-text text-justify status1" style="">
-                        {#                        {{ order.id }}#}
-                        Status
+            {% for order in my_orders %}
+                {% for product in order.shopLists %}
+                    <div class="row orders">
+                        <div class="col-md-4">
+                            <img src="uploads/{{ product.product.photo }}" alt="Avatar_img"
+                                 class="order_img">
+                        </div>
+                        <div class="col-md-8">
+                            <h1>{{ product.product.name }}</h1>
+                            <div class="media-text text-justify status1" style="">
+                                {#                        {{ order.id }}#}
+                                Status
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-            {#        {% endfor %}#}
+                {% endfor %}
+            {% endfor %}
         {% endif %}
         {#        <div class="row orders">#}
         {#            <div class="col-md-4">#}

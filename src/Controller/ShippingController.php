@@ -36,15 +36,15 @@ class ShippingController extends AbstractController
     public function createOrder(Request $request)
     {
 
-//        $array = array(
-//            '1' => 1,
-//            '4' => 2,
-//            '5' => 3
-//        );
-//        $em = $this->getDoctrine()->getManager();
-//        $json = json_encode($array);
-        $array = json_decode("localStorage.getItem('cart')");
-
+        $array = array(
+            '1' => 1,
+            '4' => 2,
+            '5' => 3
+        );
+        $em = $this->getDoctrine()->getManager();
+        $json = json_encode($array);
+//        $array = json_decode("localStorage.getItem('cart')");
+        $array = json_decode($json);
 
         $order = new OrderUser();
         $user = $this->getUser();
