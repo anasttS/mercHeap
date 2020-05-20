@@ -31,18 +31,14 @@ class ProductRepository extends ServiceEntityRepository
         return $query->execute();
     }
 
-    /**
-     * @param string|null $search
-     * @return Product[]
-     */
-    public function search(?string $search){
+    public function findEntitiesByString($requestString)
+    {
         return $this->createQueryBuilder('product')
-            ->andWhere('product.name LIKE :searchTerm')
-            ->setParameter('searchTerm', '%'.$search.'%')
-            ->orderBy('product.name', 'ASC')
-            ->getQuery()
-            ->getResult();
-//            ->execute();
+        ->andWhere('product.name LIKE :searchTerm')
+        ->setParameter('searchTerm', '%'.$requestString.'%')
+        ->orderBy('product.name', 'ASC')
+        ->getQuery()
+        ->getResult();
     }
 
 }
