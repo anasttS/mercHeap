@@ -91,7 +91,7 @@
                 <hr color="black"/>
                 <div class="row">
 
-                    <button type="submit" class="col-3 mr-4 ml-3 btn btn-secondary" id="next" href="/to_order" >Next</button>
+                    <button type="submit" class="col-3 mr-4 ml-3 btn btn-secondary" id="next" href="/to_order" disabled>Next</button>
                     <button type="button" class="col-3 mr-4 ml-3 btn btn-light" id="btn_modal_window">Cancel</button>
                     <div id="error" class="error" style="color: red"></div>
                 </div>
@@ -211,13 +211,13 @@
             var reName = /^[A-Za-z\s]+$/i;
             var reAddress = /^[a-zA-Z0-9]+$/;
 
-            var myPhone = document.getElementById('phoneNumber').value;
-            var myFirstName = document.getElementById('firstName').value;
-            var myLastName = document.getElementById('lastName').value;
-            var myAddress = document.getElementById('address').value;
-            var myCity = document.getElementById('city').value;
-            var myCode = document.getElementById('code').value;
-            var myCountry = document.getElementById('country').value;
+            var myPhone = document.getElementById('order_phone_number').value;
+            var myFirstName = document.getElementById('order_first_name').value;
+            var myLastName = document.getElementById('order_last_name').value;
+            var myAddress = document.getElementById('order_address').value;
+            var myCity = document.getElementById('order_city').value;
+            var myCode = document.getElementById('order_zip').value;
+            var myCountry = document.getElementById('order_country').value;
             var validFirstName = reName.test(myFirstName);
             var validLastName = reName.test(myLastName);
             var validPhone = rePhone.test(myPhone);
