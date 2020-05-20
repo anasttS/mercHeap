@@ -87,8 +87,6 @@ class ShippingController extends AbstractController
             }
 
             $em->flush();
-            dd($order);
-
             return $this->redirect("profile");
         }
         return $this->render('shipping/index.html.twig',[

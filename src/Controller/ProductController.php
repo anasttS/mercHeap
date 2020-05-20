@@ -20,11 +20,19 @@ class ProductController extends AbstractController
     {
         $product = $productRepository->find($id);
         $user = $product->getUser();
-
+        $userAut = $this->getUser();
         $comment = new Comment();
-        $comment-> setUser($this->getUser());
         $form = $this->createForm(CommentType::class, $comment);
         $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()){
+            $comment = $form->getData();
+            $comment->setUser($userAut);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($comment);
+            $em->flush();
+
+            return $this->redirect("/product/".$product->getId());
+        }
 
         return $this->render('product/index.html.twig', [
             'controller_name' => 'ProductController',
