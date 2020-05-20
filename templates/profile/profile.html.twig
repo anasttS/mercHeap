@@ -289,11 +289,11 @@
         <div class="row">
             <div class="col-md-10 col-center m-auto">
                 <h2><span>Merch</span></h2>
-                <form action="/addProduct">
-                    <button type="button" class="col-3 mr-4 ml-3 btn btn-secondary" id="next" disabled>Add product
+                <form action="{{ path('add_product') }}" method="post">
+                    <button type="submit" class="col-3 mr-4 ml-3 btn btn-secondary">Add
+                        product
                     </button>
                 </form>
-
                 {#                <li class="navbar-item">#}
                 {#                    <a href="/addProduct" class="nav-link">Add product</a>#}
                 {#                </li>#}
@@ -313,7 +313,7 @@
                                 <div class="row">
                                     <div class="col-sm-4">
                                         <div class="img-box"><img src="uploads/{{ product.photo }}"
-                                                    class="img-responsive img-fluid" alt="">
+                                                                  class="img-responsive img-fluid" alt="">
                                         </div>
                                     </div>
                                 </div>
