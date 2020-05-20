@@ -7,7 +7,7 @@ window.onload = function() {
    let adder = document.getElementsByClassName("add");
    for(let i = 0; i < adder.length; i++) {
       adder[i].onclick = function () {
-         cart[adder.getAttribute[i]("data-art")] = 1; //заполняет элемент корзины, соответствующий номеру товара
+         cart[adder[i].getAttribute("data-art")] = 1; //заполняет элемент корзины, соответствующий номеру товара
          localStorage.setItem('cart', JSON.stringify(cart));
       }
    }
