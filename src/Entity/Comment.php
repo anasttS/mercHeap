@@ -48,6 +48,12 @@ class Comment
         return (string) $this->description;
     }
 
+    public function setDescription(string $description)
+    {
+        $this->description= $description;
+        return $this;
+    }
+
     public function getUser(): ?User
     {
         return $this->user;

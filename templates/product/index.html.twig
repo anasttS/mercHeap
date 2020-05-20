@@ -265,20 +265,31 @@
                     {#                            }#}
                     {#                        </script>#}
                     {#                    </div>#}
-{#                    <div class="col-xs-4 col-sm-12 col-md-8 col-lg-7" style="">#}
-{#                        <textarea id="comment" name="text" style="width: 100%; height: 38px"></textarea><br>#}
-{#                    </div>#}
-{#                    <form class="col-xs-4 col-sm-12 col-md-2 col-lg-2" style="padding: 0px 0px" name="changeColor">#}
-{#                        <button name="send" class=" btn btn-light" id="send" style="" onmouseover="mouseIn('send')"#}
-{#                                onmouseout="mouseOut()">Leave a feedback#}
-{#                        </button>#}
-{#                    </form>#}
-                    {{ form_start(form) }}
-                    {{ form_widget(form.description, {'attr': {'class': "form-control col-5 ol-xs-4 col-sm-12 col-md-8 col-lg-7", 'style': "width: 100%; height: 38px", 'placeholder': "Leave your comment"}}) }}
-                    <button name="send" class=" btn btn-light" id="send" style="" onmouseover="mouseIn('send')"
-                            onmouseout="mouseOut()">Leave a feedback
-                    </button>
+                    {#                    <div class="col-xs-4 col-sm-12 col-md-8 col-lg-7" style="">#}
+                    {#                        <textarea id="comment" name="text" style="width: 100%; height: 38px"></textarea><br>#}
+                    {#                    </div>#}
+                    {#                    <form class="col-xs-4 col-sm-12 col-md-2 col-lg-2" style="padding: 0px 0px" name="changeColor">#}
+                    {#                        <button name="send" class=" btn btn-light" id="send" style="" onmouseover="mouseIn('send')"#}
+                    {#                                onmouseout="mouseOut()">Leave a feedback#}
+                    {#                        </button>#}
+                    {#                    </form>#}
+                    {{ form_start(form, {'attr': {'class': "col-xs-12 col-sm-12 col-md-12 col-lg-12"}}) }}
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-10">
+                                {{ form_widget(form.description, {'attr': {'style': "width: 100%; height: 38px", 'placeholder': "Leave your review"}}) }}
+                                <br>
+                            </div>
+                            <div class="col-2">
+                                <button name="send" class=" btn btn-light" id="send" style=""
+                                        onmouseover="mouseIn('send')"
+                                        onmouseout="mouseOut()">Leave a feedback
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                     {{ form_end(form) }}
+
 
                 </div>
             </div>
@@ -288,70 +299,34 @@
             <h3 class="title-comments">Reviews</h3>
             <br>
             <!-- Комментарий (уровень 1) -->
+            {% for comment in product.comments %}
             <div class="media">
                 <div class="media-body row">
                     <div class="col-xs-4 col-sm-12 col-md-1 col-lg-1 media-heading">
-                        <img src="https://psv4.userapi.com/c856324/u71223014/docs/d3/2c5f22168abf/836189496.jpg?extra=C0Eidu8GhkD4r2Q0taLGI4NKXF77NN6qrxJcBC5TYLrYaKxcNXDAO5nDdjHLuGjQ76WMccFb4n6prp4iHTww1qrZ28fjfxu2K4accBdelLgQYv26CXHp3lQgwm9Iv6ogg07SzJu972_Wbaro1BrE"
+                        <img src="uploads/{{ comment.user.photo}}"
                              style="width: 80px; border-radius: 40px;">
                     </div>
                     <div class="col-xs-4 col-sm-12 col-md-2 col-lg-2 media-heading">
                         <div class="author">
-                            <h3>Ann</h3>
-                            <div class="row" style="padding-left: 15px">
-                                <div class="grade-item active" data-rate="1"></div>
-                                <div class="grade-item" data-rate="2"></div>
-                                <div class="grade-item" data-rate="3"></div>
-                                <div class="grade-item" data-rate="4"></div>
-                                <div class="grade-item" data-rate="5"></div>
-                            </div>
-                            <span class="date">16 Nov 2015, 1:43 pm</span>
+                            <h3>{{ comment.user.name}}</h3>
+{#                            <div class="row" style="padding-left: 15px">#}
+{#                                <div class="grade-item active" data-rate="1"></div>#}
+{#                                <div class="grade-item" data-rate="2"></div>#}
+{#                                <div class="grade-item" data-rate="3"></div>#}
+{#                                <div class="grade-item" data-rate="4"></div>#}
+{#                                <div class="grade-item" data-rate="5"></div>#}
+{#                            </div>#}
+                            <span class="date">{{ comment.time|date('Y-m-d H:i:s') }}</span>
                         </div>
                     </div>
                     <div class="col-xs-4 col-sm-12 col-md-9 col-lg-9 media-text text-justify">
-                        Lorem ipsum dolor sit amet. Blanditiis praesentium voluptatum
-                        deleniti atque. Autem vel illum, qui blanditiis praesentium voluptatum deleniti atque corrupti.
-                        Dolor repellendus cum soluta nobis. Corporis suscipit laboriosam, nisi ut enim. Debitis aut
-                        perferendis doloribus asperiores repellat. sint, obcaecati cupiditate non numquam eius. Itaque
-                        earum
-                        rerum facilis. Similique sunt in ea commodi. Dolor repellendus numquam eius modi. Quam nihil
-                        molestiae consequatur, vel illum, qui ratione voluptatem accusantium doloremque.
+                        {{ comment.description }}
                     </div>
 
                     <hr>
                 </div>
             </div>
-            <div class="media">
-                <div class="media-body row">
-                    <div class="col-xs-4 col-sm-12 col-md-1 col-lg-1 media-heading">
-                        <img src="https://psv4.userapi.com/c856324/u71223014/docs/d3/2c5f22168abf/836189496.jpg?extra=C0Eidu8GhkD4r2Q0taLGI4NKXF77NN6qrxJcBC5TYLrYaKxcNXDAO5nDdjHLuGjQ76WMccFb4n6prp4iHTww1qrZ28fjfxu2K4accBdelLgQYv26CXHp3lQgwm9Iv6ogg07SzJu972_Wbaro1BrE"
-                             style="width: 80px; border-radius: 40px;">
-                    </div>
-                    <div class="col-xs-4 col-sm-12 col-md-2 col-lg-2 media-heading">
-                        <div class="author">
-                            <h3>Ann</h3>
-                            <div class="row" style="padding-left: 15px">
-                                <div class="grade-item active" data-rate="1"></div>
-                                <div class="grade-item" data-rate="2"></div>
-                                <div class="grade-item" data-rate="3"></div>
-                                <div class="grade-item" data-rate="4"></div>
-                                <div class="grade-item" data-rate="5"></div>
-                            </div>
-                            <span class="date">16 Nov 2015, 1:43 pm</span>
-                        </div>
-                    </div>
-                    <div class="col-xs-4 col-sm-12 col-md-9 col-lg-9 media-text text-justify">
-                        Lorem ipsum dolor sit amet. Blanditiis praesentium voluptatum
-                        deleniti atque. Autem vel illum, qui blanditiis praesentium voluptatum deleniti atque corrupti.
-                        Dolor repellendus cum soluta nobis. Corporis suscipit laboriosam, nisi ut enim. Debitis aut
-                        perferendis doloribus asperiores repellat. sint, obcaecati cupiditate non numquam eius. Itaque
-                        earum
-                        rerum facilis. Similique sunt in ea commodi. Dolor repellendus numquam eius modi. Quam nihil
-                        molestiae consequatur, vel illum, qui ratione voluptatem accusantium doloremque.
-                    </div>
-
-                    <hr>
-                </div>
-            </div>
+            {% endfor %}
         </div>
 
     </div>
