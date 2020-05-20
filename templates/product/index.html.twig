@@ -52,7 +52,7 @@
         .rating-item, .top-item, .grade-item {
             width: 40px;
             height: 35px;
-            background-image: url("empty2.png");
+            background-image: url("../../public/media/empty2.png");
             background-repeat: no-repeat;
             background-size: 30px 30px;
             border: 2px solid #fff;
@@ -77,13 +77,13 @@
         }
 
         .rating-item.active, .top-item.active, .grade-item.active {
-            background-image: url("full2.png")
+            background-image: url("../../public/media/full2.png")
         }
     </style>
     <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top border" style="box-shadow: black">
         <div class="container-fluid">
             <a href="/" class="navbar-brad"><img
-                        src="https://sun7-6.userapi.com/2JYupaQXK7tuU6qqEN3Y3W0C568RoyyJq1Pu6g/8gOYGcN_NqE.jpg"> MERCHEAP</a>
+                        src="media/logo.jpg"> MERCHEAP</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse"
                     data-target="#navbarResponsive">
                 <span class="navbar-toggler-icon"></span>
@@ -159,25 +159,20 @@
 
 
             <div class="price col-xs-6 col-sm-8 col-md-8 col-lg-7" style="position: center; height: 30px">
-                <h1>Product name</h1>
-                <div class="row" style="padding-left: 15px">
-                    <div class="top-item active" data-rate="1"></div>
-                    <div class="top-item" data-rate="2"></div>
-                    <div class="top-item" data-rate="3"></div>
-                    <div class="top-item" data-rate="4"></div>
-                    <div class="top-item" data-rate="5"></div>
-                    <div style="margin-left: 15px; color: #9fa2a3; text-align: center"> 5 reviews</div>
-                </div>
+                <h1>{{product.name}}</h1>
+{#                <div class="row" style="padding-left: 15px">#}
+{#                    <div class="top-item active" data-rate="1"></div>#}
+{#                    <div class="top-item" data-rate="2"></div>#}
+{#                    <div class="top-item" data-rate="3"></div>#}
+{#                    <div class="top-item" data-rate="4"></div>#}
+{#                    <div class="top-item" data-rate="5"></div>#}
+{#                    <div style="margin-left: 15px; color: #9fa2a3; text-align: center"> 5 reviews</div>#}
+{#                </div>#}
                 <hr>
-                <h3>$PRICE$</h3>
+                <h3>${{product.cost}}$</h3>
                 <hr>
                 <div class="media-text text-justify" style="padding-left: 10px; padding-right: 10px">
-                    Lorem ipsum dolor sit amet. Blanditiis praesentium voluptatum
-                    deleniti atque. Autem vel illum, qui blanditiis praesentium voluptatum deleniti atque corrupti.
-                    Dolor repellendus cum soluta nobis. Corporis suscipit laboriosam, nisi ut enim. Debitis aut
-                    perferendis doloribus asperiores repellat. sint, obcaecati cupiditate non numquam eius. Itaque earum
-                    rerum facilis. Similique sunt in ea commodi. Dolor repellendus numquam eius modi. Quam nihil
-                    molestiae consequatur, vel illum, qui ratione voluptatem accusantium doloremque.
+                    {{ product.description }}
                 </div>
                 <br>
                 <form style="float: right" name="changeColor">
@@ -191,14 +186,9 @@
         </div>
         <hr>
         <div class="description">
-            <h2 style="padding-left: 10px;">Author</h2>
+            <h2 style="padding-left: 10px;">{{ user.name }}</h2>
             <div class="media-text text-justify" style="padding-left: 10px; padding-right: 10px">
-                Lorem ipsum dolor sit amet. Blanditiis praesentium voluptatum
-                deleniti atque. Autem vel illum, qui blanditiis praesentium voluptatum deleniti atque corrupti.
-                Dolor repellendus cum soluta nobis. Corporis suscipit laboriosam, nisi ut enim. Debitis aut
-                perferendis doloribus asperiores repellat. sint, obcaecati cupiditate non numquam eius. Itaque earum
-                rerum facilis. Similique sunt in ea commodi. Dolor repellendus numquam eius modi. Quam nihil
-                molestiae consequatur, vel illum, qui ratione voluptatem accusantium doloremque.
+                {{ user.about }}
             </div>
         </div>
         <hr>
