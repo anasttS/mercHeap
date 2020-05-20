@@ -14,11 +14,11 @@ use Symfony\Component\Routing\Annotation\Route;
 class ProductController extends AbstractController
 {
     /**
-     * @Route("/product/{id}", name="product")
+     * @Route("/product", name="product")
      */
-    public function index($id, ProductRepository $productRepository, Request $request)
+    public function index(ProductRepository $productRepository, Request $request)
     {
-        $product = $productRepository->find($id);
+        $product = $productRepository->find(1);
         $user = $product->getUser();
         $userAut = $this->getUser();
         $comment = new Comment();
@@ -27,6 +27,7 @@ class ProductController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()){
             $comment = $form->getData();
             $comment->setUser($userAut);
+            $comment->setTime(date('Y-m-d H:i:s'));
             $em = $this->getDoctrine()->getManager();
             $em->persist($comment);
             $em->flush();
@@ -37,7 +38,8 @@ class ProductController extends AbstractController
         return $this->render('product/index.html.twig', [
             'controller_name' => 'ProductController',
             'product'=>$product,
-            'user'=>$user
+            'user'=>$user,
+            'form'=>$form
         ]);
     }
 
