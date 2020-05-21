@@ -158,17 +158,22 @@
                                 <br>
                             </div>
                             <div class="col-2">
-                                <form action="{{ path('product') }}" method="post">
-                                    <button name="send" class=" btn btn-light" id="send"
-                                            onmouseover="mouseIn('send')"
-                                            onmouseout="mouseOut()"
-                                            value="{{ product.id }}">
-                                        Leave a feedback
-                                    </button>
-                                </form>
-
+                                <button name="id" class=" btn btn-light" id="id"
+                                        onmouseover="mouseIn('send')"
+                                        onmouseout="mouseOut()"
+                                        value="{{ product.id }}">
+                                    Leave a feedback
+                                </button>
                             </div>
                         </div>
+{#                        <form action="{{ path('product') }}" method="post">#}
+{#                            <button name="id" class=" btn btn-light" id="id"#}
+{#                                    onmouseover="mouseIn('send')"#}
+{#                                    onmouseout="mouseOut()"#}
+{#                                    value="{{ product.id }}">#}
+{#                                Leave a feedback#}
+{#                            </button>#}
+{#                        </form>#}
                     </div>
                     {{ form_end(form) }}
                 </div>
