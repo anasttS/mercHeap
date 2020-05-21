@@ -94,7 +94,7 @@ class ShippingController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->persist($order);
             $em->flush();
-            dd($order);
+//            dd($order);
             foreach ($this->array as $k => $v) {
                 $product = $this->productRepository->find($k);
                 $shopList = new ShopList();

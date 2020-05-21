@@ -50,11 +50,6 @@
 
 
 
-
-    <script>
-        var search = localStorage.getItem('cart');
-        $("textarea[type=text]").val(search);
-    </script>
     </br>
     <div class="container">
         <div class="row">
@@ -94,7 +89,7 @@
                 </div>
                 <hr color="black"/>
                 <div class="row">
-
+                    <textarea type="text" name="search" value="" hidden></textarea>
                     <button type="submit" class="col-3 mr-4 ml-3 btn btn-secondary" id="next" disabled>Next</button>
                     <button type="button" class="col-3 mr-4 ml-3 btn btn-light" id="btn_modal_window">Cancel</button>
                     <div id="error" class="error" style="color: red"></div>
@@ -190,6 +185,11 @@
             cursor: pointer;
         }
     </style>
+
+    <script>
+        var search = localStorage.getItem('cart');
+        $("textarea[type=text]").val(search);
+    </script>
     <script>
         var modal = document.getElementById("my_modal");
         var btn = document.getElementById("btn_modal_window");
