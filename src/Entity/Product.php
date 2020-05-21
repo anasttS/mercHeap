@@ -112,11 +112,9 @@ class Product
     }
 
 
-    public function setPhoto(string $photo): self
+    public function setPhoto(string $photo): void
     {
         $this->photo = $photo;
-
-        return $this;
     }
 
     /**

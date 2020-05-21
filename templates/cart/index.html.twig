@@ -23,9 +23,6 @@
                     <li class="navbar-item">
                         <a href="/goods" class="nav-link">Shop</a>
                     </li>
-{#                    <li class="navbar-item active">#}
-{#                        <a href="/login" class="nav-link">Login</a>#}
-{#                    </li>#}
                     <li class="navbar-item">
                         <a href="/logout" class="nav-link">Logout</a>
                     </li>
@@ -175,7 +172,7 @@
     <br>
     <br>
     <br>
-    <footer class="page-footer font-small cyan darken-3" style="background-color: #efefef"> <!-- doesn't work(?) -->
+    <footer class="page-footer font-small cyan darken-3" style="background-color: #efefef">
         <div class="container text-center">
             <div class="col-md-12 py-5">
                 <div class="flex-center">
@@ -199,6 +196,8 @@
         </div>
     </footer> <!-- Footer -->
     </body>
+
+
     <script>
         function Voter(options) {
             var elem = options.elem;
@@ -253,22 +252,6 @@
         voter2.setVote(1);
 
     </script>
-
-    <script>
-        var bigsize = "170px"; //Размер большой картинки
-        var smallsize = "150px"; //Размер маленькой картинки
-        function changeSizeImageToSmall(im) {
-            im.style.height = smallsize;
-            im.style.width = smallsize;
-            im.style.cursor = "pointer";
-        }
-
-        function changeSizeImageToBig(im) {
-            im.style.height = bigsize;
-            im.style.width = bigsize;
-        }
-    </script>
-
     <script>
 
         var bigSize = "18px";
