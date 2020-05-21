@@ -95,7 +95,7 @@
                 <hr color="black"/>
                 <div class="row">
 
-                    <button type="submit" class="col-3 mr-4 ml-3 btn btn-secondary" onclick="nullStorage()" id="next" href="/shipping" disabled>Next</button>
+                    <button type="submit" class="col-3 mr-4 ml-3 btn btn-secondary" id="next" disabled>Next</button>
                     <button type="button" class="col-3 mr-4 ml-3 btn btn-light" id="btn_modal_window">Cancel</button>
                     <div id="error" class="error" style="color: red"></div>
                 </div>
@@ -260,7 +260,8 @@
     </script>
     <script>
         function nullStorage() {
-            localStorage.setItem('cart', null);
+            var storage = localStorage.getItem('cart');
+            storage.clear();
         }
     </script>
 {% endblock %}

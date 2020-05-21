@@ -19,14 +19,14 @@ class ShippingController extends AbstractController
 {
 
 
-        private ProductRepository $productRepository ;
+    private ProductRepository $productRepository;
 
-        public function __construct(ProductRepository $productRepository)
-        {
-            $this->productRepository = $productRepository;
-        }
+    public function __construct(ProductRepository $productRepository)
+    {
+        $this->productRepository = $productRepository;
+    }
 
-
+    private $array;
 
     /**
      * @Route("/shipping", name="order")
@@ -55,63 +55,76 @@ class ShippingController extends AbstractController
 //
 //        $array = json_decode($json);
 
-        if ($_POST['search']) {
-            $json = $_POST['search'];
-            $array = json_decode($json);
-        } else {
-            $array =array();
+//        if ($_POST['search']) {
+//            $json = $_POST['search'];
+//            $array = json_decode($json);
+//        } else {
+//            $array =array();
+//        }
+//        dd($array);
+
+        $order = new OrderUser();
+        $user = $this->getUser();
+
+        $products = array();
+        $price = 0;
+        $taxes = 13;
+        $this->getJson();
+        foreach ($this->array as $k => $v) {
+            $product = $this->productRepository->find($k);
+            $shopList = new ShopList();
+            $shopList->setProduct($product);
+            $shopList->setCount($v);
+            $shopList->setOrderId($order);
+            $price = $price + $product->getCost() * $v;\
+            array_push($products, $shopList);
         }
+        $order->setPrice($price);
+        $subtotal = $price + $taxes;
+        $order->setSubtotal($subtotal);
 
-            $order = new OrderUser();
-            $user = $this->getUser();
 
-            $products = array();
-            $price = 0;
-            $taxes = 13;
+        $form = $this->createForm(OrderType::class, $order);
+        $form->handleRequest($request);
+//            dd($order);
+        if ($form->isSubmitted()) {
 
-            foreach ($array as $k => $v) {
+            $order = $form->getData();
+            $order->setUser($user);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($order);
+            $em->flush();
+            dd($order);
+            foreach ($this->array as $k => $v) {
                 $product = $this->productRepository->find($k);
                 $shopList = new ShopList();
                 $shopList->setProduct($product);
                 $shopList->setCount($v);
                 $shopList->setOrderId($order);
-                $price = $price + $product->getCost() * $v;
-                array_push($products, $shopList);
-            }
-            $order->setPrice($price);
-            $subtotal = $price + $taxes;
-            $order->setSubtotal($subtotal);
-
-
-            $form = $this->createForm(OrderType::class, $order);
-            $form->handleRequest($request);
-            if ($form->isSubmitted() && $form->isValid()) {
-
-                $order = $form->getData();
-                $order->setUser($user);
-                $em = $this->getDoctrine()->getManager();
-                $em->persist($order);
-                $em->flush();
-
-                foreach ($array as $k => $v) {
-                    $product = $this->productRepository->find($k);
-                    $shopList = new ShopList();
-                    $shopList->setProduct($product);
-                    $shopList->setCount($v);
-                    $shopList->setOrderId($order);
-                    $em->persist($shopList);
-                }
-
-                $em->flush();
-                return $this->redirect("profile");
+                $em->persist($shopList);
             }
 
-        return $this->render('shipping/index.html.twig',[
+            $em->flush();
+            return $this->redirect("profile");
+        }
+
+        return $this->render('shipping/index.html.twig', [
             'form' => $form->createView(),
             'products' => $products,
             'subtotal' => $price,
             'total' => $subtotal,
             'taxes' => $taxes
-            ]);
+        ]);
+    }
+
+    function getJson()
+    {
+        if ($_POST['search']) {
+            $json = $_POST['search'];
+            $array = json_decode($json);
+        } else {
+            $array = array();
+        }
+        $this->array = $array;
     }
 }
