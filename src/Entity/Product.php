@@ -84,6 +84,11 @@ class Product
         return $this->user;
     }
 
+    public function getPhoto(): ?string
+    {
+        return $this->photo;
+    }
+
     public function setUser(?User $user): self
     {
         $this->user = $user;
@@ -91,10 +96,21 @@ class Product
         return $this;
     }
 
-    public function getPhoto(): ?string
+    public function setName($name): void
     {
-        return $this->photo;
+        $this->name = $name;
     }
+
+    public function setDescription($description): void
+    {
+        $this->description = $description;
+    }
+
+    public function setCost($cost): void
+    {
+        $this->cost = $cost;
+    }
+
 
     public function setPhoto(string $photo): self
     {
