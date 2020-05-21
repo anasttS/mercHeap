@@ -23,9 +23,9 @@
                     <li class="navbar-item">
                         <a href="/goods" class="nav-link">Shop</a>
                     </li>
-{#                    <li class="navbar-item active">#}
-{#                        <a href="/login" class="nav-link">Login</a>#}
-{#                    </li>#}
+                    {#                    <li class="navbar-item active">#}
+                    {#                        <a href="/login" class="nav-link">Login</a>#}
+                    {#                    </li>#}
                     <li class="navbar-item">
                         <a href="/logout" class="nav-link">Logout</a>
                     </li>
@@ -52,11 +52,11 @@
             </h2>
             <hr/>
             <div class="container">
-                <div id="1">
+                {% for product in products %}
                     <div class="alert alert-dismissible">
                         <div class="row">
                             <div class="col-3">
-                                <img src="https://onerepublic.com/wp-content/uploads/2019/11/1R_RM_HATSIDE_MOCK.jpg"
+                                <img src="uploads/{{ product.photo }}"
                                      style="width: 150px; height: 150px" onmouseenter="changeSizeImageToBig(this)"
                                      onmouseleave="changeSizeImageToSmall(this)">
                             </div>
@@ -64,15 +64,14 @@
                                 <div class="ml-3" id="productName1">
                                     <div style="font-size: 16px" onmouseleave="reduceFontSize(this)"
                                          onmouseenter="increaseFontSize(this)">
-                                        Cap
+                                        {{ product.name }}
                                     </div>
                                     <h5>
-                                        <small id="description1">Lorem ipsum dolor sit amet, consectetur adipisicing
-                                            elit.
+                                        <small id="description1">{{ product.description }}
                                         </small>
                                     </h5>
                                     <h4>
-                                        <small id="price1">300$</small>
+                                        <small id="price1">{{ product.cost }}$</small>
                                     </h4>
                                 </div>
                             </div>
@@ -80,7 +79,7 @@
                                 <button type="button" class="close" id="close" value="1" data-dismiss="alert"
                                         style="padding: 0">×
                                 </button>
-                                <div id="voter" class=""
+                                <div id="{{ product.id }}" class=""
                                      style="font-family: 'DejaVu Sans Mono', monospace; font-size: 16px; padding: 0">
                                     <span class="down">-</span>
                                     <span class="vote">0</span>
@@ -89,90 +88,19 @@
                             </div>
                         </div>
                     </div>
-                </div>
-
-                <div id="2">
-                    <div class="alert alert-dismissible">
-                        <div class="row">
-                            <div class="col-3">
-                                <img src="https://sun9-59.userapi.com/c850216/v850216010/14456/S1vVkTbgDDc.jpg"
-                                     style="width: 150px; height: 150px" onmouseenter="changeSizeImageToBig(this)"
-                                     onmouseleave="changeSizeImageToSmall(this)">
-                            </div>
-                            <div class="col-6">
-                                <div class="ml-3" id="productName2">
-                                    <div style="font-size: 16px" onmouseleave="reduceFontSize(this)"
-                                         onmouseenter="increaseFontSize(this)">
-                                        Stickers
-                                    </div>
-                                    <h5>
-                                        <small id="description2">Lorem ipsum dolor sit amet, consectetur adipisicing
-                                            elit.
-                                        </small>
-                                    </h5>
-                                    <h4>
-                                        <small id="price2">40$</small>
-                                    </h4>
-                                </div>
-                            </div>
-                            <div class="col-3">
-                                <button type="button" class="close" data-dismiss="alert" style="padding: 0">×</button>
-                                <div id="voter1" class=""
-                                     style="font-family: 'DejaVu Sans Mono', monospace; font-size: 16px; padding: 0">
-                                    <span class="down">-</span>
-                                    <span class="vote">0</span>
-                                    <span class="up">+</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div id="3">
-                    <div class="alert alert-dismissible">
-                        <div class="row">
-                            <div class="col-3">
-                                <img src="https://www.dhresource.com/600x600/f2/albu/g9/M00/68/3B/rBVaVVzSfCqAEdhIAAFtHGWu-GQ284.jpg"
-                                     style="width: 150px; height: 150px" onmouseenter="changeSizeImageToBig(this)"
-                                     onmouseleave="changeSizeImageToSmall(this)">
-                            </div>
-                            <div class="col-6">
-                                <div class="ml-3" id="productName3">
-                                    <div style="font-size: 16px" onmouseleave="reduceFontSize(this)"
-                                         onmouseenter="increaseFontSize(this)"> T-shirt "Not today"
-                                    </div>
-                                    <h5>
-                                        <small id="description3">Lorem ipsum dolor sit amet, consectetur adipisicing
-                                            elit.
-                                        </small>
-                                    </h5>
-                                    <h4>
-                                        <small id="price3">50$</small>
-                                    </h4>
-                                </div>
-                            </div>
-                            <div class="col-3">
-                                <button type="button" class="close" data-dismiss="alert" style="padding: 0">×</button>
-                                <div id="voter2" class=""
-                                     style="font-family: 'DejaVu Sans Mono', monospace; font-size: 16px; padding: 0">
-                                    <span class="down" style="">-</span>
-                                    <span class="vote" style="">0</span>
-                                    <span class="up" style="">+</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <hr style="color: #5a6268"/>
-            <div class="row justify-content-end">
-                <form action="/shipping" method="post">
-                    <input type="text" name="search" value="" hidden>
-                <button type="submit" class="col-3 mr-4 ml-3 btn btn-secondary" name="next" id="next">
-                        Next</button>
-                </form>
+                {% endfor %}
             </div>
         </div>
+        <hr style="color: #5a6268"/>
+        <div class="row justify-content-end">
+            <form action="/shipping" method="post">
+                <input type="text" name="search" value="" hidden>
+                <button type="submit" class="col-3 mr-4 ml-3 btn btn-secondary" name="next" id="next">
+                    Next
+                </button>
+            </form>
+        </div>
+    </div>
     </div>
     <br>
     <br>
@@ -202,6 +130,9 @@
     </footer> <!-- Footer -->
     </body>
     <script>
+        var search = localStorage.getItem('cart');
+        var array = JSON.parse(search);
+
         function Voter(options) {
             var elem = options.elem;
 
@@ -237,6 +168,7 @@
 
             this.setVote = function (vote) {
                 voteElem.innerHTML = +vote;
+
             };
 
         }
@@ -244,15 +176,9 @@
         var voter = new Voter({
             elem: document.getElementById('voter')
         });
-        var voter1 = new Voter({
-            elem: document.getElementById('voter1')
-        });
-        var voter2 = new Voter({
-            elem: document.getElementById('voter2')
-        });
+
         voter.setVote(1);
-        voter1.setVote(1);
-        voter2.setVote(1);
+
 
     </script>
 
@@ -290,26 +216,7 @@
         var search = localStorage.getItem('cart');
         $("input[type=text]").val(search);
     </script>
-{#    <script>#}
-{#        var storage = localStorage.getItem('cart');#}
-{#        console.log(storage);#}
-{#        $("#next").click(function() {#}
-{#            $.ajax({#}
 
-{#                type:'POST',#}
-{#                url:'ShippingController.php',#}
-{#                dataType:'json',#}
-{#                data:"param="+JSON.stringify(storage),#}
-{#                // success:function(html) {#}
-{#                //     $("<p class='for_content'>" + html['title'] + "</p>").#}
-{#                //     prependTo(".content").#}
-{#                //     hide().#}
-{#                //     fadeIn(500);#}
-{#                // }#}
-{#            });#}
-
-{#        });#}
-{#    </script>#}
-{#    <!-- jQuery is necessary -->#}
-{#    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>#}
+        <!-- jQuery is necessary -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 {% endblock %}

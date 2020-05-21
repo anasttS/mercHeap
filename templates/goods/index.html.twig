@@ -66,12 +66,13 @@
                 </ul>
                 <div class="navbar-item">
                     {% if is_granted('ROLE_USER') %}
-                        <button class="btn-dark"><a href="/cart"
-                                                    style="text-decoration: none; color: white">
+                        <form action="/cart" method="post">
+                            <input type="text" name="search" value="" hidden>
+                            <button class="btn-dark">
                                 <i class="fas fa-shopping-cart"></i>
                                 Your Cart
-                            </a>
-                        </button>
+                            </button>
+                        </form>
                     {% endif %}
                 </div>
 
@@ -93,7 +94,10 @@
             </div>
         </div>
     </form>
-
+    <script>
+        var search = localStorage.getItem('cart');
+        $("input[type=text]").val(search);
+    </script>
     <script type="text/javascript">
         jQuery(document).ready(function () {
             var searchRequest = null;
@@ -112,32 +116,32 @@
                         },
                         dataType: "text",
                         success: function (msg) {
-                                var result = JSON.parse(msg);
-                                if (result["entities"].length > 0)
-                                    for (var i = 0; i < result["entities"].length; i++) {
-                                        var o = result["entities"][i];
-                                        var id_product = o.id;
-                                        var img = o.photo;
-                                        var name = o.name;
-                                        var cost = o.cost;
-                                        entitySelector.append("<div class=\"col-3\">" +
-                                            "<div class=\"card p-0\" style=\"max-height: 500px\">" +
-                                            "<div class=\"imgcont\">" +
-                                            "<img src=\"uploads/" + img + "\"" +
-                                            "class=\"card-img-top img-responsive\">" +
-                                            "</div>" +
-                                            "<div class=\"card-body\">" +
-                                            "<h5 class=\"card-title\">" + name + "</h5>" +
-                                            "<p class=\"card-text w-25 \">" + cost + "</p>" +
-                                            "<button class=\"btn-dark btn\" value=\"" + id_product + "\">View</button>" +
-                                            "<button class=\"btn btn-light\"><i class=\"fas fa-cart-plus\"></i></button>" +
-                                            "</div>" +
-                                            "</div>" +
-                                            "</div>");
-                                    } else {
-                                    entitySelector.append(" " + value + " ");
-                                }
+                            var result = JSON.parse(msg);
+                            if (result["entities"].length > 0)
+                                for (var i = 0; i < result["entities"].length; i++) {
+                                    var o = result["entities"][i];
+                                    var id_product = o.id;
+                                    var img = o.photo;
+                                    var name = o.name;
+                                    var cost = o.cost;
+                                    entitySelector.append("<div class=\"col-3\">" +
+                                        "<div class=\"card p-0\" style=\"max-height: 500px\">" +
+                                        "<div class=\"imgcont\">" +
+                                        "<img src=\"uploads/" + img + "\"" +
+                                        "class=\"card-img-top img-responsive\">" +
+                                        "</div>" +
+                                        "<div class=\"card-body\">" +
+                                        "<h5 class=\"card-title\">" + name + "</h5>" +
+                                        "<p class=\"card-text w-25 \">" + cost + "</p>" +
+                                        "<button class=\"btn-dark btn\" value=\"" + id_product + "\">View</button>" +
+                                        "<button class=\"btn btn-light\"><i class=\"fas fa-cart-plus\"></i></button>" +
+                                        "</div>" +
+                                        "</div>" +
+                                        "</div>");
+                                } else {
+                                entitySelector.append(" " + value + " ");
                             }
+                        }
 
                     });
                 }
@@ -161,11 +165,11 @@
                         <div class="card-body">
                             <h5 class="card-title">{{ product.name }}</h5>
                             <p class="card-text w-25 ">{{ product.cost }}</p>
-{#                            <form action="{{ path('product', {'id':product.id} )}}" method="get">#}
-{#                                <button class="btn-dark btn" value="{{ product.id }}">View</button>#}
-{#                            </form>#}
-                            <form action="{{ path('product')}}" method="post">
-                                <button class="btn-dark btn" name ="id" id="id" value="{{ product.id }}">View</button>
+                            {#                            <form action="{{ path('product', {'id':product.id} )}}" method="get">#}
+                            {#                                <button class="btn-dark btn" value="{{ product.id }}">View</button>#}
+                            {#                            </form>#}
+                            <form action="{{ path('product') }}" method="post">
+                                <button class="btn-dark btn" name="id" id="id" value="{{ product.id }}">View</button>
                             </form>
                             <button name="add" class="add btn btn-light" data-art="{{ product.id }}"
                                     onmouseover="mouseIn('add')" onmouseout="mouseOut()"
