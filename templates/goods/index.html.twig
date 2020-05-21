@@ -67,7 +67,8 @@
                 <div class="navbar-item">
                     {% if is_granted('ROLE_USER') %}
                         <form action="/cart" method="post">
-                            <input type="text" name="search" value="" hidden>
+                            <textarea type="text" name="search" value="" hidden>
+                            </textarea>
                             <button class="btn-dark">
                                 <i class="fas fa-shopping-cart"></i>
                                 Your Cart
@@ -96,7 +97,7 @@
     </form>
     <script>
         var search = localStorage.getItem('cart');
-        $("input[type=text]").val(search);
+        $("textarea[type=text]").val(search);
     </script>
     <script type="text/javascript">
         jQuery(document).ready(function () {

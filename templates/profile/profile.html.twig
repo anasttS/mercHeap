@@ -206,20 +206,24 @@
                     </li>
                 </ul>
                 <div class="navbar-item">
-
-                    <button class="btn-dark"><a href="/cart"
-                                                style="text-decoration: none; color: white">
+                    <form action="/cart" method="post">
+                            <textarea type="text" name="search" value="" hidden>
+                            </textarea>
+                        <button class="btn-dark">
                             <i class="fas fa-shopping-cart"></i>
                             Your Cart
-                        </a>
-                    </button>
+                        </button>
+                    </form>
                 </div>
 
             </div>
 
         </div>
     </nav>
-
+    <script>
+        var search = localStorage.getItem('cart');
+        $("textarea[type=text]").val(search);
+    </script>
     <div class="container">
         <div class="row username" style="margin-top:45px;">
             <div class="col-md-4">

@@ -75,12 +75,14 @@
                 </ul>
                 <div class="navbar-item">
                     {% if is_granted('ROLE_USER') %}
-                        <button class="btn-dark"><a href="/cart"
-                                                    style="text-decoration: none; color: white">
+                        <form action="/cart" method="post">
+                            <textarea type="text" name="search" value="" hidden>
+                            </textarea>
+                            <button class="btn-dark">
                                 <i class="fas fa-shopping-cart"></i>
                                 Your Cart
-                            </a>
-                        </button>
+                            </button>
+                        </form>
                     {% endif %}
                 </div>
 
@@ -88,7 +90,10 @@
 
         </div>
     </nav>
-
+    <script>
+        var search = localStorage.getItem('cart');
+        $("textarea[type=text]").val(search);
+    </script>
     <div id="bgimage" class="container-fluid  backgroundImage">
         <div class="container">
             <h1 class="label">
