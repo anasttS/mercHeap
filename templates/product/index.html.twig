@@ -204,10 +204,12 @@
                                 <br>
                             </div>
                             <div class="col-2">
-                                <button name="send" class=" btn btn-light" id="send" style=""
-                                        onmouseover="mouseIn('send')"
+                                <form action="{{ path('product')}}" method="post">
+                                <button name="id" class=" btn btn-light" id="id" value="{{ product.id }} style="
+                                        onmouseover="mouseIn('id')"
                                         onmouseout="mouseOut()">Leave a feedback
                                 </button>
+                                </form>
                             </div>
                         </div>
                     </div>

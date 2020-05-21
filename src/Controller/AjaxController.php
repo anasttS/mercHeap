@@ -16,7 +16,6 @@ use Symfony\Component\Routing\Annotation\Route;
 class AjaxController
 {
     /**
-     * Creates a new ActionItem entity.
      * @Route("/search", name="ajax_search")
      */
     public function searchAction(Request $request, ProductRepository $repository)

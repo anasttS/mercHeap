@@ -5,16 +5,17 @@
 {% endblock %}
 
 {% block body %}
-<style>
-    ::-webkit-scrollbar {
-        display: none;
-    }
-</style>
+    <style>
+        ::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
 
     <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top border" style="box-shadow: black">
         <div class="container-fluid">
             <a href="/" class="navbar-brad"><img
-                        src="https://sun7-6.userapi.com/2JYupaQXK7tuU6qqEN3Y3W0C568RoyyJq1Pu6g/8gOYGcN_NqE.jpg"> MERCHEAP</a>
+                        src="https://sun7-6.userapi.com/2JYupaQXK7tuU6qqEN3Y3W0C568RoyyJq1Pu6g/8gOYGcN_NqE.jpg">
+                MERCHEAP</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse"
                     data-target="#navbarResponsive">
                 <span class="navbar-toggler-icon"></span>
@@ -49,73 +50,31 @@
         </div>
     </nav>
 
-<div class="container">
-    <div class="row mb-3 mt-3">
-        <div class="col-5">
-            {{ form_start(form) }}
-{#            {{ form_label(form.productName) }}#}
-            <label for="productName">Product name:</label>
-            {{ form_row(form.name) }}
-{#            <input type="text" class="form-control" id="productName" placeholder="Name of your product" required>#}
+    <div class="container">
+        <div class="row mb-3 mt-3">
+            <div class="col-5">
+                {{ form_start(form) }}
+                {{ form_row(form.name) }}
+            </div>
+            <div class="col-5"></div>
+            <div class="col-2">
+                {{ form_row(form.cost) }}
+            </div>
         </div>
-        <div class="col-5">
-{#            <label for="typeOfProduct">Type</label>#}
-{#            <select class="custom-select" id="typeOfProduct" required>#}
-{#                <option>T-shirts</option>#}
-{#                <option>Cups</option>#}
-{#                <option>Stickers</option>#}
-{#                <option>Arts</option>#}
-{#                <option>Pins</option>#}
-{#                <option>Others</option>#}
-{#            </select>#}
+        <div class="row m-0">
+            {{ form_row(form.description) }}
         </div>
-        <div class="col-2">
-            <label for="price">Price:</label>
-            {{ form_row(form.cost) }}
-{#            <input type="text" class="form-control" id="price" placeholder="Price" required>#}
-        </div>
-    </div>
-    <div class="row m-0">
-        <label for="description">Description:</label>
-        {{ form_row(form.description) }}
-{#        <textarea type="text" class="form-control" id="description"></textarea>#}
-    </div>
-    <div class="row mt-3">
-        <div class="form-group">
-            <label class="col-sm-3 control-label">
-                Photos:
-            </label>
-            <span class="btn">
+        <div class="row mt-3">
+            <div class="form-group">
+                <label class="col-sm-3 control-label">
+                    Photos:
+                </label>
+                <span class="btn">
                 {{ form_row(form.photo) }}
-{#                    <input id="input" name="input[]" type="file" class="form-control-file" data-show-upload="false"#}
-{#                           data-show-caption="true" multiple> //how#}
             </span>
+            </div>
         </div>
+        <button type="submit" class="btn btn-dark">Create</button>
+        {{ form_end(form) }}
     </div>
-{#    <button class="btn btn-dark" data-toggle="modal" data-target="#exampleModal">Create</button>#}
-    <button type="submit" class="btn btn-dark">Create</button>
-    {{ form_end(form) }}
-</div>
-
-{#<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"#}
-{#     aria-hidden="true">#}
-{#    <div class="modal-dialog modal-dialog-centered" role="document">#}
-{#        <div class="modal-content">#}
-{#            <div class="modal-header">#}
-{#                <h5 class="modal-title">Thank you!</h5>#}
-{#                <button type="button" class="close" data-dismiss="modal" aria-label="Close">#}
-{#                    <span aria-hidden="true">&times;</span>#}
-{#                </button>#}
-{#            </div>#}
-{#            <div class="modal-body">#}
-{#                <p>Your product has been submitted for review.</p>#}
-{#            </div>#}
-{#            <div class="modal-footer">#}
-{#                <button type="submit" class="btn btn-dark">Ok</button>#}
-{#                #}
-{#            </div>#}
-{#        </div>#}
-{#    </div>#}
-{#</div>#}
-
 {% endblock %}
