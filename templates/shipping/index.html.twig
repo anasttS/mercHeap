@@ -119,16 +119,17 @@
                         <div class="row">
 {#                            <img src="https://onerepublic.com/wp-content/uploads/2019/11/1R_RM_HATSIDE_MOCK.jpg" style="wight: 90px; height: 80px">#}
                             <img src="uploads/{{ product.product.photo }}" style="wight: 90px; height: 80px">
+                        </div>
+                        <div class="row">
                             <h4 class="ml-3" id="productName1">
                                 {{ product.product.name }}
-                                <h4>
+                                </h4>
+                                </br>
                                     <h5 id="price1">{{ product.product.cost }}$</h5>
-                                </h4>
-                                <h4>
+                            </br>
                                     <h6 id="count1">Product count - {{ product.count }}</h6>
-                                </h4>
-                            </h4>
-                        </div>
+                            </br>
+                    </div>
                     </div>
                         {% endfor %}
                     {% endif %}
