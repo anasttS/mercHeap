@@ -163,9 +163,11 @@
 
             <hr style="color: #5a6268"/>
             <div class="row justify-content-end">
-                <button type="button" class="col-3 mr-4 ml-3 btn btn-secondary" id="next"><a href="shippingDetails.html"
-                                                                                             style="text-decoration: none; color: white">
-                        Next</a></button>
+                <form action="/shipping" method="post">
+                    <input type="text" name="search" value="" hidden>
+                <button type="submit" class="col-3 mr-4 ml-3 btn btn-secondary" name="next" id="next">
+                        Next</button>
+                </form>
             </div>
         </div>
     </div>
@@ -267,4 +269,30 @@
         }
 
     </script>
+    <script>
+        var search = localStorage.getItem('cart');
+        $("input[type=text]").val(search);
+    </script>
+{#    <script>#}
+{#        var storage = localStorage.getItem('cart');#}
+{#        console.log(storage);#}
+{#        $("#next").click(function() {#}
+{#            $.ajax({#}
+
+{#                type:'POST',#}
+{#                url:'ShippingController.php',#}
+{#                dataType:'json',#}
+{#                data:"param="+JSON.stringify(storage),#}
+{#                // success:function(html) {#}
+{#                //     $("<p class='for_content'>" + html['title'] + "</p>").#}
+{#                //     prependTo(".content").#}
+{#                //     hide().#}
+{#                //     fadeIn(500);#}
+{#                // }#}
+{#            });#}
+
+{#        });#}
+{#    </script>#}
+{#    <!-- jQuery is necessary -->#}
+{#    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>#}
 {% endblock %}
