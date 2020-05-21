@@ -8,6 +8,7 @@ use App\Entity\User;
 use App\Repository\ProductRepository;
 use CommentType;
 use DateTime;
+use phpDocumentor\Reflection\Types\Integer;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -26,7 +27,8 @@ class ProductController extends AbstractController
         $comment = new Comment();
         $form = $this->createForm(CommentType::class, $comment);
         $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()){
+//        dd($product);
+        if ($form->isSubmitted() && $form->isValid()) {
             $comment = $form->getData();
             $comment->setUser($userAut);
             $comment->setProduct($product);
@@ -36,14 +38,14 @@ class ProductController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->persist($comment);
             $em->flush();
-//            return $this->redirect("/product");
+            $this->redirectToRoute('product', ['id' => $id], 302);
         }
 
         return $this->render('product/index.html.twig', [
             'controller_name' => 'ProductController',
-            'product'=>$product,
-            'user'=>$user,
-            'form'=>$form->createView()
+            'product' => $product,
+            'user' => $user,
+            'form' => $form->createView()
         ]);
     }
 
