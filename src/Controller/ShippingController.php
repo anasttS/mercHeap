@@ -36,59 +36,76 @@ class ShippingController extends AbstractController
     public function createOrder(Request $request)
     {
 
-        $array = array(
-            '1' => 1,
-            '4' => 2,
-            '5' => 3
-        );
-        $em = $this->getDoctrine()->getManager();
-        $json = json_encode($array);
+//        $array = array(
+//            '1' => 1,
+//            '4' => 2,
+//            '5' => 3
+//        );
+//
+//
+//        $em = $this->getDoctrine()->getManager();
+//        $json = json_encode($array);
 //        $array = json_decode("localStorage.getItem('cart')");
-        $array = json_decode($json);
+//if($_POST['param']) {
+//    $array = json_decode($_POST['param']);
+//    exit();
+//} else{
+//    $array = array();
+//}
+//
+//        $array = json_decode($json);
 
-        $order = new OrderUser();
-        $user = $this->getUser();
-
-        $products = array();
-        $price = 0;
-        $taxes = 13;
-
-        foreach ($array as $k => $v){
-            $product = $this->productRepository->find($k);
-            $shopList = new ShopList();
-            $shopList->setProduct($product);
-            $shopList->setCount($v);
-            $shopList->setOrderId($order);
-            $price = $price + $product->getCost() * $v;
-            array_push($products, $shopList);
+        if ($_POST['search']) {
+            $json = $_POST['search'];
+            $array = json_decode($json);
+        } else {
+            $array =array();
         }
-        $order->setPrice($price);
-        $subtotal = $price + $taxes;
-        $order->setSubtotal($subtotal);
 
+            $order = new OrderUser();
+            $user = $this->getUser();
 
-        $form = $this->createForm(OrderType::class, $order);
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()){
+            $products = array();
+            $price = 0;
+            $taxes = 13;
 
-            $order = $form->getData();
-            $order->setUser($user);
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($order);
-            $em->flush();
-
-            foreach ($array as $k => $v){
+            foreach ($array as $k => $v) {
                 $product = $this->productRepository->find($k);
                 $shopList = new ShopList();
                 $shopList->setProduct($product);
                 $shopList->setCount($v);
                 $shopList->setOrderId($order);
-                $em->persist($shopList);
+                $price = $price + $product->getCost() * $v;
+                array_push($products, $shopList);
+            }
+            $order->setPrice($price);
+            $subtotal = $price + $taxes;
+            $order->setSubtotal($subtotal);
+
+
+            $form = $this->createForm(OrderType::class, $order);
+            $form->handleRequest($request);
+            if ($form->isSubmitted() && $form->isValid()) {
+
+                $order = $form->getData();
+                $order->setUser($user);
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($order);
+                $em->flush();
+
+                foreach ($array as $k => $v) {
+                    $product = $this->productRepository->find($k);
+                    $shopList = new ShopList();
+                    $shopList->setProduct($product);
+                    $shopList->setCount($v);
+                    $shopList->setOrderId($order);
+                    $em->persist($shopList);
+                }
+
+                $em->flush();
+                return $this->redirect("profile");
             }
 
-            $em->flush();
-            return $this->redirect("profile");
-        }
         return $this->render('shipping/index.html.twig',[
             'form' => $form->createView(),
             'products' => $products,
